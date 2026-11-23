@@ -1155,6 +1155,7 @@ details.sec-details .details-body{margin-top:10px}
       <div class="check-row" style="margin-bottom:6px">
         <label><input type="checkbox" id="comboUsePose" checked> 带姿势</label>
         <label><input type="checkbox" id="comboUseScene" checked> 带场景</label>
+        <label title="勾选时一键搭配优先穿本角色官方专属服；取消勾选则自动跨角色换穿（标注原主人名）或抽通用服装"><input type="checkbox" id="comboOwnOutfit" checked> 穿本角色官方服</label>
         <label title="把 Wardrobe V5 的英文自然语言画面描述一并写入正面提示词，画面感大幅提升"><input type="checkbox" id="comboUseNL" checked> ✨ 附带自然语言</label>
         <label><input type="checkbox" id="comboWrite" checked> 直接写入提示词</label>
       </div>
@@ -2389,10 +2390,11 @@ async function runComboRequest(overrideLocked=null, overrideDisabled=null, toast
     }
     if(overrideDisabled !== null) disabled = overrideDisabled;
 
+    const crossOutfit = extraOpts.cross_outfit !== undefined ? extraOpts.cross_outfit : !($('#comboOwnOutfit')?.checked ?? true);
     const r = await api('/api/combo', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({level: lv, work, use_pose, use_scene, locked, disabled, ...extraOpts})
+      body: JSON.stringify({level: lv, work, use_pose, use_scene, locked, disabled, ...extraOpts, cross_outfit: crossOutfit})
     });
     if(r.error){ toast('搭配失败: '+r.error); return; }
     comboState.cur = r;
