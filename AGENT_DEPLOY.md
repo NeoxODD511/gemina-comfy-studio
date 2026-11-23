@@ -105,3 +105,15 @@ Agent 在向用户汇报部署完成前，**必须逐项验证**：
 - [ ] `GET http://127.0.0.1:8189/api/queue` 返回 HTTP 200 且包含 `progress` 字段。
 - [ ] 浏览器打开 `http://127.0.0.1:8189/`，控制台 **0 JS Errors**，网络请求 **0 HTTP >= 400**。
 - [ ] （可选）校验用户 `<LORA_DIR>` 内所有 `.safetensors` 文件头完整性，避免损坏文件导致 `Error while deserializing header`。
+
+---
+
+## 5. 已知问题与排障速查（供 Agent 快速定位）
+
+1. **`POST /interrupt` 或 `/free` 报 JSON 解析错误**：ComfyUI 这些控制接口成功时返回空响应体 `""`，已在 `server.py` 的 `comfy_post()` 中兼容空响应返回 `{"ok": True}`，二次开发时勿回退为直接 `json.loads()`。
+2. **前端进度条不显示**：浏览器直连 `ws://127.0.0.1:8188/ws` 易受跨源策略或多标签页同 `clientId` 互顶影响；当前已改为由 `server.py` 后台线程 `_ws_progress_loop()` 统一监听并通过 `GET /api/queue` 附带 `progress` 字段返回。
+3. **出图后未自动保存到桌面目录**：已通过 `_ws_progress_loop()` 监听 `executed` / `executing(node=None)` 自动镜像保存，不受前端刷新影响；若用户未启用该目录，可通过环境变量 `DESKTOP_OUT_DIR` 调整。
+4. **旧 ComfyUI 工作流 JSON 报 LoRA 缺失**：用户重整 `models/loras` 子目录后，旧 JSON 扁平路径会失效；Agent 应查询 `GET /object_info/LoraLoader` 按文件名 basename 批量重映射并更新 `workflows/presets.json`。
+5. **模型加载报 `Error while deserializing header: incomplete metadata, file not fully covered`**：说明对应 `.safetensors` 文件下载截断，需校验文件头 `8 + hdr_len + max_offset <= file_size` 并重新下载。
+6. **默认正负面质量词兜底**：`server.py` 的 `build_prompt_payload()` 会自动通过 `_append_tags()` 追加 `DEFAULT_POSITIVE` 与 `DEFAULT_NEGATIVE`，用户留空负面框时仍会有保底负面词生效。
+
