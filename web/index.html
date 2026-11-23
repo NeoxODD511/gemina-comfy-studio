@@ -532,6 +532,37 @@ button.sens-toggle:hover{border-color:var(--warn);background:rgba(251,191,36,.15
 .prompt-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
 .char-cnt{font-size:11px;color:var(--cyan);font-family:ui-monospace,Consolas,monospace;font-weight:600}
 
+/* 双人分区域独立提示词 */
+.dual-box{
+  padding:10px 11px;border-radius:12px;
+  background:linear-gradient(135deg, rgba(99,102,241,.09), rgba(236,72,153,.06));
+  border:1px solid rgba(168,85,247,.30);
+}
+.dual-head{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;
+}
+.dual-head label{
+  display:inline-flex;align-items:center;gap:6px;cursor:pointer;
+  font-size:12px;font-weight:600;color:#fff;user-select:none;
+}
+.dual-head label input{width:14px;height:14px;accent-color:#a855f7;cursor:pointer}
+.dual-ctrls{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.dual-ctrls select{height:27px;padding:0 8px;font-size:11px;border-radius:8px;width:auto}
+.dual-tip{
+  margin-top:6px;font-size:11px;color:var(--tx2);line-height:1.45;
+  padding:5px 8px;border-radius:8px;background:rgba(6,8,18,.42);border:1px dashed rgba(165,180,252,.22);
+}
+.dual-tip b{color:#c4b5fd}
+.dual-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+@media (max-width:720px){.dual-grid{grid-template-columns:1fr}}
+.dual-col{display:flex;flex-direction:column;gap:4px}
+.dual-lbl{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:11px;font-weight:600;color:var(--tx);
+}
+.dual-lbl .d-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}
+.dual-col textarea{font-size:11.5px;min-height:74px}
+
 /* LoRA 区域 */
 .tabs{display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap}
 .tabs .tab{
@@ -1157,6 +1188,44 @@ details.sec-details .details-body{margin-top:10px}
             <span class="hint">已选角色 LoRA 触发词将自动并入</span>
           </div>
         </div>
+
+        <!-- 双人分区域独立提示词（防止 BA 光环 / 发色 / 兽耳串台） -->
+        <div class="dual-box" id="dualCharBox">
+          <div class="dual-head">
+            <label title="开启后使用 ComfyUI 原生区域条件隔离，把两位角色分别锁定在左/右或上/下区域，防止光环与特征串台">
+              <input type="checkbox" id="dualCharOn"> 👯 双人独立提示词（防光环/发色串台）
+            </label>
+            <div class="dual-ctrls">
+              <select id="dualLayout" title="两位角色在画面中的分区方式">
+                <option value="lr">左右分屏（推荐横图/方图）</option>
+                <option value="tb">上下分屏（适合竖图）</option>
+              </select>
+              <button type="button" id="btnFillDual" class="btn-sm btn-ghost" style="height:27px;padding:0 8px;font-size:11px" title="把左栏已选的前 2 个角色自动分别填入下方两个框">📥 填入已选2角色</button>
+            </div>
+          </div>
+          <div id="dualCharFields" style="display:none">
+            <div class="dual-tip">
+              💡 <b>用法：</b>上方主正面框写<b>全局场景 + 2girls + 互动</b>；下方两框各写一个角色的特征/服装。一方含 <b>halo</b> 时，另一方会自动补 <b>no halo</b> 护盾防光环串台。
+            </div>
+            <div class="dual-grid">
+              <div class="dual-col">
+                <div class="dual-lbl">
+                  <span><span class="d-dot" style="background:#34d399"></span><span id="dualLbl1">角色 1（左区）</span></span>
+                  <span class="hint">如 BA 带光环角色</span>
+                </div>
+                <textarea id="char1Pos" rows="3" placeholder="角色 1 专属词，例如：nonomi, blue archive, blonde hair, green eyes, green halo, school uniform"></textarea>
+              </div>
+              <div class="dual-col">
+                <div class="dual-lbl">
+                  <span><span class="d-dot" style="background:#f472b6"></span><span id="dualLbl2">角色 2（右区）</span></span>
+                  <span class="hint">另一作品角色（自动护盾）</span>
+                </div>
+                <textarea id="char2Pos" rows="3" placeholder="角色 2 专属词，例如：tokai teio, umamusume, brown hair, blue eyes, horse ears, horse tail"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div>
           <div style="font-size:11px;color:var(--tx2);margin-bottom:4px">负面提示词（Negative Prompt）</div>
           <textarea id="negative" rows="2" placeholder="负面提示词（留空则使用默认或由一键搭配填充）…"></textarea>
@@ -2109,6 +2178,57 @@ $('#btnBuild').onclick=()=>{
 };
 $('#btnClearTags').onclick=()=>{ $('#positive').value=''; updatePosLen(); };
 
+/* ---------- 双人分区域独立提示词 ---------- */
+function buildCharPromptSnippet(ch){
+  if(!ch) return '';
+  const parts = [];
+  const push = s => {
+    if(!s) return;
+    String(s).split(',').map(x=>x.trim()).filter(Boolean).forEach(tok=>{
+      if(!parts.some(p=>p.toLowerCase()===tok.toLowerCase())) parts.push(tok);
+    });
+  };
+  push(ch.trigger || ch.tags || ch.id);
+  if(ch.work_tag) push(ch.work_tag);
+  if(ch.hair && !String(ch.hair).includes('hair')) push(ch.hair + ' hair');
+  else if(ch.hair) push(ch.hair);
+  if(ch.eyes && !String(ch.eyes).includes('eyes')) push(ch.eyes + ' eyes');
+  else if(ch.eyes) push(ch.eyes);
+  if(Array.isArray(ch.traits)) ch.traits.forEach(push);
+  else if(ch.traits) push(ch.traits);
+  return parts.join(', ');
+}
+function updateDualLayoutLabels(){
+  const tb = ($('#dualLayout')?.value || 'lr') === 'tb';
+  if($('#dualLbl1')) $('#dualLbl1').textContent = tb ? '角色 1（上区）' : '角色 1（左区）';
+  if($('#dualLbl2')) $('#dualLbl2').textContent = tb ? '角色 2（下区）' : '角色 2（右区）';
+}
+if($('#dualCharOn')){
+  $('#dualCharOn').onchange = e => {
+    $('#dualCharFields').style.display = e.target.checked ? '' : 'none';
+    updateDualLayoutLabels();
+  };
+}
+if($('#dualLayout')){
+  $('#dualLayout').onchange = updateDualLayoutLabels;
+}
+if($('#btnFillDual')){
+  $('#btnFillDual').onclick = () => {
+    const ids = Array.from(state.selChars);
+    const chars = ids.map(id => state.picked.characters[id]).filter(Boolean);
+    if(chars.length < 2){
+      toast('请先在左栏「角色」中至少勾选 2 位角色哦');
+      return;
+    }
+    $('#dualCharOn').checked = true;
+    $('#dualCharFields').style.display = '';
+    updateDualLayoutLabels();
+    $('#char1Pos').value = buildCharPromptSnippet(chars[0]);
+    $('#char2Pos').value = buildCharPromptSnippet(chars[1]);
+    toast(`已填入双人分区：${chars[0].name||chars[0].id}（左） × ${chars[1].name||chars[1].id}（右）✨`);
+  };
+}
+
 /* ---------- 敏感姿势独立分区 ---------- */
 const poseSensState = { items: [], total: 0, q: '', open: false };
 
@@ -2297,6 +2417,19 @@ function applyComboResultToUI(r, customMsg=''){
   if(r.character2 && r.character2.id){
     state.selChars.add(r.character2.id);
     state.picked.characters[r.character2.id] = r.character2;
+  }
+  // 自动联动双人分区域独立提示词框（防光环/发色串台）
+  if($('#dualCharOn')){
+    if(r.character && r.character2){
+      $('#dualCharOn').checked = true;
+      $('#dualCharFields').style.display = '';
+      updateDualLayoutLabels();
+      $('#char1Pos').value = buildCharPromptSnippet(r.character);
+      $('#char2Pos').value = buildCharPromptSnippet(r.character2);
+    } else {
+      $('#dualCharOn').checked = false;
+      $('#dualCharFields').style.display = 'none';
+    }
   }
   if(r.pose && r.pose.id && r.pose.thumb && !r.pose_conflict){
     state.selPoses.add(r.pose.id);
@@ -2617,6 +2750,7 @@ $('#btnGen').onclick=async()=>{
   try{
     const hiresOn = $('#hiresOn')?.checked;
     const poseCtrlOn = $('#poseCtrlOn')?.checked && !!state.poseCtrlId;
+    const dualCharOn = $('#dualCharOn')?.checked;
     const payload={
       model: $('#model').value,
       positive: $('#positive').value,
@@ -2627,6 +2761,13 @@ $('#btnGen').onclick=async()=>{
       weight_dtype: $('#precision') ? $('#precision').value : 'fp8_e4m3fn',
       loras: state.active.map(a=>({file:a.file, weight:a.weight})),
       prefix: state.activeWf?.prefix || 'frontend',
+      dual_char: dualCharOn ? {
+        enabled: true,
+        layout: $('#dualLayout')?.value || 'lr',
+        char1: ($('#char1Pos')?.value || '').trim(),
+        char2: ($('#char2Pos')?.value || '').trim(),
+        strength: 1.0
+      } : {enabled: false},
       pose_ctrl: poseCtrlOn ? {
         enabled: true,
         pose_id: state.poseCtrlId,

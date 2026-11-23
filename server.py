@@ -482,6 +482,40 @@ def build_prompt_payload(req):
 
     g["20"] = {"class_type": "CLIPTextEncode", "inputs": {"text": positive, "clip": clip_ref}}
     g["21"] = {"class_type": "CLIPTextEncode", "inputs": {"text": negative, "clip": clip_ref}}
+    pos_ref = ["20", 0]
+
+    # 双人分区域独立提示词隔离（ConditioningSetAreaPercentage + ConditioningCombine，防止光环/发色串台）
+    dual = req.get("dual_char") or {}
+    if isinstance(dual, dict) and dual.get("enabled"):
+        c1 = str(dual.get("char1") or "").strip()
+        c2 = str(dual.get("char2") or "").strip()
+        if c1 or c2:
+            # 光环防串台护盾：一方有 halo 而另一方没有时，自动为另一方补 no halo
+            has_h1 = "halo" in c1.lower() and "no halo" not in c1.lower()
+            has_h2 = "halo" in c2.lower() and "no halo" not in c2.lower()
+            if has_h1 and not has_h2 and c2:
+                c2 = _append_tags(c2, "no halo")
+            elif has_h2 and not has_h1 and c1:
+                c1 = _append_tags(c1, "no halo")
+            layout = dual.get("layout", "lr")
+            d_str = float(dual.get("strength", 1.0))
+            if layout == "tb":
+                a1 = {"x": 0.0, "y": 0.0, "width": 1.0, "height": 0.55, "strength": d_str}
+                a2 = {"x": 0.0, "y": 0.45, "width": 1.0, "height": 0.55, "strength": d_str}
+            else:
+                a1 = {"x": 0.0, "y": 0.0, "width": 0.55, "height": 1.0, "strength": d_str}
+                a2 = {"x": 0.45, "y": 0.0, "width": 0.55, "height": 1.0, "strength": d_str}
+            if c1:
+                g["70"] = {"class_type": "CLIPTextEncode", "inputs": {"text": _append_tags(c1, DEFAULT_POSITIVE), "clip": clip_ref}}
+                g["71"] = {"class_type": "ConditioningSetAreaPercentage", "inputs": {"conditioning": ["70", 0], **a1}}
+                g["74"] = {"class_type": "ConditioningCombine", "inputs": {"conditioning_1": pos_ref, "conditioning_2": ["71", 0]}}
+                pos_ref = ["74", 0]
+            if c2:
+                g["72"] = {"class_type": "CLIPTextEncode", "inputs": {"text": _append_tags(c2, DEFAULT_POSITIVE), "clip": clip_ref}}
+                g["73"] = {"class_type": "ConditioningSetAreaPercentage", "inputs": {"conditioning": ["72", 0], **a2}}
+                g["75"] = {"class_type": "ConditioningCombine", "inputs": {"conditioning_1": pos_ref, "conditioning_2": ["73", 0]}}
+                pos_ref = ["75", 0]
+
     seed_val = int(req.get("seed", 0)) or int(time.time() * 1000) % 2147483647
     g["30"] = {"class_type": "KSampler", "inputs": {
         "seed": seed_val,
@@ -491,7 +525,7 @@ def build_prompt_payload(req):
         "scheduler": req.get("scheduler", "simple"),
         "denoise": 1.0,
         "model": model_ref,
-        "positive": ["20", 0],
+        "positive": pos_ref,
         "negative": ["21", 0],
         "latent_image": ["4", 0],
     }}
@@ -514,7 +548,7 @@ def build_prompt_payload(req):
             "scheduler": req.get("scheduler", "simple"),
             "denoise": float(hires.get("denoise", 0.7)),
             "model": model_ref,
-            "positive": ["20", 0],
+            "positive": pos_ref,
             "negative": ["21", 0],
             "latent_image": latent_out,
         }}
