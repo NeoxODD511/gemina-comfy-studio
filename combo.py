@@ -90,8 +90,14 @@ def list_combo_options(max_level=4):
         if int(s.get("level") or 0) <= max_level
     ]
     styles = [
-        {"id": st.get("id") or st.get("name"), "name": st.get("name") or st.get("zh") or st.get("id")}
+        {
+            "id": st.get("id") or st.get("name"),
+            "name": st.get("name") or st.get("zh") or st.get("id"),
+            "tags": st.get("tags") or "",
+            "group": st.get("group") or "",
+        }
         for st in (A.get("styles") or [])
+        if st.get("group") != "图反推" and st.get("tags")
     ]
     return {"scenes": scenes, "styles": styles}
 
@@ -223,17 +229,22 @@ def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, l
             cand = [p for p in poses if p.get("thumb")]
             pose = pick(cand) or pick(poses)
 
-    # 5. 画风（支持用户锁定/自选或禁用）
+    # 5. 画风（支持用户锁定/自选或禁用；过滤掉「图反推」杂项，只抽真正的画风/构图/镜头/光影）
     style_hint = None
-    styles = A["styles"]
+    styles = [st for st in (A["styles"] or []) if st.get("group") != "图反推" and st.get("tags")]
     if "style_hint" not in disabled:
         if "style_hint" in locked and locked["style_hint"]:
             ls = locked["style_hint"]
-            if isinstance(ls, dict) and (ls.get("name") or ls.get("id")):
-                style_hint = ls
+            if isinstance(ls, dict) and (ls.get("tags") or ls.get("name") or ls.get("id")):
+                if not ls.get("tags"):
+                    sid = str(ls.get("id") or ls.get("name") or "")
+                    found = next((st for st in A["styles"] if str(st.get("id")) == sid or str(st.get("name")) == sid), None)
+                    style_hint = found or ls
+                else:
+                    style_hint = ls
             else:
                 sid = str(ls)
-                style_hint = next((st for st in styles if str(st.get("id")) == sid or str(st.get("name")) == sid), {"id": sid, "name": sid})
+                style_hint = next((st for st in A["styles"] if str(st.get("id")) == sid or str(st.get("name")) == sid), {"id": sid, "name": sid, "tags": sid})
         elif styles:
             style_hint = pick(styles)
 
@@ -304,6 +315,10 @@ def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, l
         if pose.get("tags"):
             parts.append(pose["tags"])
 
+    # 画风 / 镜头 / 光影标签（真正写入正面提示词！）
+    if isinstance(style_hint, dict) and style_hint.get("tags"):
+        parts.append(style_hint["tags"])
+
     # 英文整句（Anima 支持整句，可选启用）
     scene_nl = (scene or {}).get("scene_nl", "") if scene else ""
 
@@ -343,6 +358,8 @@ def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, l
                 g_parts.append(scene["extra"])
         if pose and not pose_conflict and pose.get("tags"):
             g_parts.append(pose["tags"])
+        if isinstance(style_hint, dict) and style_hint.get("tags"):
+            g_parts.append(style_hint["tags"])
         global_prompt = _dedup_join(g_parts)
 
     return {
