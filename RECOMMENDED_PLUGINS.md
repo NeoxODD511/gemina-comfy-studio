@@ -11,12 +11,15 @@
 | 插件名称 | 作用（人话版） | 联动 ODD 前端功能 | 仓库地址 |
 | :--- | :--- | :--- | :--- |
 | **ComfyUI-Impact-Pack** + **Impact-Subpack** | 全自动 **FaceDetailer 修脸**，画全身图、双人分区图时自动框出每张脸单独高清重绘，彻底告别糊脸/眼歪 | 右栏 **`✨ 自动修脸 (FaceDetailer)`** 开关 | [Impact-Pack](https://github.com/ltdrdata/ComfyUI-Impact-Pack) · [Subpack](https://github.com/ltdrdata/ComfyUI-Impact-Subpack) |
-| **ComfyUI-WD14-Tagger** | 本地离线反推参考图提示词，支持只抄服装与构图、自动剔除原图角色名 | 中栏 **`🖼️ 拖图反推`**（支持拖拽与 `Ctrl+V` 粘贴） | [ComfyUI-WD14-Tagger](https://github.com/pythongosssss/ComfyUI-WD14-Tagger) |
-| **comfyui-pose-gallery** + **comfyui_controlnet_aux** | 1,400+ 高清姿势图库 + 动漫线稿提取，配合 Anima LLLite 精准锁姿势 | 左栏 **姿势图库** + 右栏 **`🕺 姿势图控图`** | [pose-gallery](https://github.com/ltdrdata/ComfyUI-Manager)（ComfyUI Registry / 社区） · [controlnet_aux](https://github.com/Fannovel16/comfyui_controlnet_aux) |
+| **ComfyUI-WD14-Tagger** | 本地离线反推参考图提示词，支持只抄服装与构图、自动剔除原图角色名 | 中栏 **`🖼️ 拖图反推`**（支持拖拽与 `Ctrl+V` 粘贴） | [ComfyUI-WD14-Tagger](https://github.com/pythongosssss/ComfyUI-WD14-Tagger) · [WD14 模型库](https://huggingface.co/SmilingWolf/wd-swinv2-tagger-v3) |
+| **comfyui-pose-gallery** + **comfyui_controlnet_aux** | 1,439 张高清姿势原图包（~675 MB，288 组多视角）+ 动漫线稿提取，配合 Anima LLLite 精准锁姿势 | 左栏 **姿势图库** + 右栏 **`🕺 姿势图控图`** | [comfyui-pose-gallery](https://github.com/wangweihong/comfyui-pose-gallery) · [原图库 ai-pose-gallery-zh](https://github.com/wangweihong/ai-pose-gallery-zh) · [controlnet_aux](https://github.com/Fannovel16/comfyui_controlnet_aux) |
 
-> **自动修脸所需模型（仅 ~6 MB）**：
-> 下载 `face_yolov8m.pt` 放到 `<ComfyUI目录>\models\ultralytics\bbox\face_yolov8m.pt`：
-> `https://huggingface.co/Bingsu/adetailer/resolve/main/face_yolov8m.pt`
+> **联动模型与素材直链**：
+> - **自动修脸人脸模型（`face_yolov8m.pt`，~49.6 MB）**：放到 `<ComfyUI目录>\models\ultralytics\bbox\face_yolov8m.pt`  
+>   直链：`https://huggingface.co/Bingsu/adetailer/resolve/main/face_yolov8m.pt`
+> - **WD14 反推模型（`wd-swinv2-tagger-v3`，~467 MB）**：放到 `<ComfyUI目录>\custom_nodes\ComfyUI-WD14-Tagger\models\`  
+>   模型仓库：`https://huggingface.co/SmilingWolf/wd-swinv2-tagger-v3`（需下载 `model.onnx` → 改名 `wd-swinv2-tagger-v3.onnx`，以及 `selected_tags.csv` → 改名 `wd-swinv2-tagger-v3.csv`）
+> - **姿势图原图包（~675 MB）**：随 [wangweihong/comfyui-pose-gallery](https://github.com/wangweihong/comfyui-pose-gallery) 仓库或上游 [wangweihong/ai-pose-gallery-zh](https://github.com/wangweihong/ai-pose-gallery-zh) 获取。
 
 ---
 
