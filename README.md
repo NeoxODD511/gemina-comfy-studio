@@ -1,58 +1,81 @@
 # ODD 出图 · Studio（ComfyUI 独立轻量化出图工作台）
 
-> ✨ **项目说明**：本项目的赛博极光磨砂玻璃前端重塑、交互架构（UX）、一条龙工作流引擎、Anima LLLite 姿势图控图联动、WD14 拖图反推集成、实时进度条与队列控制等核心功能，均由 **Antigravity（天才美少女 AIGC 设计师洁美奈 / Gemina）** 在与项目发起人的协作中完整设计与编写实现。
-
-一个**零第三方前端依赖、纯 Python 标准库 + 单页 HTML/CSS/JS** 驱动的 ComfyUI 专属出图工作台（默认端口 `8189`），只通过 ComfyUI 原生 HTTP / WebSocket API（`8188`）通信，不修改 ComfyUI 任何核心源码。
-
----
-
-## 🎨 核心亮点
-
-### 1. 赛博极光磨砂玻璃 UI（Cyber Atelier）
-- 动态极光深空背景 + 悬浮磨砂玻璃三栏布局，告别呆板切豆腐竖线与原生大白条滚动条。
-- 顶部悬浮导航栏集成 **ComfyUI 在线状态**、**可点击队列明细**、**实时步数/百分比流光进度条**、**⏹ 停止当前**、**🧹 一键清显存/内存** 与 `Ctrl + Enter` 全局出图快捷键。
-
-### 2. 左栏：素材与模型库（分段式大 Tab）
-- **姿势画廊**：2 列高清竖版画廊卡片（默认开启「仅看带图」），点击弹出**高清原图 + 多视角切换弹窗**（支持 `←`/`→` 键切换视角），选中后自动绑定右栏 **🕺 Anima LLLite 线稿控图**（支持单人 & 双人姿势图）。
-- **服装库**：细分 **`全部 / 上装 / 下装 / 鞋袜 / ★ 角色专属 / 连衣裙 / 制服 / 配饰`** 快捷子分类；所有角色专属服装清晰标注 **「角色中文名 · 服装名 [所属作品]」** 并按人气排序，支持直接搜中文角色名或作品名。
-- **角色库**：70+ 热门作品全面汉化并合并中英文重名系列（如 `赛马娘`、`原神`、`崩坏：星穹铁道`、`东方Project`、`Fate / FGO` 等）。
-
-### 3. 中栏：灵感一键搭配 + 提示词编排 + LoRA 工作室
-- **可自主修改的「灵感一键搭配」**：
-  - 支持 Lv0 ~ Lv4 五档分级，内置 **✨ 附带自然语言描述**（融合 Wardrobe V5 英文电影感场景段落，大幅提升 Anima / Qwen 画面感）；
-  - 智能区分单人、男女互动（`1girl, 1boy`）与双女主（自动抽取 `角色 2`），自动检测场景与姿势冲突；
-  - 场景 / 角色 / 服装 / 姿势 / 画风每个槽位均支持 **`🔒 锁定`**、**`🎲 单独重抽`**、**`✏️ 弹窗搜索替换 / 同步左栏`**、**`× 单项移除`**。
-- **提示词编排**：顶部实时展示彩色 **「已选素材」汇总条**；下方自带 **快捷美学芯片**（`+ 全身`、`+ 强制换装`、`+ 双女主`、`+ 丁达尔神光`、`+ 大仰拍张力`）、**一键复制** 与 **🖼️ WD14 本地拖图反推弹窗**（支持拖拽 / 选图 / `Ctrl + V` 粘贴截图，默认勾选「排除原图角色名防夺舍」）。
-- **LoRA 工作室**：按底模（Anima / MOSS / Krea 2）与类别筛选；已挂 LoRA 支持滑动条双向微调，**滑杆 LoRA（Slider LoRA）自动解锁 `-3 ~ +3` 负值反向调节**。
-
-### 4. 右栏：成图画廊 + ⚡ 一条龙工作流 + 生成参数
-- **成图画廊**：宽屏实时百分比进度条、出图点击全屏灯箱预览、会话历史缩略图条、后台 WebSocket 自动将成图镜像保存到指定桌面目录。
-- **⚡ 一条龙工作流**：支持加载 `workflows/presets.json` 预设，一键切换底模 + 挂载画风/画质 LoRA（同时保留已挂角色 LoRA）+ 开启 **二段高清精绘（LatentUpscaleBy + 二次 KSampler）** 直接出图。
+> ✨ **项目说明**：本项目的赛博极光磨砂玻璃前端重塑、交互架构（UX）、一条龙工作流引擎、Anima LLLite 姿势图控图联动、WD14 拖图反推集成、实时进度条与队列控制等核心功能，均由 **Antigravity（天才美少女 AIGC 设计师洁美奈 / Gemina）** 完整设计与编写实现。
+>
+> 🤖 **给电脑小白的偷懒通道**：如果你不想自己配置环境，只需要把本仓库地址交给你的 AI 编程助手（Antigravity / Claude Code / Cursor 等），让它按 **[AGENT_DEPLOY.md](./AGENT_DEPLOY.md)** 全自动帮你部署验收即可！
 
 ---
 
-## 🚀 快速开始（3 步启动）
+## 📦 依赖项一览（分清「必须」和「可选」）
 
-### 前置条件
-1. 已安装并运行 **ComfyUI**（默认地址 `http://127.0.0.1:8188`）。
-2. Python 3.10+（可直接使用 ComfyUI 自带的 `python_embeded\python.exe`）。
-3. （可选）如需使用 **WD14 拖图反推**，请安装 `ComfyUI-WD14-Tagger` 并将 `wd-swinv2-tagger-v3.onnx` 与 `wd-swinv2-tagger-v3.csv` 放至其 `models/` 目录；如需使用 **姿势图控图**，请安装 `comfyui-pose-gallery`、`comfyui_controlnet_aux` 及 Anima LLLite 控图模型。
+### 1. 基础运行（开箱即用，零第三方依赖！）
+| 模块 | 依赖项 | 说明 |
+| :--- | :--- | :--- |
+| **前端 (`web/index.html`)** | **无任何依赖** | 纯原生 HTML / CSS / JS，无需 Node.js、无需 npm、无需联网加载 CDN |
+| **后端 (`server.py` 等)** | **Python 3.10+ 标准库** | 直接用 ComfyUI 自带的 `python_embeded\python.exe` 即可运行，无需额外装包 |
+| **生图引擎** | **本机 ComfyUI**（`8188` 端口） | 只通过 ComfyUI 原生 API / WebSocket 通信，不改 ComfyUI 任何源码 |
 
-### 启动命令
-```bash
-# 直接使用 ComfyUI 内置 Python 启动（默认监听 127.0.0.1:8189）
-python server.py
-```
-随后在浏览器打开：**`http://127.0.0.1:8189/`**
+### 2. 可选进阶功能依赖（按需开启，不装不影响基础出图）
+| 进阶功能 | 所需依赖 / 模型 |
+| :--- | :--- |
+| **🖼️ WD14 本地拖图反推** | Python 包见 [requirements-optional.txt](./requirements-optional.txt)（`onnxruntime`、`pillow`、`numpy`，ComfyUI 内置 Python 通常自带）；模型文件 `wd-swinv2-tagger-v3.onnx` + `wd-swinv2-tagger-v3.csv` |
+| **🕺 姿势图 LLLite 控图** | ComfyUI 节点：`comfyui-pose-gallery`、`comfyui_controlnet_aux`、Anima LLLite 节点 + `ab1_lineart.safetensors` |
+| **⚡ 一条龙工作流预设** | `workflows/presets.json` 中配置的 Anima 底模及对应画风/画质 LoRA（可按自己本机模型自由编辑） |
 
-### 可选环境变量（适配你自己的本机路径）
+---
+
+## 🚀 3 步快速启动
+
+1. **先启动你电脑上的 ComfyUI**（确认 `http://127.0.0.1:8188` 可访问）。
+2. **在本项目目录下运行**：
+   ```bash
+   python server.py
+   ```
+   *(如果电脑没全局装 Python，直接用 ComfyUI 自带的内置 Python：`F:\ComfyUI\python_embeded\python.exe server.py`)*
+3. **浏览器打开**：**`http://127.0.0.1:8189/`**，看到左上角绿灯亮起 **`ComfyUI 在线`** 即可开始画图！
+
+### 可选环境变量（适配不同盘符与目录）
 | 环境变量 | 默认值 | 说明 |
 | :--- | :--- | :--- |
-| `COMFY_URL` | `http://127.0.0.1:8188` | ComfyUI 后端地址 |
-| `FRONTEND_PORT` | `8189` | ODD 出图前端监听端口 |
-| `LORA_DIR` | `F:\ComfyUI_Models\loras` | 本地 LoRA 目录（用于重建索引） |
+| `COMFY_URL` | `http://127.0.0.1:8188` | ComfyUI 服务地址 |
+| `FRONTEND_PORT` | `8189` | ODD 出图台网页端口 |
+| `LORA_DIR` | `F:\ComfyUI_Models\loras` | 本地 LoRA 目录（重建索引时扫描） |
 | `COMFY_UI_DIR` | `F:\ComfyUI\app\comfyui-master` | ComfyUI 主目录（用于读取姿势图库） |
-| `DESKTOP_OUT_DIR` | `C:\Users\Administrator\Desktop\CpmfyUI出图` | 出图自动镜像保存目录 |
+| `DESKTOP_OUT_DIR` | `C:\Users\Administrator\Desktop\CpmfyUI出图` | 出图完成后自动镜像保存的文件夹 |
+
+---
+
+## 📖 新手使用指南（一分钟上手）
+
+### 1. 左栏：挑底模 & 挑素材
+- **底模引擎**：切换你本机 `models/diffusion_models` 里的底模（如 `anima_aestheticV11`、`one_obsession_animaV5turbo`、`anima-base-v1.0`）。
+- **姿势（2 列高清画廊）**：默认勾选 **`仅看带图`**，点击任意姿势卡片弹出**高清大图 + 多视角切换窗口**（支持键盘 `←` / `→` 切视角）；点 **`✓ 选用当前视角`** 后会自动绑定到右栏的 **`🕺 姿势图控图 (LLLite)`**。
+- **服装（子分类精准筛选）**：支持 **`全部 / 上装 / 下装 / 鞋袜 / ★ 角色专属 / 连衣裙 / 制服 / 配饰`**；角色专属服装按人气降序展示，并清清楚楚标出了 **`角色中文名 · 服装名 [所属作品]`**，搜索框支持直接搜中文角色名或作品名。
+- **角色（中文系列筛选）**：70+ 热门作品已全面汉化并合并中英文重名系列（如 `赛马娘`、`原神`、`崩坏：星穹铁道`、`东方Project`、`Fate / FGO` 等）。
+
+### 2. 中栏：灵感一键搭配 + 提示词 + LoRA
+- **🎲 灵感一键搭配**：
+  - 支持 Lv0 ~ Lv4 五档分级，默认勾选 **`✨ 附带自然语言`**，会把英文电影感场景段落一起写入正面提示词，画面感大幅提升；
+  - 抽到多人场景自动切人数锁（双女主自动抽 `角色 2`），场景自带体位时自动跳过姿势控图防冲突；
+  - **每个槽位（场景 / 角色 / 服装 / 姿势 / 画风）均可独立微调**：
+    - `🔒 / 🔓` 锁定或解锁（整套重抽时保留锁住的项）
+    - `🎲` 单独重抽这一项（遇到场景和姿势冲突一秒换掉！）
+    - `✏️` 弹窗搜索自主替换（支持点 **`📥 使用左栏已选`**）
+    - `×` 直接移除此项
+- **提示词编排**：
+  - 顶部实时展示彩色 **「已选素材」条**，点 `×` 随时取消；
+  - 下方自带快捷美学芯片（`+ 全身`、`+ 强制换装`、`+ 双女主`、`+ 丁达尔神光`、`+ 大仰拍张力`）、**`📋 复制`** 与 **`🖼️ 拖图反推`**（把参考图拖进去或直接 `Ctrl + V` 粘贴截图，默认勾选「排除原图角色名」只抄衣服/构图不夺舍）。
+- **LoRA 工作室**：
+  - 支持按底模和分类筛选；已挂 LoRA 支持滑块调权重，**滑杆 LoRA（Slider LoRA）自动解锁 `-3 ~ +3` 负值反向调节**。
+
+### 3. 右栏：出图与控制（两个出图按钮的区别！）
+- **紫粉渐变 `✦ 立即生成`**（或任意位置按 **`Ctrl + Enter`**）：**完全按你当前自选的底模、已挂 LoRA 和参数出图**。
+- **琥珀金 `⚡ 一条龙出图`**：自动套用上方选中的预设工作流（切换底模 + 挂好画风/画质 LoRA + 保留你已挂的角色 LoRA + 开启二段高清精绘）并立刻出图。
+- **顶栏实时掌控**：
+  - 出图时顶栏与右栏画廊同步显示 **实时步数 & 百分比进度条**；
+  - 点击 **`📋 队列 X 运行 / Y 等待`** 可查看排队明细并取消指定任务；
+  - 觉得卡顿或点错重型工作流，随时点顶栏 **`⏹ 停止当前`** 或 **`🧹 清显存`**。
+- **6 GB 显存笔记本推荐甜点参数**：`832×1216` · 步数 `18~20`（Turbo 底模 `12` 步） · CFG `4` · `euler` · `FP8 极速` · 抽卡阶段关闭二段高清精绘。
 
 ---
 
@@ -60,20 +83,23 @@ python server.py
 
 ```text
 ComfyUI_Frontend/
-├── server.py          # 独立 HTTP 服务、ComfyUI API/WS 代理、WD14 反推、自动落盘
-├── combo.py           # 灵感一键搭配引擎（单人/多人/自然语言/锁槽重抽）
-├── lora_index.py      # 本地 LoRA 索引与分类器
+├── README.md                    # 人类用户文档与使用指南
+├── AGENT_DEPLOY.md              # AI Agent 自动化安装、配置与验收 SOP
+├── requirements-optional.txt    # 可选扩展依赖（仅 WD14 反推需要）
+├── server.py                    # 独立 HTTP 服务、ComfyUI API/WS 代理、WD14 反推、自动落盘
+├── combo.py                     # 灵感一键搭配引擎（单人/多人/自然语言/锁槽重抽）
+├── lora_index.py                # 本地 LoRA 索引与分类器
 ├── web/
-│   └── index.html     # ODD 出图 · Studio 单页前端（零外部 CDN 依赖）
+│   └── index.html               # ODD 出图 · Studio 单页前端（零外部 CDN 依赖）
 ├── workflows/
-│   ├── presets.json   # 一条龙工作流预设配置
-│   └── raw/           # 归档的 ComfyUI 工作流 JSON
-├── data/assets/       # 角色 / 服装 / 姿势 / 场景 / 画风结构化词库
-└── tools/             # 索引标注、下载修复与控图辅助脚本
+│   ├── presets.json             # 一条龙工作流预设配置
+│   └── raw/                     # 归档的 ComfyUI 工作流 JSON
+├── data/assets/                 # 角色 / 服装 / 姿势 / 场景 / 画风结构化词库
+└── tools/                       # 索引标注、下载修复与控图辅助脚本
 ```
 
 ---
 
 ## 🙏 致谢
-- 感谢 [ComfyUI](https://github.com/comfyanonymous/ComfyUI) 及相关开源节点社区（`ComfyUI-WD14-Tagger`、`comfyui-pose-gallery`、`Comfyui-Anima-Wardrobe-V5`、`prompt-workbench` 等）提供的生态与词库灵感。
-- 前端视觉与工程实现：**Antigravity · 洁美奈 (Gemina)** 🐾✨
+- 感谢 [ComfyUI](https://github.com/comfyanonymous/ComfyUI) 及相关开源节点社区（`ComfyUI-WD14-Tagger`、`comfyui-pose-gallery`、`Comfyui-Anima-Wardrobe-V5`、`prompt-workbench` 等）。
+- 前端视觉、交互设计与工程化整理：**Antigravity · 洁美奈 (Gemina)** 🐾✨

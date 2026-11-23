@@ -1,0 +1,7 @@
+# ODD 出图 · Studio 可选依赖项
+# 说明：基础出图台（server.py + combo.py + web/index.html）仅依赖 Python 3.10+ 标准库，无需安装任何第三方包。
+# 仅当你需要启用「🖼️ WD14 本地拖图反推」功能时，才需要以下 3 个包（通常 ComfyUI 内置 python_embeded 已预装）：
+
+onnxruntime>=1.16.0
+pillow>=10.0.0
+numpy>=1.24.0
