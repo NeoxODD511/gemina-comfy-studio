@@ -199,6 +199,7 @@ def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, l
                                 "tags": ", ".join(o.get("tags") or []),
                                 "level": o.get("level", 0),
                                 "src": "character",
+                                "char_name": char.get("name") or char.get("zh") or "",
                             }
             if not outfit:
                 gen = [o for o in A["outfits"]

@@ -2466,11 +2466,13 @@ function renderComboCards(){
   const r = comboState.cur;
   if(!r) return;
   const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+  const outfitChar = r.outfit?.char_name || (r.outfit?.src==='character' ? (r.character?.name || '') : '');
+  const outfitExtra = r.outfit ? ((r.outfit.src==='character' || r.outfit.src==='wardrobe' || outfitChar) ? (outfitChar ? `${outfitChar} · 专属` : '角色专属') : '通用') : '';
   const slots = [
     {key:'scene', label:'场景', obj:r.scene, extra:r.scene?.theme||''},
     {key:'character', label:'角色', obj:r.character, extra:r.character?.work||''},
     ...(r.character2 || comboState.locks.has('character2') ? [{key:'character2', label:'角色 2', obj:r.character2, extra:r.character2?.work||''}] : []),
-    {key:'outfit', label:'服装', obj:r.outfit, extra:r.outfit ? (r.outfit.src==='character'?'角色专属':'通用') : ''},
+    {key:'outfit', label:'服装', obj:r.outfit, extra:outfitExtra},
     {key:'pose', label:'姿势', obj:r.pose, extra:r.pose && r.pose_conflict ? '与场景冲突·仅参考' : ''},
     {key:'style_hint', label:'画风', obj:typeof r.style_hint==='string'?{id:r.style_hint,name:r.style_hint}:r.style_hint, extra:''},
   ];
