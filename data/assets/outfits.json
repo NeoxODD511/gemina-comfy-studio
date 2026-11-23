@@ -1,5 +1,16 @@
 [
   {
+    "id": "female_tyrant_(stella_sora)::default",
+    "name": "官方服装",
+    "zh": "官方服装",
+    "tags": "black dress, sleeveless dress, gothic dress, blue choker, black gloves, gold trim, hair ornament",
+    "level": 0,
+    "src": "wardrobe",
+    "group": "female_tyrant_(stella_sora)",
+    "char_name": "女魔王（星塔旅人）",
+    "char_work": "星塔旅人"
+  },
+  {
     "id": "t-shirt",
     "name": "T恤",
     "zh": "T恤",

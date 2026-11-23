@@ -1,5 +1,20 @@
 [
   {
+    "id": "female_tyrant_(stella_sora)",
+    "name": "女魔王（星塔旅人）",
+    "zh": "女魔王（星塔旅人）",
+    "en": "female tyrant (stella sora)",
+    "work": "星塔旅人",
+    "trigger": "female tyrant (stella sora), stella sora",
+    "pop": 1500,
+    "hair": "silver",
+    "eyes": "blue",
+    "tags": "1girl, silver hair, white hair, very long hair, ahoge, blue eyes, pointy ears, hair ornament",
+    "thumb": "",
+    "level": 0,
+    "src": "wardrobe"
+  },
+  {
     "id": "hatsune_miku",
     "name": "初音未来",
     "zh": "初音未来",
