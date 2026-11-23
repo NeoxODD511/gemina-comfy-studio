@@ -327,7 +327,11 @@ def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, l
         if ch.get("eyes"):
             parts.append(f"{ch['eyes']} eyes")
         ctags_list = [s.strip() for s in str(ch.get("tags") or "").split(",") if s.strip()]
-        trait_kws = ("ears", "tail", "halo", "wings", "horns", "horn", "fang", "ahoge")
+        trait_kws = (
+            "ears", "tail", "halo", "wings", "horns", "horn", "fang", "ahoge",
+            "two side up", "half up", "braid", "hair bun", "double bun", "drill",
+            "hime cut", "bob cut", "long hair", "short hair",
+        )
         for tg in ctags_list:
             if any(k in tg.lower() for k in trait_kws):
                 parts.append(tg)
