@@ -461,6 +461,10 @@ def build_prompt_payload(req):
 
     positive = _append_tags(req.get("positive", ""), DEFAULT_POSITIVE)
     negative = _append_tags(req.get("negative", ""), DEFAULT_NEGATIVE)
+    # 纯女性场景自动防串台护盾（当正面未出现男性或 futa 相关词时，在负面自动压制）
+    _pos_low = positive.lower()
+    if not any(k in _pos_low for k in ("1boy", "boys", "male", "hetero", "futanari", "futa", "penis", "dildo", "trap")):
+        negative = _append_tags(negative, "futanari, penis")
     base_model_ref = model_ref
 
     # 姿势图 LLLite 线稿控图（支持单人 & 双人姿势图）
