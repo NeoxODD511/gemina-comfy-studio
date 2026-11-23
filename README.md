@@ -40,6 +40,9 @@ git clone https://github.com/NeoxODD511/gemina-comfy-studio.git; Set-Location ge
 | **🖼️ WD14 本地拖图反推** | Python 包见 [requirements-optional.txt](./requirements-optional.txt)（`onnxruntime`、`pillow`、`numpy`，ComfyUI 内置 Python 通常自带）；模型文件 `wd-swinv2-tagger-v3.onnx` + `wd-swinv2-tagger-v3.csv` |
 | **🕺 姿势图 LLLite 控图** | ComfyUI 节点：`comfyui-pose-gallery`、`comfyui_controlnet_aux`、Anima LLLite 节点 + `ab1_lineart.safetensors` |
 | **⚡ 一条龙工作流预设** | `workflows/presets.json` 中配置的 Anima 底模及对应画风/画质 LoRA（可按自己本机模型自由编辑） |
+| **✨ 自动修脸 (FaceDetailer)** | ComfyUI 插件：`ComfyUI-Impact-Pack` + `ComfyUI-Impact-Subpack` + `face_yolov8m.pt`（约 6 MB） |
+
+> 🧩 **一键装齐推荐插件**：完整插件清单、一键安装脚本与 AI Agent 自动安装指令请看 **[RECOMMENDED_PLUGINS.md](./RECOMMENDED_PLUGINS.md)**！
 
 ---
 
@@ -105,6 +108,7 @@ git clone https://github.com/NeoxODD511/gemina-comfy-studio.git; Set-Location ge
 ComfyUI_Frontend/
 ├── README.md                    # 人类用户文档与使用指南
 ├── AGENT_DEPLOY.md              # AI Agent 自动化安装、配置与验收 SOP
+├── RECOMMENDED_PLUGINS.md       # 精选 ComfyUI 插件清单与一键安装脚本
 ├── requirements-optional.txt    # 可选扩展依赖（仅 WD14 反推需要）
 ├── server.py                    # 独立 HTTP 服务、ComfyUI API/WS 代理、WD14 反推、自动落盘
 ├── combo.py                     # 灵感一键搭配引擎（单人/多人/自然语言/锁槽重抽）

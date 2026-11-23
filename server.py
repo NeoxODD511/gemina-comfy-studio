@@ -461,6 +461,7 @@ def build_prompt_payload(req):
 
     positive = _append_tags(req.get("positive", ""), DEFAULT_POSITIVE)
     negative = _append_tags(req.get("negative", ""), DEFAULT_NEGATIVE)
+    base_model_ref = model_ref
 
     # 姿势图 LLLite 线稿控图（支持单人 & 双人姿势图）
     pose_ctrl = req.get("pose_ctrl") or {}
@@ -559,8 +560,55 @@ def build_prompt_payload(req):
         }}
         latent_out = ["36", 0]
     g["40"] = {"class_type": "VAEDecode", "inputs": {"samples": latent_out, "vae": ["3", 0]}}
+    img_out = ["40", 0]
+
+    # 自动修脸（ComfyUI-Impact-Pack FaceDetailer + face_yolov8m.pt，全身/双人防糊脸神器）
+    fd = req.get("face_detailer") or {}
+    if isinstance(fd, dict) and fd.get("enabled"):
+        g["80"] = {
+            "class_type": "UltralyticsDetectorProvider",
+            "inputs": {"model_name": fd.get("model_name", "bbox/face_yolov8m.pt")},
+        }
+        g["81"] = {
+            "class_type": "FaceDetailer",
+            "inputs": {
+                "image": img_out,
+                "model": base_model_ref,
+                "clip": clip_ref,
+                "vae": ["3", 0],
+                "guide_size": 512,
+                "guide_size_for": True,
+                "max_size": 1024,
+                "seed": seed_val,
+                "steps": int(fd.get("steps", 14)),
+                "cfg": float(req.get("cfg", 4.0)),
+                "sampler_name": req.get("sampler", "euler"),
+                "scheduler": req.get("scheduler", "simple"),
+                "positive": ["20", 0],
+                "negative": ["21", 0],
+                "denoise": float(fd.get("denoise", 0.4)),
+                "feather": 5,
+                "noise_mask": True,
+                "force_inpaint": True,
+                "bbox_threshold": 0.5,
+                "bbox_dilation": 10,
+                "bbox_crop_factor": 3.0,
+                "sam_detection_hint": "center-1",
+                "sam_dilation": 0,
+                "sam_threshold": 0.93,
+                "sam_bbox_expansion": 0,
+                "sam_mask_hint_threshold": 0.7,
+                "sam_mask_hint_use_negative": "False",
+                "drop_size": 10,
+                "bbox_detector": ["80", 0],
+                "wildcard": "",
+                "cycle": 1,
+            },
+        }
+        img_out = ["81", 0]
+
     g["50"] = {"class_type": "SaveImage", "inputs": {
-        "filename_prefix": req.get("prefix", "frontend"), "images": ["40", 0]}}
+        "filename_prefix": req.get("prefix", "frontend"), "images": img_out}}
     return g
 
 
