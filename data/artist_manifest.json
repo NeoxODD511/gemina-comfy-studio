@@ -1,0 +1,121 @@
+[
+  {
+    "id": 213206,
+    "name": "D-ART | @18dart5 - Style LoRA [Anima | Flux.2 Klein | Z-image Turbo | Chroma | Illustratious | Flux | Pony Diffusion | NAI]",
+    "label": "D-ART @18dart5",
+    "versions": {
+      "anima": {
+        "ver": "Anima",
+        "url": "https://civitai.com/api/download/models/2761034?fileId=2985712",
+        "filename": "D-ART_Anima-Base.safetensors",
+        "size_mb": 66.5,
+        "trigger": "D-ART, D-ART Style, @18dart5, 18dart3, 18dart2, 18DART1, !!, ??,"
+      }
+    }
+  },
+  {
+    "id": 178169,
+    "name": "Afrobull (Artist Style) [MOSS | ANI | IL]",
+    "label": "Afrobull",
+    "versions": {
+      "moss": {
+        "ver": "MOSS",
+        "url": "https://civitai.com/api/download/models/3413848?fileId=3306403",
+        "filename": "AfroBullStyle_MOSS_v2.safetensors",
+        "size_mb": 123.0,
+        "trigger": "zfr0,"
+      },
+      "anima": {
+        "ver": "ANIMAv1",
+        "url": "https://civitai.com/api/download/models/2954771?fileId=2834100",
+        "filename": "AfroBullStyle_ANIMAv1.safetensors",
+        "size_mb": 87.7,
+        "trigger": "zfr0,"
+      }
+    }
+  },
+  {
+    "id": 1200733,
+    "name": "Iwao178 (いわお) - Artist Style",
+    "label": "Iwao178",
+    "versions": {
+      "anima": {
+        "ver": "Anima v1.0",
+        "url": "https://civitai.com/api/download/models/3221803?fileId=3106801",
+        "filename": "Anima_Iwao178.safetensors",
+        "size_mb": 132.2,
+        "trigger": "@byiwao, uncensored"
+      }
+    }
+  },
+  {
+    "id": 29215,
+    "name": "BArtstyle | Blue Archive Art Style LoRA | Anime Flat Color | 蔚蓝档案画风模型 | ブルーアーカイブ画風モデル",
+    "label": "BArtstyle 蔚蓝档案",
+    "versions": {
+      "krea2": {
+        "ver": "Krea2-V2",
+        "url": "https://civitai.com/api/download/models/3220090?fileId=3102080",
+        "filename": "BArtstyle-KREA2-V2-1024.safetensors",
+        "size_mb": 895.1,
+        "trigger": "azure youth anime art style"
+      }
+    }
+  },
+  {
+    "id": 128568,
+    "name": "Cyberpunk Anime Style",
+    "label": "Cyberpunk Anime Style",
+    "versions": {
+      "krea2": {
+        "ver": "Krea 2",
+        "url": "https://civitai.com/api/download/models/3465556?fileId=3368654",
+        "filename": "cpa_krea2.safetensors",
+        "size_mb": 218.0,
+        "trigger": "cyberpunk anime"
+      }
+    }
+  },
+  {
+    "id": 912942,
+    "name": "Retro Sci-fi 90's anime style IllustriousXL/Moss/Krea2/Anima/ZImageTurbo/Flux/Chroma",
+    "label": "Retro Sci-fi 90's anime",
+    "versions": {
+      "moss": {
+        "ver": "Moss",
+        "url": "https://civitai.com/api/download/models/3420861?fileId=3314856",
+        "filename": "retro-scifi-90s-anime-style-moss-image-sft-epoch-09.safetensors",
+        "size_mb": 123.0,
+        "trigger": "retro_scifi_90s_anime_style, retro_artstyle, retro,"
+      },
+      "krea2": {
+        "ver": "Krea 2",
+        "url": "https://civitai.com/api/download/models/3346833?fileId=3233768",
+        "filename": "Retro_Sci-fi_90_s_anime_style_Krea2_krea2_3339257_epoch_4.safetensors",
+        "size_mb": 218.0,
+        "trigger": "retro_scifi_90s, retro_artstyle, retro, cyberpunk"
+      },
+      "anima": {
+        "ver": "Anima v2",
+        "url": "https://civitai.com/api/download/models/3297103?fileId=3181933",
+        "filename": "Retro_Sci-fi_90_s_anime_style_Anima_v2_anima_3296384_epoch_15.safetensors",
+        "size_mb": 132.2,
+        "trigger": "retro_scifi_90s_anime_style, retro_artstyle, retro,"
+      }
+    }
+  },
+  {
+    "id": 1586542,
+    "name": "Anime artistic",
+    "label": "Anime art",
+    "versions": {
+      "anima": {
+        "ver": "v5.0 - Anima (Strong)",
+        "url": "https://civitai.com/api/download/models/3215874?fileId=3097717",
+        "filename": "Artistic_Anima_update_v2_epoch_20.safetensors",
+        "size_mb": 264.4,
+        "trigger": "@Art8st, @Semi2realisti"
+      }
+    }
+  }
+]

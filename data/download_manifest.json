@@ -1,0 +1,173 @@
+{
+  "_note": "顶模与 LoRA 下载清单。三底模各自独立训练，必须按 base 分目录存放，禁止跨底模混用。Illustrious 已淘汰，不下载其版本。",
+  "base_models": [
+    {
+      "key": "moss",
+      "name": "moss_image_base_INT8.safetensors",
+      "model_id": 3006328,
+      "base": "MOSS Image",
+      "size_gb": 5.04,
+      "url": "https://civitai.com/api/download/models/3411051?fileId=3303761",
+      "note": "INT8 量化版，6GB 显存可用"
+    }
+  ],
+  "loras": [
+    {
+      "key": "niji_sweet_spot",
+      "title": "Niji Sweet Spot",
+      "model_id": 2554999,
+      "category": "style",
+      "variants": {
+        "anima": {"ver": "Anima_v5.0", "url": "https://civitai.com/api/download/models/3256481?fileId=3139648"},
+        "moss":  {"ver": "MOSS_v1_A", "url": "https://civitai.com/api/download/models/3430262?fileId=3326021"},
+        "krea2": {"ver": "Krea2_v3",   "url": "https://civitai.com/api/download/models/3475481?fileId=3380534"}
+      },
+      "weight": [0.4, 0.8],
+      "trigger": "",
+      "note": "日系甜点画风，三底模通吃"
+    },
+    {
+      "key": "hips_slider",
+      "title": "Hips slider",
+      "model_id": 2546450,
+      "category": "ctrl",
+      "variants": {
+        "anima": {"ver": "AnimaV2",    "url": "https://civitai.com/api/download/models/3246403?fileId=3129172"},
+        "moss":  {"ver": "Moss-image", "url": "https://civitai.com/api/download/models/3449997?fileId=3349808"}
+      },
+      "weight": [0.3, 0.6],
+      "trigger": "",
+      "note": "臀部滑杆，负值缩小正值放大"
+    },
+    {
+      "key": "add_micro_details",
+      "title": "Add Micro Details",
+      "model_id": 1377820,
+      "category": "q",
+      "variants": {
+        "anima": {"ver": "v2.0_Anima", "url": "https://civitai.com/api/download/models/3443066?fileId=3341639"},
+        "krea2": {"ver": "v2.0_Krea2", "url": "https://civitai.com/api/download/models/3407019?fileId=3298578"}
+      },
+      "weight": [0.3, 0.5],
+      "trigger": "addmicrodetails",
+      "note": "细节底座"
+    },
+    {
+      "key": "aesthetic_quality",
+      "title": "Aesthetic Quality Modifiers - Masterpiece",
+      "model_id": 929497,
+      "category": "q",
+      "variants": {
+        "anima": {"ver": "v5.1 [anima-base-1]", "url": "https://civitai.com/api/download/models/2961717?fileId=2841058"},
+        "moss":  {"ver": "v6.0 [moss]",         "url": "https://civitai.com/api/download/models/3462001?fileId=3364329"},
+        "krea2": {"ver": "v5.1 [krea2]",        "url": "https://civitai.com/api/download/models/3077110?fileId=2956283"}
+      },
+      "weight": [0.3, 0.6],
+      "trigger": "masterpiece, best quality, very aesthetic",
+      "note": "三底模通吃，长期第一"
+    },
+    {
+      "key": "flat_color",
+      "title": "Flat Color",
+      "model_id": 1132089,
+      "category": "style",
+      "variants": {
+        "anima": {"ver": "v3.0 [anima-preview-3]", "url": "https://civitai.com/api/download/models/2947255?fileId=2826524"},
+        "moss":  {"ver": "v4.0 [moss]",            "url": "https://civitai.com/api/download/models/3482404?fileId=3389415"}
+      },
+      "weight": [0.4, 0.7],
+      "trigger": "flat color, no lineart",
+      "note": "平涂/赛璐璐"
+    },
+    {
+      "key": "dark_art_style",
+      "title": "Dark Art Style",
+      "model_id": 1380736,
+      "category": "style",
+      "variants": {
+        "anima": {"ver": "Anima", "url": "https://civitai.com/api/download/models/2817661?fileId=2703669"},
+        "moss":  {"ver": "Moss",  "url": "https://civitai.com/api/download/models/3473851?fileId=3378634"},
+        "krea2": {"ver": "Krea2", "url": "https://civitai.com/api/download/models/3349869?fileId=3236989"}
+      },
+      "weight": [0.4, 0.8],
+      "trigger": "dark_art_style",
+      "note": "六底模通吃"
+    },
+    {
+      "key": "body_weight",
+      "title": "Body weight slider",
+      "model_id": 2513759,
+      "category": "ctrl",
+      "variants": {
+        "anima": {"ver": "Anima",      "url": "https://civitai.com/api/download/models/3014212?fileId=2893226"},
+        "moss":  {"ver": "Moss-Image", "url": "https://civitai.com/api/download/models/3466225?fileId=3369445"},
+        "krea2": {"ver": "Krea2",      "url": "https://civitai.com/api/download/models/3129180?fileId=3009693"}
+      },
+      "weight": [0.3, 0.6],
+      "trigger": "",
+      "note": "体重滑杆，负瘦正胖"
+    },
+    {
+      "key": "thighs_slider",
+      "title": "Thighs slider",
+      "model_id": 2535632,
+      "category": "ctrl",
+      "variants": {
+        "anima": {"ver": "AnimaV2",    "url": "https://civitai.com/api/download/models/3264980?fileId=3148583"},
+        "moss":  {"ver": "Moss Image", "url": "https://civitai.com/api/download/models/3431911?fileId=3328003"}
+      },
+      "weight": [0.3, 0.6],
+      "trigger": "",
+      "note": "大腿滑杆"
+    },
+    {
+      "key": "darkness_slider",
+      "title": "Darkness Slider",
+      "model_id": 2526312,
+      "category": "ctrl",
+      "variants": {
+        "anima": {"ver": "Anima",      "url": "https://civitai.com/api/download/models/3076192?fileId=2955299"},
+        "moss":  {"ver": "Moss-image", "url": "https://civitai.com/api/download/models/3478315?fileId=3384076"}
+      },
+      "weight": [0.3, 0.6],
+      "trigger": "",
+      "note": "画面明暗滑杆"
+    },
+    {
+      "key": "turbo_anima",
+      "title": "TURBO for ANIMA",
+      "model_id": 2619830,
+      "category": "x",
+      "variants": {
+        "anima": {"ver": "turbo", "url": "https://civitai.com/api/download/models/3452759?fileId=3353071"}
+      },
+      "weight": [0.6, 1.0],
+      "trigger": "",
+      "note": "必挂加速，压到 8-12 步"
+    },
+    {
+      "key": "turbo_moss",
+      "title": "Moss Image Turbo LoRAs",
+      "model_id": 3006599,
+      "category": "x",
+      "variants": {
+        "moss": {"ver": "4steps_v2", "url": "https://civitai.com/api/download/models/3414934?fileId=3307675"}
+      },
+      "weight": [0.6, 1.0],
+      "trigger": "",
+      "note": "MOSS 加速，8-12 步"
+    },
+    {
+      "key": "blue_archive_style",
+      "title": "【MOSS Image】Blue Archive style",
+      "model_id": 3010579,
+      "category": "style",
+      "variants": {
+        "moss": {"ver": "v0.9", "url": "https://civitai.com/api/download/models/3416570?fileId=3309664"}
+      },
+      "weight": [0.4, 0.8],
+      "trigger": "",
+      "note": "蔚蓝档案风格（当前仅 MOSS 版）"
+    }
+  ]
+}

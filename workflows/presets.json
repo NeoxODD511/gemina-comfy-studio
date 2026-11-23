@@ -1,0 +1,278 @@
+{
+  "items": [
+    {
+      "id": "anima_v11_hires",
+      "name": "Aesthetic V11 · 2.5D 高清一条龙",
+      "tag": "2.5D 精绘 1.5×",
+      "desc": "来自 Anima_AestheticV11_已配置：9 个画风+画质 LoRA 堆叠 + 1024×1536 初绘 + 1.5× Latent 放大二段精绘",
+      "source": "Anima_AestheticV11_已配置.json",
+      "model": "anima\\anima_aestheticV11.safetensors",
+      "width": 1024,
+      "height": 1536,
+      "steps": 28,
+      "cfg": 4.0,
+      "sampler": "euler",
+      "scheduler": "simple",
+      "weight_dtype": "fp8_e4m3fn",
+      "prefix": "Anima_V11_HiRes",
+      "loras": [
+        {
+          "file": "anima\\style\\chen-bin_v4.0.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\gulugulu_v1_epoch26.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\A1kx_sty-v2.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\khstyle_v1_epoch26.safetensors",
+          "weight": 0.3
+        },
+        {
+          "file": "anima\\style\\Style___gpt-image-2_anima.safetensors",
+          "weight": 0.3
+        },
+        {
+          "file": "_realistic\\anima\\style\\semi-realisticV3.5.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "_realistic\\anima\\style\\Anima_in_real_update_v2_epoch_20.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "anima\\q\\anima-highres-aesthetic-boost.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "anima\\q\\anima_context_detailer_base10.safetensors",
+          "weight": 0.7
+        }
+      ],
+      "hires": {
+        "enabled": true,
+        "scale": 1.5,
+        "method": "nearest-exact",
+        "steps": 15,
+        "cfg": 7.0,
+        "denoise": 0.7
+      }
+    },
+    {
+      "id": "anima_v11_lowvram",
+      "name": "Aesthetic V11 · 省显存精修一条龙",
+      "tag": "省显存快出",
+      "desc": "来自 Anima_AestheticV11_省显存版：896×1152 初绘 + 原尺寸 8 步低重绘精修，速度快显存友好",
+      "source": "Anima_AestheticV11_省显存版.json",
+      "model": "anima\\anima_aestheticV11.safetensors",
+      "width": 896,
+      "height": 1152,
+      "steps": 24,
+      "cfg": 4.0,
+      "sampler": "euler",
+      "scheduler": "simple",
+      "weight_dtype": "fp8_e4m3fn",
+      "prefix": "Anima_V11_LowVRAM",
+      "loras": [
+        {
+          "file": "anima\\style\\chen-bin_v4.0.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\gulugulu_v1_epoch26.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\A1kx_sty-v2.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\khstyle_v1_epoch26.safetensors",
+          "weight": 0.3
+        },
+        {
+          "file": "anima\\style\\Style___gpt-image-2_anima.safetensors",
+          "weight": 0.3
+        },
+        {
+          "file": "_realistic\\anima\\style\\semi-realisticV3.5.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "_realistic\\anima\\style\\Anima_in_real_update_v2_epoch_20.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "anima\\q\\anima-highres-aesthetic-boost.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "anima\\q\\anima_context_detailer_base10.safetensors",
+          "weight": 0.7
+        }
+      ],
+      "hires": {
+        "enabled": true,
+        "scale": 1.0,
+        "method": "nearest-exact",
+        "steps": 8,
+        "cfg": 7.0,
+        "denoise": 0.35
+      }
+    },
+    {
+      "id": "oneobsession_v5",
+      "name": "OneObsession V5 · 2.5D 高清一条龙",
+      "tag": "V5 Turbo",
+      "desc": "来自 OneObsession_V5_工作流：V5 Turbo 底模 + 2.5D 画风细节 LoRA 链 + 1.5× 高清精绘",
+      "source": "OneObsession_V5_工作流.json",
+      "model": "anima\\one_obsession_animaV5turbo.safetensors",
+      "width": 1024,
+      "height": 1536,
+      "steps": 28,
+      "cfg": 4.0,
+      "sampler": "euler",
+      "scheduler": "simple",
+      "weight_dtype": "fp8_e4m3fn",
+      "prefix": "OneObsession_V5",
+      "loras": [
+        {
+          "file": "anima\\style\\chen-bin_v4.0.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\gulugulu_v1_epoch26.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\A1kx_sty-v2.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\khstyle_v1_epoch26.safetensors",
+          "weight": 0.3
+        },
+        {
+          "file": "anima\\style\\Style___gpt-image-2_anima.safetensors",
+          "weight": 0.3
+        },
+        {
+          "file": "_realistic\\anima\\style\\semi-realisticV3.5.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "_realistic\\anima\\style\\Anima_in_real_update_v2_epoch_20.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "anima\\q\\anima-highres-aesthetic-boost.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "anima\\q\\anima_context_detailer_base10.safetensors",
+          "weight": 0.7
+        }
+      ],
+      "hires": {
+        "enabled": true,
+        "scale": 1.5,
+        "method": "nearest-exact",
+        "steps": 15,
+        "cfg": 7.0,
+        "denoise": 0.7
+      }
+    },
+    {
+      "id": "oneobsession_m29b",
+      "name": "OneObsession Mature29B · 高清一条龙",
+      "tag": "Mature 29B",
+      "desc": "来自 OneObsession_Mature29B_工作流：Mature 29B 底模 + 2.5D 画风细节 LoRA 链 + 1.5× 高清精绘",
+      "source": "OneObsession_Mature29B_工作流.json",
+      "model": "anima\\one_obsession_mature29B.safetensors",
+      "width": 1024,
+      "height": 1536,
+      "steps": 28,
+      "cfg": 4.0,
+      "sampler": "euler",
+      "scheduler": "simple",
+      "weight_dtype": "fp8_e4m3fn",
+      "prefix": "OneObsession_M29B",
+      "loras": [
+        {
+          "file": "anima\\style\\chen-bin_v4.0.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\gulugulu_v1_epoch26.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\A1kx_sty-v2.safetensors",
+          "weight": 0.6
+        },
+        {
+          "file": "anima\\style\\khstyle_v1_epoch26.safetensors",
+          "weight": 0.3
+        },
+        {
+          "file": "anima\\style\\Style___gpt-image-2_anima.safetensors",
+          "weight": 0.3
+        },
+        {
+          "file": "_realistic\\anima\\style\\semi-realisticV3.5.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "_realistic\\anima\\style\\Anima_in_real_update_v2_epoch_20.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "anima\\q\\anima-highres-aesthetic-boost.safetensors",
+          "weight": 0.5
+        },
+        {
+          "file": "anima\\q\\anima_context_detailer_base10.safetensors",
+          "weight": 0.7
+        }
+      ],
+      "hires": {
+        "enabled": true,
+        "scale": 1.5,
+        "method": "nearest-exact",
+        "steps": 15,
+        "cfg": 7.0,
+        "denoise": 0.7
+      }
+    },
+    {
+      "id": "anima_base_clean",
+      "name": "Anima Base 1.0 · 纯净直出",
+      "tag": "单段纯净",
+      "desc": "来自 Anima_Base1.0_展开版：不额外堆叠画风 LoRA，1024×1024 30 步 er_sde 纯净直出，自带推荐负面词",
+      "source": "Anima_Base1.0_展开版.json",
+      "model": "anima\\anima-base-v1.0.safetensors",
+      "width": 1024,
+      "height": 1024,
+      "steps": 30,
+      "cfg": 4.0,
+      "sampler": "er_sde",
+      "scheduler": "simple",
+      "weight_dtype": "fp8_e4m3fn",
+      "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, sepia",
+      "prefix": "Anima_Base",
+      "loras": [],
+      "hires": {
+        "enabled": false,
+        "scale": 1.0,
+        "method": "nearest-exact",
+        "steps": 12,
+        "cfg": 6.0,
+        "denoise": 0.45
+      }
+    }
+  ]
+}

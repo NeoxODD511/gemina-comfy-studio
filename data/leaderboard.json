@@ -1,0 +1,2399 @@
+{
+  "total": 181,
+  "stats": {
+    "画风/画师": 90,
+    "光影": 4,
+    "构图": 6,
+    "姿势": 13,
+    "其他": 68
+  },
+  "items": [
+    {
+      "id": 599757,
+      "name": "Velvet's Mythic Fantasy Styles | Flux + Pony + illustrious + ZiT + Anima + Krea2",
+      "bases": [
+        "Anima",
+        "Krea 2",
+        "MOSS Image"
+      ],
+      "downloads": 252561,
+      "likes": 14995,
+      "nsfw": false,
+      "tags": "anime,art,manga,style,epic,woman,fantasy,man,nsfw,sfw,styles,ponyxl",
+      "desc": "Update Flux Version The new version has been trained to work on Flux models. From my testing Flux is amazing with sentence like prompts, and turns booru prompts",
+      "category": "画风/画师"
+    },
+    {
+      "id": 929497,
+      "name": "Aesthetic Quality Modifiers - Masterpiece",
+      "bases": [
+        "Anima",
+        "Krea 2",
+        "MOSS Image"
+      ],
+      "downloads": 189366,
+      "likes": 12806,
+      "nsfw": false,
+      "tags": "anime,concept,aesthetic,styles",
+      "desc": "Aesthetic Quality Modifiers - Masterpiece Training data is a subset of all my manually rated datasets with the quality/aesthetic modifiers, including only the m",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1132089,
+      "name": "Flat Color - Style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 57340,
+      "likes": 6159,
+      "nsfw": false,
+      "tags": "anime,style,flat color,flat,no lineart,wan",
+      "desc": "Flat Color - Style Trained on images without visible lineart, flat colors, and little to no indication of depth. ℹ️ LoRA work best when applied to the base mode",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1155749,
+      "name": "Hyperdetailed Colored Pencil",
+      "bases": [
+        "Anima",
+        "Krea 2"
+      ],
+      "downloads": 47218,
+      "likes": 3524,
+      "nsfw": false,
+      "tags": "midjourney,niji,style,midjourney v6,arsmjstyle",
+      "desc": "A LoRA inspired by one of my favourite styles of hyperdetailed colored pencil illustrations. This style captures the intricate shading and fine textures, enhanc",
+      "category": "画风/画师"
+    },
+    {
+      "id": 789313,
+      "name": "80s Fantasy Movie",
+      "bases": [
+        "Krea 2",
+        "MOSS Image"
+      ],
+      "downloads": 47077,
+      "likes": 3119,
+      "nsfw": false,
+      "tags": "movie,80s,style,fantasy,still,midjourney v6,arsmjstyle",
+      "desc": "This LoRA is designed to capture the distinct look and feel of early 80s fantasy movies. The trigger words are ArsMovieStill, 80s Fantasy Movie Still Recommende",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1349631,
+      "name": "Dark Ghibli Fairytales",
+      "bases": [
+        "Anima",
+        "Krea 2"
+      ],
+      "downloads": 27190,
+      "likes": 2038,
+      "nsfw": false,
+      "tags": "midjourney,ghibli,style,hayao miyazaki,kay nielsen,brian froud,dark fairytale",
+      "desc": "This LoRA is Studio Ghibli meets dark fairytales . Watercolor backgrounds and cel-shaded characters , ethereal lighting, fantastical natural environments, whims",
+      "category": "画风/画师"
+    },
+    {
+      "id": 22800,
+      "name": "Granblue fantasy style",
+      "bases": [
+        "Anima",
+        "Krea 2"
+      ],
+      "downloads": 27137,
+      "likes": 2963,
+      "nsfw": false,
+      "tags": "style,game character",
+      "desc": "Only initial vertical drawing is used as the training set, and breakthrough vertical drawing is not used.So there aren't many additional effects. For newbie ima",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2564225,
+      "name": "Style > gpt-image-2",
+      "bases": [
+        "Anima",
+        "MOSS Image"
+      ],
+      "downloads": 25928,
+      "likes": 1227,
+      "nsfw": false,
+      "tags": "anime,texture,style,light,details,shade,gpt",
+      "desc": "Description Steers the model towards the style of gpt image 2. It improves details, lighting and texture a lot, though the image might end up looking slightly s",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1380736,
+      "name": "Dark Art Style Moss/Krea2/Anima/illustriousXL/ZImageTurbo/Flux/Chroma",
+      "bases": [
+        "Anima",
+        "Krea 2"
+      ],
+      "downloads": 25415,
+      "likes": 2709,
+      "nsfw": false,
+      "tags": "horror,dark,dark fantasy,style,dark art",
+      "desc": "Moss version : weight between [0.8,1], best at 1 trigger word : dark_art_style krea2 version : weight between [0.8,1], best at 1 trigger word : dark_art_style A",
+      "category": "画风/画师"
+    },
+    {
+      "id": 311073,
+      "name": "Krekkov Style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 18047,
+      "likes": 3927,
+      "nsfw": false,
+      "tags": "anime,female,style,woman,style lora",
+      "desc": "Style LoRA of artist Krekkov.",
+      "category": "画风/画师"
+    },
+    {
+      "id": 863136,
+      "name": "70s Horror Movie",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 16772,
+      "likes": 1180,
+      "nsfw": false,
+      "tags": "movie,horror,midjourney,style,still,midjourney v6",
+      "desc": "This LoRA is designed to capture the specific atmosphere of 70s horror movies. The trigger words are ArsMovieStill, movie still from a 1970s horror movie MJ7 ve",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2533943,
+      "name": "铭音 meion style 【krea2&MOSS&anima&il】",
+      "bases": [
+        "Anima",
+        "Krea 2"
+      ],
+      "downloads": 15911,
+      "likes": 910,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "MOSS-heal v1.0无触发词（no tigger word） 本lora训练于：MOSS-heal https://huggingface.co/KBlueLeaf/MOSS-Image-heal This LoRA training and MOSS-heal: https://huggingface.co/",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1738546,
+      "name": "90's anime melancholy Moss/Krea2/Anima/illustriousXL/ZImageTurbo/Flux/Chroma",
+      "bases": [
+        "Anima",
+        "Krea 2"
+      ],
+      "downloads": 14914,
+      "likes": 1495,
+      "nsfw": false,
+      "tags": "anime,retro,retro artstyle,style,90s anime style",
+      "desc": "Moss version : weight between [0.8,1], best at 1 trigger words : 90s_melancholy, retro, Krea 2 version : weight between [0.8,1], best at 1 trigger words : 90s_m",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1357076,
+      "name": "90s anime aesthetic Moss/Krea2/Anima/illustriousXL/ZImageTurbo/Flux/Chroma",
+      "bases": [
+        "Anima",
+        "Krea 2"
+      ],
+      "downloads": 13626,
+      "likes": 1283,
+      "nsfw": false,
+      "tags": "retro,retro artstyle,style,90's anime style,1990s (style)",
+      "desc": "Moss version: weight between [0.8,1], best at 1 trigger words : 90s_anime_aesthetic, 1990s (style), retro, retro artstyle Krea 2 version: weight between [0.8,1]",
+      "category": "画风/画师"
+    },
+    {
+      "id": 878199,
+      "name": "60s Psychedelic Movie",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 13401,
+      "likes": 951,
+      "nsfw": false,
+      "tags": "movie,style,still",
+      "desc": "This LoRA tries to take you into a 60s psychedelic movie The trigger words are ArsMovieStill, movie still from a 60s psychedelic movie MJ7 Update coming soon: R",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2762978,
+      "name": "[BSS] - Styles for Krea2",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 12078,
+      "likes": 565,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "[BSS] – Styles for Krea2 200📥= New Style ✅ 500📥 = New Style ✅ 1,000📥 = New Style ✅ 2,000📥 = New Style ✅ 4,000📥 = New Style ✅ 6,000📥 = New Style ✅ 8,000📥 = New S",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2284180,
+      "name": "蔚蓝档案风格（blue archive style) style 【anima/ill/krea2】",
+      "bases": [
+        "Anima",
+        "Krea 2",
+        "MOSS Image"
+      ],
+      "downloads": 12076,
+      "likes": 642,
+      "nsfw": false,
+      "tags": "style,blue archive",
+      "desc": "这是使用400多张高质量BA官图制作的模型，以及有一些特殊tag，可能会有用 blue archive, three quarter view, dark, red theme, warm colored, cold colored, 推荐搭配noob1.1使用，不过其他常见的ill系模型也都可以用啦。 anima的版",
+      "category": "画风/画师"
+    },
+    {
+      "id": 878386,
+      "name": "Takorin Style | ILXL & Anima & Moss",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 11990,
+      "likes": 1862,
+      "nsfw": false,
+      "tags": "anime,style,anima,namako8982,namako daibakuhatsu,takorin,namako,illustriousxl",
+      "desc": "Takorin ( AKA namako8982 or namako or namako daibakuhatsu ) Artist Style Trained with Illustrious 0.1, Compatible with Noob AI, WAI, Hesperides. (On v1.8 - Trai",
+      "category": "画风/画师"
+    },
+    {
+      "id": 681120,
+      "name": "DisneyLike style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 11949,
+      "likes": 1386,
+      "nsfw": false,
+      "tags": "anime,disney,style,2d,90s,cartoon,girls",
+      "desc": "ATTENTION IF YOU POST MULTIPLE IMAGES WITH SAME PROMPT, PLEASE, COMBINE IT IN ONE POST",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3005005,
+      "name": "[Anima/MOSS] sekali_p style",
+      "bases": [
+        "Anima",
+        "MOSS Image"
+      ],
+      "downloads": 11764,
+      "likes": 648,
+      "nsfw": false,
+      "tags": "style,artstyle,moss,anima",
+      "desc": "本页面包含 MOSS 和 Anima 两个版本，请选择对应的使用说明。 This page includes both MOSS and Anima versions. Please follow the instructions for your model. 推荐参数/Recommended Settings FO",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2652568,
+      "name": "sky02 Light and shadow Style [Anima/MOSS]",
+      "bases": [
+        "Anima",
+        "MOSS Image"
+      ],
+      "downloads": 11394,
+      "likes": 635,
+      "nsfw": false,
+      "tags": "style,light,light and shadow",
+      "desc": "Recommended: 0.8-1 ⚠️ 非商用声明 / Non-Commercial Notice: 本模型仅供个人学习、交流与兴趣爱好者测试使用，严禁任何形式的商业用途。 未经授权，亦不可使用本模型生成商业化图片或进行二次售卖。 This model is for personal learning and en",
+      "category": "画风/画师"
+    },
+    {
+      "id": 523485,
+      "name": "Ghibli style (Kiki's Delivery Service)",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 10367,
+      "likes": 661,
+      "nsfw": false,
+      "tags": "anime,ghibli,style,kiki's delivery service",
+      "desc": "MOSS Still experimenting with moss training... Showcase images : SFT model + turbo lora 4 steps Euler simple / 5 steps / CFG 1 1024x1536 Lora strength : 1 KREA ",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1108959,
+      "name": "Dark Fantasy 90's anime style Moss/Krea2/Anima/illustriousXL/ZImageTurbo/Flux/Chroma",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 10045,
+      "likes": 1355,
+      "nsfw": false,
+      "tags": "anime,retro,dark fantasy,style",
+      "desc": "Moss version: weight between [0.8,1], best at 1 trigger words : dark_fantasy_style, dark fantasy, retro, Krea 2 version: weight between [0.8,1], best at 1 trigg",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2396594,
+      "name": "Shexyo - Style Collection - ANI/2.9B",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 9273,
+      "likes": 605,
+      "nsfw": false,
+      "tags": "butt,curvy,style,woman,shiny skin,puckered anus",
+      "desc": "⚠️ Important: The Anima and Anima 2.9B LoRA versions are designed for different base models. Please make sure to download the correct version. These are LoRAs f",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1704915,
+      "name": "[MOSS & IL]【flyx3】Colorful Line Art / 彩色线稿",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 8772,
+      "likes": 1086,
+      "nsfw": false,
+      "tags": "line art,style,线稿,flyx3,colorful line art",
+      "desc": "Help fuel my passion! Even $1 makes a difference. ☕ https://ko-fi.com/flyx3 让我保持创作热情，付费款/隐藏款模型可以在 爱发电 获取~ (2026年7月限定款lora：[Anima] CLAMP作品合集，12风格+全角色lora) (2026年",
+      "category": "画风/画师"
+    },
+    {
+      "id": 304097,
+      "name": "Commodore 64 style pixel art",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 8381,
+      "likes": 727,
+      "nsfw": false,
+      "tags": "pixel art,style,8bit,c64,commodore 64",
+      "desc": "Forget about boring and bland pixel art! This stable diffusion model can create stunning results with low-resolution, limited colors, and dithering effects in t",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1725437,
+      "name": "エンジェル風 90sレトロ漫画スタイル / ANGEL-Inspired 90s Retro Manga Style for Anima / Illustrious",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 7774,
+      "likes": 450,
+      "nsfw": false,
+      "tags": "manga,style,u-jin",
+      "desc": "遊人(U-JIN) ANGEL風 LoRA The strength of LoRA is recommended 0.7-1.0 キャラクターLoRAとして使う場合は以下のトリガーワードをプロンプトの先頭に置き、ショーケースのプロンプトを参照に髪型等入力してください kahoriangel, kosukeangel,",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2629905,
+      "name": "[MOSS & Krea2 & Anima] Yoneyama Mai/米山舞 - Artist Style",
+      "bases": [
+        "Anima",
+        "Krea 2",
+        "MOSS Image"
+      ],
+      "downloads": 7772,
+      "likes": 433,
+      "nsfw": false,
+      "tags": "style,yoneyama mai,anima,米山舞,flyx3,krea2",
+      "desc": "Help fuel my passion! Even $1 makes a difference. ☕ https://ko-fi.com/flyx3 让我保持创作热情，付费款/隐藏款模型可以在 爱发电 获取~ (2026年7月限定款lora：[Anima] CLAMP作品合集，12风格+全角色lora) (2026年",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2626310,
+      "name": "748cm Style | MOSS, KREA 2 & Anima",
+      "bases": [
+        "Anima",
+        "Krea 2"
+      ],
+      "downloads": 7578,
+      "likes": 544,
+      "nsfw": false,
+      "tags": "anime,style,digital illustration,748cm",
+      "desc": "748cm Style LoRA for Anima Add the distinct \"748cm\" artistic style to your generations. This LoRA is trained on preview3 and works best with natural language pr",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1836542,
+      "name": "Retro Neo Noir Moss/Krea2/Anima/illustriousXL/ZImageTurbo/Flux/Chroma",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 7400,
+      "likes": 829,
+      "nsfw": false,
+      "tags": "retro,retro artstyle,style,1990s,1990s anime style",
+      "desc": "Moss version : weight between [0.8,1], best at 1 trigger words : retro_neo_noir, retro, retro artstyle, Krea 2 version : weight between [0.8,1], best at 1 trigg",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2724509,
+      "name": "Better Anime Screencap 16.5",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 6738,
+      "likes": 453,
+      "nsfw": false,
+      "tags": "anime,style,hentai,nsfw,sfw",
+      "desc": "❗❗❗ WARNING NOTE ❗❗❗: The 2.9B version is made ONLY for Anima 2.9B! It does NOT work with Anima Base v1 or checkpoints based on it! V5 Based on a reworked versi",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3010270,
+      "name": "Soft Touch | Anima LoRa | Tamra's Styles",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 6107,
+      "likes": 116,
+      "nsfw": false,
+      "tags": "mix,portrait,style,artist,landscape,anima,combo,silvana,tamra,miraculous teapot",
+      "desc": "This is a mix of multiple Lora that i use -- one of them being the Legendary Silvana x Tamra Mix Style Lora from @Silvana_ : https://civitai.red/models/2732862/",
+      "category": "画风/画师"
+    },
+    {
+      "id": 69831,
+      "name": "JIMA Style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 5700,
+      "likes": 717,
+      "nsfw": false,
+      "tags": "anime,style,art style,artist,girls,styles",
+      "desc": "",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2645641,
+      "name": "Channel Style (caststation)",
+      "bases": [
+        "Anima",
+        "MOSS Image"
+      ],
+      "downloads": 5570,
+      "likes": 353,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "MOSS:no trigger word Anima version: trigger word:@channel It is recommended to place trigger words at the beginning of prompts.",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2016993,
+      "name": "18 in 1，《Bleach》/《死神》，Tite Kubo/久保带人 - Artist Style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 5501,
+      "likes": 782,
+      "nsfw": false,
+      "tags": "bleach,style,kurosaki ichigo,inoue orihime,kuchiki rukia,黑崎一护,死神,井上织姬,朽木露琪亞",
+      "desc": "Help fuel my passion! Even $1 makes a difference. ☕ https://ko-fi.com/flyx3 让我保持创作热情，付费款/隐藏款模型可以在 爱发电 获取~ (2026年7月限定款lora：[Anima] CLAMP作品合集，12风格+全角色lora) (2026年",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2053496,
+      "name": "[MOSS & Anima & IL] 5 in 1，《I''S》 Katsura Masakazu/桂正和，Yoshizuki Iori/苇月伊织- Artist Style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 5252,
+      "likes": 415,
+      "nsfw": false,
+      "tags": "style,i''s,桂正和,katsura masakazu,yoshizuki iori,苇月伊织,isozaki izumi,akiba itsuki",
+      "desc": "Help fuel my passion! Even $1 makes a difference. ☕ https://ko-fi.com/flyx3 让我保持创作热情，付费款/隐藏款模型可以在 爱发电 获取~ (2026年7月限定款lora：[Anima] CLAMP作品合集，12风格+全角色lora) (2026年",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3002003,
+      "name": "Toratora style[MOSS // Anima]",
+      "bases": [
+        "Anima",
+        "MOSS Image"
+      ],
+      "downloads": 5137,
+      "likes": 462,
+      "nsfw": false,
+      "tags": "anime,style,artstyle,hentai,anima",
+      "desc": "本页面包含 MOSS 和 Anima 两个版本，请选择对应的使用说明。 This page includes both MOSS and Anima versions. Please follow the instructions for your model. ____________________________",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2836231,
+      "name": "Nix Comic [Multiple Styles]",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 5071,
+      "likes": 338,
+      "nsfw": false,
+      "tags": "style,illustration,comic",
+      "desc": "Nix comic is a flexible comic base - with a core style mixture of 1990s Disney animation and 2000s Marvel Comics. It is tuned to be used at 0.7-0.85 strength on",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2711269,
+      "name": "CC—dishwasher style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 4751,
+      "likes": 405,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "Model Introduction The dishwasher-style model boasts an extremely high level of accuracy. ANIMA V3: I found that versions v1 and v2 did not render full-body ima",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3028532,
+      "name": "MUNJI style[MOSS // Anima]",
+      "bases": [
+        "Anima",
+        "MOSS Image"
+      ],
+      "downloads": 4572,
+      "likes": 361,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "本页面包含 MOSS 和 Anima 两个版本，请选择对应的使用说明。 This page includes both MOSS and Anima versions. Please follow the instructions for your model. ____________________________",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2687309,
+      "name": "画风 ningen mame style 【anima/krea2/moss】",
+      "bases": [
+        "Anima",
+        "MOSS Image"
+      ],
+      "downloads": 4464,
+      "likes": 259,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "这个模型不需要触发词 This model doesn't need a trigger word",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2579815,
+      "name": "Ratatatat74 style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 4436,
+      "likes": 374,
+      "nsfw": false,
+      "tags": "anime,style,hentai",
+      "desc": "Ratatatat74 style",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2593831,
+      "name": "Fwaun Style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 4356,
+      "likes": 254,
+      "nsfw": false,
+      "tags": "style,chibi,flat color,deformed,no lineart",
+      "desc": "A LoRA specializing in flat color, no lineart, deformed character art. Since this LoRA is made from a lossy differences from Fwaun Tune , I recommend using thes",
+      "category": "画风/画师"
+    },
+    {
+      "id": 930835,
+      "name": "Comic style (Les Tuniques Bleues)",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 4168,
+      "likes": 383,
+      "nsfw": false,
+      "tags": "drawing,style,cartoon,comic,bd,bande dessinée,franco-belge,willy lambil",
+      "desc": "Les Tuniques Bleues (artist : Willy Lambil) Krea2 Showcase images : Turbo model 768x1152 - x1.5 Hires (10 steps, 0.2 with 4x_foolhardy_Remacri) Euler / simple /",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1852000,
+      "name": "Masoq style | Anima | Illustrious",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 3934,
+      "likes": 455,
+      "nsfw": false,
+      "tags": "anime,monochrome,style,twitter artist",
+      "desc": "Masoq style P l e a s e p o s t i m a g e s t o t h e m o d e l p a g e ; e a r n e d b u z z g o e s t o w a r d s t r a i n i n g L O R A f o r t h e c o m m ",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2853357,
+      "name": "AG: Vassago - Flat Cartoon Style",
+      "bases": [
+        "Anima",
+        "Krea 2"
+      ],
+      "downloads": 3922,
+      "likes": 489,
+      "nsfw": false,
+      "tags": "stylized,style,cartoon,poster,flat art,bold line",
+      "desc": "Ars Goetia is series of loras made on a whim, on variety of images, made from mix of Midjourney, Tumblr, NijiJourney and many more things. Each Demon brings som",
+      "category": "画风/画师"
+    },
+    {
+      "id": 588789,
+      "name": "YOSHITAKA AMANO - Final Fantasy Style for Anima, Pony, IL, Krea 2",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 3818,
+      "likes": 457,
+      "nsfw": true,
+      "tags": "watercolor,final fantasy,traditional,yoshitaka amano,style,video game,painting",
+      "desc": "MOSS Image Release 10/31/2026 Suggested tags: a watercolor illustration in the style of yoshitaka amano Suggested strength: 0.8-1.2 Same dataset as Krea 2 but t",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2197054,
+      "name": "Jadetilaurant Style [Anima/Illustrious/Krea2/MOSS]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 3744,
+      "likes": 339,
+      "nsfw": false,
+      "tags": "style,art style,sketch,artist style,thick paint",
+      "desc": "Based off of the beautiful artworks by @jadetilaurant best known for their Reverse:1999 art. Trigger word: jadetilaurant Suggested strength of 0.3-1 depending o",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2210210,
+      "name": "Zootopia Style + Characters",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 3354,
+      "likes": 283,
+      "nsfw": false,
+      "tags": "disney,3d,zootopia,style,anthro,furry",
+      "desc": "This lora allows you to prompt in the style of Zootopia 1 and 2. It also knows most of the major characters from both movies as of the MOSS version: Judy Hopps ",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2713387,
+      "name": "Niji Ultraviolet [Anima/Krea2/MOSS]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 3343,
+      "likes": 366,
+      "nsfw": false,
+      "tags": "niji,style",
+      "desc": "A luminous thick paint Niji style. Excels at shiny things and dark shadows. Trigger word: @Ultr4VioletNiji Suggested strength: 0.8-1.00 when used alone.",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2655668,
+      "name": "Xiaoquandianer Style [Anima/Krea2/MOSS]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 3112,
+      "likes": 360,
+      "nsfw": false,
+      "tags": "colorful,style,artist style,thick paint",
+      "desc": "Based on xiaoquandianer's art style. A colorful thick paint style that excels at surreal and emotional scenes. Trigger word: @xiaoquandianer Suggested strength:",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2833471,
+      "name": "BunnyMid AI Style 『MOSS | Krea2 | Anima | Illustrious』",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 3068,
+      "likes": 241,
+      "nsfw": false,
+      "tags": "anime,style,mid,slop",
+      "desc": "BunnyMid AI Style. the middest-quality, averagest and most generic style LoRA ever Anima-2.9B ver. are converted for Anima-2.9B or something train/merge with it",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2689816,
+      "name": "@1041uuu TOYOI Yuuta Style",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 3068,
+      "likes": 236,
+      "nsfw": false,
+      "tags": "pixel art,style",
+      "desc": "This is the initial release of the LoRA trained by @1041uuu (TOYOI Yuuta) pixel artworks . ⚠️ Pixel perfection is NOT guaranteed. This LoRA is incompatible with",
+      "category": "画风/画师"
+    },
+    {
+      "id": 1974162,
+      "name": "Style > Pika Baka",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 3020,
+      "likes": 166,
+      "nsfw": false,
+      "tags": "anime,art,style,cute,bikabaka,ピカパカ,pikabaka,bika baka,pika baka,kroma",
+      "desc": "# Pikabaka LoRA trained on images from ai artist: pikabaka . (RIP ?) The Kroma variant is the best one for now imo. ## MOSS-base This turned out quite good, the",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2224397,
+      "name": "[BSS] - Ugly Slider",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 2818,
+      "likes": 253,
+      "nsfw": false,
+      "tags": "tool,slider",
+      "desc": "Sorry in advance for this slider. I know most of us here are chasing those perfect plastic waifu with flawless skin and symmetrical everything. But sometimes yo",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2770600,
+      "name": "Ixy - Artist Style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2677,
+      "likes": 189,
+      "nsfw": false,
+      "tags": "anime,drawing,simple,style,cute,sketch,ink style,artist style,ixy style",
+      "desc": "Trigger words makes lora much stronger. Recommended settings for Anima: Sampler: er_sde | euler | dpmpp_sde_gpu Scheduler: beta | linear_quadratic | simple Lora",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2782422,
+      "name": "Ratatatat74 Style - MOS/ANI",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2496,
+      "likes": 253,
+      "nsfw": false,
+      "tags": "style,woman,large breasts",
+      "desc": "⚠️Important: Each LoRA version is designed for a different base model. Please make sure to download the version compatible with your base model. This is a LoRA ",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2677525,
+      "name": "sky05 2.5D Fantasy Style [Anima/MOSS]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2424,
+      "likes": 153,
+      "nsfw": false,
+      "tags": "anime,style,epic,fantasy,2.5d",
+      "desc": "Recommended: 0.8-1 ⚠️ 非商用声明 / Non-Commercial Notice: 本模型仅供个人学习、交流与兴趣爱好者测试使用，严禁任何形式的商业用途。 未经授权，亦不可使用本模型生成商业化图片或进行二次售卖。 This model is for personal learning and en",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2690646,
+      "name": "Genshin Impact Style [IL & MOSS & ANIMAv1]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2408,
+      "likes": 241,
+      "nsfw": false,
+      "tags": "anime,3d,sexy,genshin impact,style,art style,genshin,video game,east asian architecture,game style",
+      "desc": "Follow me on X/Twitter for exclusive content: https://x.com/Citron_Legacy 😁 I've made over 200 Art styles. Checkout my collection here: https://civitai.red/coll",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2719146,
+      "name": "Pall Wash - A Versatile Dark Fantasy Anime Style [MOSS/KREA2/ANIMA/ILL]",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 2235,
+      "likes": 232,
+      "nsfw": false,
+      "tags": "anime,cel shaded,dark fantasy,style,fantasy,clean,range,clean linework",
+      "desc": "A versatile anime style LoRA with serious range. Confident linework, dramatic lighting, and color that swings from richly saturated to moody and muted depending",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3019866,
+      "name": "Luminous Anime | Anima Style  C LoRA",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2107,
+      "likes": 216,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "trigger word :@Cstyle If you notice any issues with this LoRA, please let me know—feedback is always welcome! All images were generated using Anima Base v1.0 wi",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2972997,
+      "name": "Aesthetic composition | 美学构图",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2037,
+      "likes": 174,
+      "nsfw": false,
+      "tags": "concept,aesthetic,anima,styles",
+      "desc": "这只是一个学习训练下来的结果，并不是所有方面都全面超越未加载lora的模型。 改变了一下模型的构图和设计能力，同时增加了明暗对比。 测试使用的权重都是1.0。 正向提示词： masterpiece, best quality, very aesthetic, 具体效果请参见我的示例图片。 感谢大家下载并使用。如果你喜欢",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2628760,
+      "name": "Simon Bisley style",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 2022,
+      "likes": 197,
+      "nsfw": false,
+      "tags": "muscular,style,paintings,comic,illustrations,simon bisley",
+      "desc": "I made few mistakes with previous model (poor images in dataset mainly) that resulted in blurry outcomes. I retrained it properly this time and deleted the olde",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3006622,
+      "name": "Moss/Anima-style-梦幻柔光（nai5其五）",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1891,
+      "likes": 130,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "Moss-base-V1.0 触发词：@softglow_anime 辅助提示词：dreamy healing atmosphere, vibrant yet soft pastel colors, polished high-quality japanese light novel illustration styl",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3010310,
+      "name": "Silvana Style Lora | Moss",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1873,
+      "likes": 111,
+      "nsfw": false,
+      "tags": "style,moss,silvana",
+      "desc": "Silvana's Style Lora trained on my own images, just so I can continue using my style even on the shiny new Moss! showcase images settings: checkpoint: Moss sft ",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2575751,
+      "name": "Thepit style LoRA Anima",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 1822,
+      "likes": 123,
+      "nsfw": false,
+      "tags": "bimbo,style,pit",
+      "desc": "A lora trained on the artwork from the artist thepit Use strengh of 0.8-1. Dont forget to support artist original work.",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3043197,
+      "name": "yd (orange_maru) style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 1812,
+      "likes": 159,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "推荐参数/Recommended Settings ANIMA: Trigger word: yd mix: @y2d yd nor: @y2d yd comic: @yd LoRA weight: 0.8~1 Sampler: er_sde + beta CFG: 4-5 TIPS: 你也可以加入画师的tags来增强",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3013357,
+      "name": "Mixdark Style | MOSS",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1723,
+      "likes": 114,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "v1.0 and v2.0 differ somewhat in style, so just choose whichever you prefer. Try lowering the LoRA weight. Try adding the 'anime style' tag.",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3018702,
+      "name": "SAIO GA USHI//塞翁が牛 style",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 1696,
+      "likes": 209,
+      "nsfw": false,
+      "tags": "style,anima",
+      "desc": "推荐参数/Recommended Settings ANIMA: Trigger word: @sgustyle LoRA weight: 0.8~1 Sampler: er_sde + beta CFG: 4-5",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2817961,
+      "name": "Western Cartoon Style Krea2",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 1677,
+      "likes": 116,
+      "nsfw": false,
+      "tags": "style,cartoon,comic,western",
+      "desc": "Western cartoon style for Krea2.",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2861285,
+      "name": "NeoObscura : Surreal Expressionist Illustration",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 1658,
+      "likes": 226,
+      "nsfw": false,
+      "tags": "style,illustration",
+      "desc": "What's this? NeoObscura is a style LoRA focused on expressive, atmospheric and unconventional artwork, blending surreal compositions with graphic novel aestheti",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2948991,
+      "name": "Midjourney Chinese Aesthetics LoRA | MJ中式美学",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 1561,
+      "likes": 143,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "关于 MOSS-Image 版本： 这是我第一次尝试在 MOSS-Image 模型上训练 LoRA，因此还有许多不足之处。目前，我只在 8-Step 工作流 中测试出了一个勉强令自己满意的结果。 不过，这个版本仍然存在一些明显的问题，尤其是生成的人物在 发型、眼睛和面部特征方面容易出现高度重复的情况 ，整体多样性还有待",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2575725,
+      "name": "rampage style anima LORA",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 1547,
+      "likes": 111,
+      "nsfw": false,
+      "tags": "style,rampage,eganar",
+      "desc": "A lora trained on the artwork from the artist rampage(eganar) Use strengh of 0.8-1. Dont forget to support artist original work. bimbofication ,thick lips, etc.",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2848622,
+      "name": "Houseofuday Style",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 1495,
+      "likes": 201,
+      "nsfw": false,
+      "tags": "dark fantasy,style,painting,glow",
+      "desc": "EACH VERSION IS A NEW STYLE THAT HOUSEOUDAY HAVE (He kind of have a lot) GPT-like style based on Houseofuday work, which blends dark fantasy and illustrative sc",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3016786,
+      "name": "748cm (MOSS) | Artist styles",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1447,
+      "likes": 104,
+      "nsfw": false,
+      "tags": "style,art styles,artist styles,748cm",
+      "desc": "参考自我喜欢的一个艺术家：748cm，如果要求我下架，我会立刻删除该lora模型。 第一次制作lora模型，且使用本地电脑设备炼制，实际效果需要多样本测试。 触发词: 748cm，推荐steps: 50，推荐CFG: 3。 如果在使用过程中遇到问题，请在评论区留言，我看到会及时修复。 如果你也喜欢该风格，请支持艺术家：",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3014129,
+      "name": "MeMaMoss Flat Anime Style - Moss",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1388,
+      "likes": 102,
+      "nsfw": false,
+      "tags": "anime,sexy,screenshot,style,cute,women,megami magazine,anime coloring,2d anime,flat anime",
+      "desc": "Version 1+2 were trained on Moss Image Base . Version 3 was trained on Moss Image SFT. Example images were generated with Moss Image SFT. These loras were train",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3010353,
+      "name": "Soft light 3D Anime style  - 柔和光影3D动漫风格 For MOSS",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1365,
+      "likes": 75,
+      "nsfw": false,
+      "tags": "anime,style,2.5d",
+      "desc": "Perhaps I haven't named this visual style correctly, and I would appreciate your input on giving this LORA a more suitable name.🤨 或许我对这个视觉风格的命名不太正确，需要各位提一下意见，为这",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3045511,
+      "name": "[Moss/Krea2]LzzyHale style",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1240,
+      "likes": 97,
+      "nsfw": false,
+      "tags": "style,moss,krea2,moss image,lzzyhale",
+      "desc": "在魔塔上的训练 moss 基于moss image sft。 效果不是很理想，Lr 1e4 dim 16 alpha 64 10000steps mossv1.1 Lr 1e4 dim 32 alpha 64 10000steps 好像效果变好了，数据集增加到了143张",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3021648,
+      "name": "[MOSS Image] Anime Enhance Lora",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1230,
+      "likes": 66,
+      "nsfw": false,
+      "tags": "anime,style,illustrious",
+      "desc": "v1.0 使用 Krsa2 Anime 資料在 MOSS Image Base 上訓練，可以在 SFT/Base 上使用，但對於 SFT 可能還是會有肢體異常問題，特別是 Danbooru Tag 的提詞，請留意是否有 Prompt tag 衝突的問題。 Trained on MOSS Image Base using",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3017030,
+      "name": "MOSS/MiniMax H3 Image Anime Classic HD",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1209,
+      "likes": 56,
+      "nsfw": false,
+      "tags": "anime,style,high detail,flat,hd,cel-shaded",
+      "desc": "A classic anime look with sharp details. I recommend res_multistep/simple with KROMOSS turbo. v2.0 is a re-train on more detailed images that I color-graded for",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3018491,
+      "name": "MOSS | Anime Lineart (线稿) style",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1061,
+      "likes": 79,
+      "nsfw": false,
+      "tags": "lineart,style,art style",
+      "desc": "参考自多个网络线稿作品，用于强化moss模型对于黑白动漫线稿的生成效果。 模型也可以生成彩色填色区域，但当前测试效果不佳，具体仍以生成黑白线稿为主。 触发词: Lineart，推荐steps: 25-50，推荐CFG: 3。 如果在使用过程中遇到问题，请在评论区留言，我看到会及时修复。",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3010902,
+      "name": "[MOSS|H3 image] ningenmame (にんげんまめ) style",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1039,
+      "likes": 49,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "ningenmame (にんげんまめ) style Trained through late illustration of ningenmame, earlier artwork is not used MOSS Work for SFT or base MOSS models, strength: 0.8-1.5 ",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3019955,
+      "name": "[MOSS] sonsp's Art Style — Personal style",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 991,
+      "likes": 77,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "触发词 / Trigger Word: sonsp 推荐权重 / Recommended LoRA Weight: 0.6–2.0（V1） 0.6-1（V2） 推荐底模 / Recommended Base Model: MOSS_Image_Base 推荐生成参数 / Recommended Generation S",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3024672,
+      "name": "MOSS Pixel Art",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 910,
+      "likes": 92,
+      "nsfw": false,
+      "tags": "pixel art,retro,style,game",
+      "desc": "moss-pixelart-v.0.3 Model Description moss-pixelart-v.0.3 is a Low-Rank Adaptation (LoRA) model fine-tuned on OpenMOSS-Team/MOSS-Image-SFT specifically for gene",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3020657,
+      "name": "Anime Aesthetic - MOSS Image",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 830,
+      "likes": 51,
+      "nsfw": false,
+      "tags": "anime,aesthetic,screenshot,style,flat,quality lora,moss image",
+      "desc": "About this LoRA I would say this LoRA is more like a quality LoRA , something like ( masterpiece, very aesthetic, etc ). By default, it generates anime screensc",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3019084,
+      "name": "Mrpopo's anime-moss-image",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 826,
+      "likes": 74,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "experimental. looks good so far. cooking perhaps? i recommend using 12 steps. all images were generated in 1248x1824 resolution This lora works best with Moss B",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3008852,
+      "name": "Chainsaw Man Anime Style | MOSS Image",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 796,
+      "likes": 70,
+      "nsfw": false,
+      "tags": "chainsaw man,style,anime style,screenscap,moss image",
+      "desc": "Trained using SFT Recommended weight: 0.8–1.2. You can use trigger word, or not to use them at all. I suggest stacking this with a Turbo LoRA. workflow used her",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3037014,
+      "name": "Disney Style - MOSS",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 777,
+      "likes": 60,
+      "nsfw": false,
+      "tags": "disney,animation,style,2d,cartoon",
+      "desc": "Stop prompting from scratch, explore 11,000+ Prompts for free 👉 PromptDexter.com This LoRA captures the look of classic Disney 2D hand-drawn animation. Expect f",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3014665,
+      "name": "HiToon style - Moss Image",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 731,
+      "likes": 40,
+      "nsfw": false,
+      "tags": "anime,sexy,yiff,style,woman,anthro,furry,cartoon,toon,2.5,furry style",
+      "desc": "HiToon is a high quality stylized digital illustration LoRA for Moss-Image SFT support out now! Use the SFT version if you can (Highly recommended) It's intende",
+      "category": "画风/画师"
+    },
+    {
+      "id": 3016151,
+      "name": "MOSS Anime Ink & Marker",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 726,
+      "likes": 60,
+      "nsfw": false,
+      "tags": "anime,drawing,style,marker,copic",
+      "desc": "Anime drawings in a cute, 90s-ish ink and alcohol marker style.",
+      "category": "画风/画师"
+    },
+    {
+      "id": 2526312,
+      "name": "Darkness Slider",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 6291,
+      "likes": 621,
+      "nsfw": false,
+      "tags": "dark,concept,slider,illustrious,darkness slider",
+      "desc": "Recommended negative prompt: lowres, bad quality, worst quality, bad anatomy, jpeg artifacts, signature, watermark, sketch I also recommend using this upscaler:",
+      "category": "光影"
+    },
+    {
+      "id": 3010015,
+      "name": "Moss lighting slider",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 2316,
+      "likes": 122,
+      "nsfw": false,
+      "tags": "concept,lighting,atmosphere,light,slider",
+      "desc": "This version has a slider effect, with negative weights making the screen darker and increasing shadows, and positive weights making the screen brighter and red",
+      "category": "光影"
+    },
+    {
+      "id": 2863183,
+      "name": "Opulent Darkness",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 2195,
+      "likes": 240,
+      "nsfw": false,
+      "tags": "midjourney,tcg,dark fantasy,style,tcg aesthethic,midjourney 8.2",
+      "desc": "This is the current version of my Midjourney's 8.2 \"Personal Style\". It captures an opulent, dark fantasy TCG aesthetic with encrusted gold filigree, baroque or",
+      "category": "光影"
+    },
+    {
+      "id": 3039481,
+      "name": "Better Light & Shadow",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1741,
+      "likes": 108,
+      "nsfw": false,
+      "tags": "concept",
+      "desc": "Lived-in home interiors with bookshelves, plants and worn wood, lit through window lattices, shutters, skylights, doorways or a single floor lamp, with rich ton",
+      "category": "光影"
+    },
+    {
+      "id": 2825107,
+      "name": "True First-Person POV｜真实人眼高度第一视角",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 3882,
+      "likes": 193,
+      "nsfw": false,
+      "tags": "concept,pov",
+      "desc": "C站发布文案 推荐标题 Krea 2 Raw｜True First-Person POV｜真实人眼高度第一视角 简介 为 Krea 2 训练的真实第一人称 POV 概念 LoRA。 主要改善普通提示词容易生成的“背后跟拍、第三人称自拍、镜头高度不自然”等问题，使画面更接近真实双眼所见的视角。 适用于日常生活、室内互动、",
+      "category": "构图"
+    },
+    {
+      "id": 2923342,
+      "name": "Fixed Perspective View",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2928,
+      "likes": 330,
+      "nsfw": false,
+      "tags": "concept,perspective,camera angle",
+      "desc": "Disclaimer: V1 / V2 are recommended for offline generation due to instability. This LoRA works for both SFW and NSFW outputs. Please see individual version deta",
+      "category": "构图"
+    },
+    {
+      "id": 2985382,
+      "name": "构图自控 | Composition Self-Control - 生图设计 | Raw image design",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 1859,
+      "likes": 214,
+      "nsfw": false,
+      "tags": "concept,aesthetic,design,composition,camera,enhancer",
+      "desc": "该lora的设计理念是使用绘画的设计知识，来打破模型的固有偏好。例如角色偏好在画面中心，设计没有章法，想让画面是平整的却总是画出倾斜的。 当前还处于探索阶段，某些效果在一些内容上还不错。 不要相信该lora能100%出好图。 具体效果请参见我的示例图片。 感谢大家下载并使用。如果你喜欢，欢迎关注我。 如果有需要，可以私",
+      "category": "构图"
+    },
+    {
+      "id": 3021452,
+      "name": "Bodycam View — Vlogger Chest-Cam POV | MOSS&Krea2",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1263,
+      "likes": 85,
+      "nsfw": false,
+      "tags": "concept",
+      "desc": "A chest-mounted action camera POV: a low, chest-height wide-angle frame facing the person who is talking to the vlogger. Straight lines bend gently near the edg",
+      "category": "构图"
+    },
+    {
+      "id": 3019310,
+      "name": "Door Peephole View — Fisheye Visitor at the Door",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1237,
+      "likes": 96,
+      "nsfw": false,
+      "tags": "concept",
+      "desc": "Looking out through an electronic door peephole: a high fisheye angle with the visitor in the center looking up at the lens, head and shoulders enlarged while l",
+      "category": "构图"
+    },
+    {
+      "id": 3014584,
+      "name": "Livestream —Live-Stream Screenshot (Phone / Desktop) | MOSS",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 806,
+      "likes": 67,
+      "nsfw": false,
+      "tags": "concept",
+      "desc": "It still works when switched to English. A convincing livestream viewer screenshot in two layouts: - Phone portrait: host avatar, name, viewer count and a pink ",
+      "category": "构图"
+    },
+    {
+      "id": 2513759,
+      "name": "Body weight slider. (Skinny ===> Fat slider)",
+      "bases": [
+        "Anima",
+        "Krea 2"
+      ],
+      "downloads": 19622,
+      "likes": 1188,
+      "nsfw": false,
+      "tags": "concept,fat,skinny,slider,illustrious,weight slider,body weight slider",
+      "desc": "Recommended negative prompt: lowres, bad quality, worst quality, bad anatomy, jpeg artifacts, signature, watermark, sketch I also recommend using this upscaler:",
+      "category": "姿势"
+    },
+    {
+      "id": 2732158,
+      "name": "[KREA 2] Breast Slider",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 15171,
+      "likes": 680,
+      "nsfw": false,
+      "tags": "woman,tool,breast,slider",
+      "desc": "See the examples, they have workflow embedded.",
+      "category": "姿势"
+    },
+    {
+      "id": 2535632,
+      "name": "Thighs slider",
+      "bases": [
+        "Anima",
+        "MOSS Image"
+      ],
+      "downloads": 13513,
+      "likes": 886,
+      "nsfw": false,
+      "tags": "concept,thighs,slider,illustrious,thighs slider",
+      "desc": "Recommended negative prompt: lowres, bad quality, worst quality, bad anatomy, jpeg artifacts, signature, watermark, sketch I also recommend using this upscaler:",
+      "category": "姿势"
+    },
+    {
+      "id": 2546450,
+      "name": "Hips slider",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 12867,
+      "likes": 854,
+      "nsfw": false,
+      "tags": "concept,wide hips,slider,illustrious,hips slider",
+      "desc": "Recommended negative prompt: lowres, bad quality, worst quality, bad anatomy, jpeg artifacts, signature, watermark, sketch I also recommend using this upscaler:",
+      "category": "姿势"
+    },
+    {
+      "id": 738727,
+      "name": "super hip-waist",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 7675,
+      "likes": 473,
+      "nsfw": false,
+      "tags": "concept,hips,body modification,waist",
+      "desc": "narrows the waist and widens the hips without really affecting weight, so at high strengths can get a crazy hip/waist ratio. It's a powerful lora, it starts aff",
+      "category": "姿势"
+    },
+    {
+      "id": 2521578,
+      "name": "Waist Slider",
+      "bases": [
+        "Anima",
+        "MOSS Image"
+      ],
+      "downloads": 7525,
+      "likes": 564,
+      "nsfw": false,
+      "tags": "concept,narrow waist,slider,illustrious,waist slider",
+      "desc": "Recommended negative prompt: lowres, bad quality, worst quality, bad anatomy, jpeg artifacts, signature, watermark, sketch I also recommend using this upscaler:",
+      "category": "姿势"
+    },
+    {
+      "id": 2533131,
+      "name": "Lips size slider",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 7077,
+      "likes": 607,
+      "nsfw": false,
+      "tags": "concept,thick lips,slider,illustrious,lips size slider",
+      "desc": "Recommended negative prompt: lowres, bad quality, worst quality, bad anatomy, jpeg artifacts, signature, watermark, sketch I also recommend using this upscaler:",
+      "category": "姿势"
+    },
+    {
+      "id": 2568691,
+      "name": "Long legs slider",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 5678,
+      "likes": 507,
+      "nsfw": false,
+      "tags": "concept,long legs,slider,illustrious,legs slider",
+      "desc": "Recommended negative prompt: lowres, bad quality, worst quality, bad anatomy, jpeg artifacts, signature, watermark, sketch I also recommend using this upscaler:",
+      "category": "姿势"
+    },
+    {
+      "id": 3008688,
+      "name": "Moss Quality Enhance Textslider",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 3144,
+      "likes": 150,
+      "nsfw": false,
+      "tags": "concept,quality,optimizer",
+      "desc": "Text slider(LECO) train based on Moss-base Suggested Lora weight: 0~1 After testing,this lora can ： Improve the composition quality Improve scene logic Improve ",
+      "category": "姿势"
+    },
+    {
+      "id": 2827092,
+      "name": "BottomHeavySlider",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 3128,
+      "likes": 352,
+      "nsfw": false,
+      "tags": "concept,anima,slider,bottomheavy",
+      "desc": "Recommended negative prompt: lowres, bad quality, worst quality, bad anatomy, jpeg artifacts, signature, watermark, sketch I also recommend using this upscaler:",
+      "category": "姿势"
+    },
+    {
+      "id": 3042936,
+      "name": "[Moss] Breast Slider",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 2999,
+      "likes": 177,
+      "nsfw": false,
+      "tags": "tool,breast,slider",
+      "desc": "See the examples to understand the effects, all images have WF embedded. In my opinion, V2 is a clear improvement. It handles more extreme situations much bette",
+      "category": "姿势"
+    },
+    {
+      "id": 2972655,
+      "name": "Line Weight Slider - Bridge Tools (NoobAI/Illustrious/Pony + Anima)",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2760,
+      "likes": 305,
+      "nsfw": false,
+      "tags": "tool,civitai sucks,give me my account back",
+      "desc": "My account got deleted and Civit won't restore it. Goodbye 100k buzz. Do you like an art style but wish it had thicker, more expressive lines? Have a style with",
+      "category": "姿势"
+    },
+    {
+      "id": 3053108,
+      "name": "MOSS Age Slider",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1220,
+      "likes": 75,
+      "nsfw": false,
+      "tags": "tool,moss,age slider,age,slider,moss image",
+      "desc": "If you find it useful, I'd love to see your ratings, comments and generated images.♥ MOSS Age Slider A simple age slider for MOSS-Image. Weight: -2 to 3 Positiv",
+      "category": "姿势"
+    },
+    {
+      "id": 632900,
+      "name": "The Space Marines Warhammer 40K | Flux + Pony + illustrious + Anima + Krea2",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 36625,
+      "likes": 1976,
+      "nsfw": false,
+      "tags": "warhammer,40k,woman,armor,clothing,man,space marine,ultramarines",
+      "desc": "This LoRA is for Pony Diffusion XL, illustrious and FLUX.1 [dev], it's made to give your character the Space Marines power armor from the world of Warhammer 40K",
+      "category": "其他"
+    },
+    {
+      "id": 3006599,
+      "name": "Moss Image Turbo LoRas",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 33917,
+      "likes": 1019,
+      "nsfw": false,
+      "tags": "base model,image,moss,turbo",
+      "desc": "I'll be uploading different Moss Image Turbo LoRAs I use here and crediting the original creators. Workflows are embedded into each example image. Included LoRA",
+      "category": "其他"
+    },
+    {
+      "id": 430687,
+      "name": "Detailifier",
+      "bases": [
+        "Krea 2",
+        "MOSS Image"
+      ],
+      "downloads": 31017,
+      "likes": 1663,
+      "nsfw": false,
+      "tags": "concept,details",
+      "desc": "This model is focused on improving the details in faces, skin, clothing, fur, and materials. It performs well in both txt2img and img2img/upscaling workflows. K",
+      "category": "其他"
+    },
+    {
+      "id": 633524,
+      "name": "Background Detail Enhancer✨",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 29306,
+      "likes": 3179,
+      "nsfw": false,
+      "tags": "concept,scenery,environment,detail,enhancer,detailer,backgrounds,clutter",
+      "desc": "✨ REFERRAL CODE : DMD9XGMN ℹ️ Model Overview This LoRA enhances the background of the image, adding more detail and clutter to it. Image Comparison 🏠 Recommende",
+      "category": "其他"
+    },
+    {
+      "id": 2619830,
+      "name": "TURBO for ANIMA (less steps)",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 27568,
+      "likes": 1276,
+      "nsfw": false,
+      "tags": "assets,anima,dmd2,distillation",
+      "desc": "TL;DR: This is a DMD2 LoRA = use CFG 1 and 8-12 steps (even if i personally prefer 16 steps, that's still half of what i usually use and i get my pictures in 30",
+      "category": "其他"
+    },
+    {
+      "id": 604286,
+      "name": "地雷系/jirai kei",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 22910,
+      "likes": 1815,
+      "nsfw": false,
+      "tags": "clothing",
+      "desc": "The strength of Lora is recommended to be around 1.0. It is also produced without Lora. It's a little more stable.",
+      "category": "其他"
+    },
+    {
+      "id": 557389,
+      "name": "バレーボール　ユニフォーム/volleyball uniform(XL.ILL,pony)",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 19404,
+      "likes": 1861,
+      "nsfw": false,
+      "tags": "clothing",
+      "desc": "The strength of Lora is recommended to be around 1.0.",
+      "category": "其他"
+    },
+    {
+      "id": 2274840,
+      "name": "Alt-Girl/E-Girl",
+      "bases": [
+        "Krea 2",
+        "MOSS Image"
+      ],
+      "downloads": 16675,
+      "likes": 793,
+      "nsfw": false,
+      "tags": "style,emo,e-girl,alt-girl",
+      "desc": "Trigger word AltGirl",
+      "category": "其他"
+    },
+    {
+      "id": 1882546,
+      "name": "The Look",
+      "bases": [
+        "Anima",
+        "Krea 2"
+      ],
+      "downloads": 12579,
+      "likes": 828,
+      "nsfw": false,
+      "tags": "poses,expressions,girls,women,non-standard",
+      "desc": "The Look – A LoRA for Natural Faces &amp; Expressions Trigger keyword: LookDaal Model type: LoRA (Flux) 🌟 What is The Look ? The Look is a LoRA designed to brea",
+      "category": "其他"
+    },
+    {
+      "id": 2638358,
+      "name": "少把盐 Anima//Moss Base/Moss Heal",
+      "bases": [
+        "Anima",
+        "MOSS Image"
+      ],
+      "downloads": 11838,
+      "likes": 577,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "1",
+      "category": "其他"
+    },
+    {
+      "id": 2940470,
+      "name": "Mr Piglets Brats worldwide collection",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 10184,
+      "likes": 146,
+      "nsfw": false,
+      "tags": "character,lady,woman,luxury,hot,rich,exclusive,brats",
+      "desc": "You don't have to like the LoRa, but you can show your appreciation for the work put into it with a thumbs-up if you download it..... They all come across as ar",
+      "category": "其他"
+    },
+    {
+      "id": 2697171,
+      "name": "DeepSeek 小鲸鱼 （大肥鱼） | DeepSeek Whale Girl",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 8123,
+      "likes": 274,
+      "nsfw": false,
+      "tags": "anime,character,ai,anima,deepseek",
+      "desc": "Model Credits Created &amp; maintained by HermitST (尹紫鹭幻想社) 🐳 Civitai · Pixiv · Bilibili · X · hermitst.com 📌 Which version should I download? / 版本选择说明 This pag",
+      "category": "其他"
+    },
+    {
+      "id": 3007815,
+      "name": "Moss detail tweaker",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 6927,
+      "likes": 334,
+      "nsfw": false,
+      "tags": "concept,detail,tweaker",
+      "desc": "Detail slider lora for Moss-Base Adjust image details while minimizing the impact on the original image's visual style and composition. context_detail_tweak : M",
+      "category": "其他"
+    },
+    {
+      "id": 2854494,
+      "name": "Krea 2 星穹铁道 cos服  合集 | Krea 2 Honkai: Star Rail Cosplay Collection",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 6247,
+      "likes": 87,
+      "nsfw": false,
+      "tags": "character,firefly,sparkle,robin,clara,star rail,herta,qingque,jingliu,stelle,huohuo,march_7th,fu_xuan,yunli,castorice,silver_wolf,hyacine,cyrene,hysilens,cerydra,evernight,rin_tohsaka,yaoguang,sparxie,krea 2,firefly_spring_missive,cosplay costumes,the_herta,sparkle_sweet_dream_radio,small_cyrene,march_7th_the_hunt,march_7th_nascent_spring,castorice_dreamy_flutter,robin_swimsuit,aha",
+      "desc": "此Lora合集的Lora都是以Krea-2-Raw为底膜，使用AI-ToolKit进行训练，可适用于krea2_turbo_bf16，krea2_turbo_fp8_scaled.safetensors等模型进行生图 更多lora看主页网盘，懒得上传了~~",
+      "category": "其他"
+    },
+    {
+      "id": 3001542,
+      "name": "Moss/Anima-油画湿润厚涂二次元（nai5其三）",
+      "bases": [
+        "Anima",
+        "MOSS Image"
+      ],
+      "downloads": 4975,
+      "likes": 362,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "Moss-base-V1.0 触发词：@painterly cine, 辅助提示词：nuanced lighting transitions, balanced visual hierarchy, moist glossy skin highlight, 注：如果是只想要单纯的风格推荐可选词全部填入，如果是多个lora",
+      "category": "其他"
+    },
+    {
+      "id": 2864523,
+      "name": "Hsin 心, 2 Outfits — Wuthering Waves 鳴潮 [Anima+Illustrious+Krea2]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 4946,
+      "likes": 214,
+      "nsfw": false,
+      "tags": "character,wuthering waves",
+      "desc": "💬 Discord — join here / 参加はこちら · 🔓 Patreon — new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi — support the factory / 応援する · 💼 Request Commission / コミッション依頼 Hsin ",
+      "category": "其他"
+    },
+    {
+      "id": 1579164,
+      "name": "VALEJO",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 4797,
+      "likes": 320,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "Fantasy illustrator",
+      "category": "其他"
+    },
+    {
+      "id": 2862344,
+      "name": "Krea 2 其他 cos服  合集 | Krea 2 Collection of Other Cosplay",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 4670,
+      "likes": 65,
+      "nsfw": false,
+      "tags": "character,cosplay,miku,elaina,kinako,roxy,alisa,murasame,eriri,deepseek,tachibana sherry,wakaba_mutsumi,gotoh_hitori,krea 2,yin_ziping,yao_realm_of_wishes,yao_oath_of_love,xiao_qiao_witch_of_time,xiao_qiao_maltese_cutie,xi_shi_clear_dragon_echo,tomori_nao,tanikaze_amane,roxy_pajamas,natsume_shiki,izumi_sagiri_t_shirt,izumi_sagiri_pajamas,izumi_hime,gongsun_li_li_hanyan,gongsun_li_dance_among_flowers,gongsun_li_blessed_snow_prayer,fukawa_shoko",
+      "desc": "此Lora是以Krea-2-Raw为底膜，使用AI-ToolKit进行训练，可适用于krea2_turbo_bf16，krea2_turbo_fp8_scaled.safetensors等模型进行生图 更多lora看主页网盘",
+      "category": "其他"
+    },
+    {
+      "id": 2425904,
+      "name": "Arknights: Endfield | Operators Collection",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 4606,
+      "likes": 412,
+      "nsfw": false,
+      "tags": "character,arknights,endfield,arknights: endfield",
+      "desc": "Arknights: Endfield | Operators Collection Intended to generate non-commercial fan works of Operators from the Arknights: Endfield video game. ℹ️ LoRA work best",
+      "category": "其他"
+    },
+    {
+      "id": 2880431,
+      "name": "Typhoeus ティフォロス — Arknights: Endfield アークナイツ：エンドフィールド [Anima+Illustrious]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 4388,
+      "likes": 208,
+      "nsfw": false,
+      "tags": "character,game,arknights: endfield",
+      "desc": "💬 Discord — join here / 参加はこちら · 🔓 Patreon — new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi — support the factory / 応援する · 💼 Request Commission / コミッション依頼 Typho",
+      "category": "其他"
+    },
+    {
+      "id": 1719292,
+      "name": "shortstack (Ver. Anima, Illustrious, flux, NoobAi)",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 4320,
+      "likes": 452,
+      "nsfw": false,
+      "tags": "concept,shortstack",
+      "desc": "EDIT- Shortstack is now a TOS word, as such this model will now be set to download only. EDIT 2- been able to use the word shortstack so having the LORA be up a",
+      "category": "其他"
+    },
+    {
+      "id": 2642424,
+      "name": "Translucent gelly body",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 4298,
+      "likes": 446,
+      "nsfw": false,
+      "tags": "concept",
+      "desc": "Translucent gelly-like body. Don't rush to buy, you can try generating images online first. The first 10 online generations are free of model fees~ 别急着买，可以在线生图试",
+      "category": "其他"
+    },
+    {
+      "id": 2597963,
+      "name": "KreaComics",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 4034,
+      "likes": 284,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "Images were created with ComfyUI and include workflow. If your images are not appearing on my model pages, or that they are disappearing, this is not due to my ",
+      "category": "其他"
+    },
+    {
+      "id": 2864632,
+      "name": "Qingxiao 清宵 — Wuthering Waves 鳴潮 [Anima+Illustrious+Krea2]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 3749,
+      "likes": 181,
+      "nsfw": false,
+      "tags": "character,wuthering waves",
+      "desc": "💬 Discord — join here / 参加はこちら · 🔓 Patreon — new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi — support the factory / 応援する · 💼 Request Commission / コミッション依頼 Qingx",
+      "category": "其他"
+    },
+    {
+      "id": 2812414,
+      "name": "Shoes & Pantyhose-Cleavage 趾缝 - Krea 2-MOSS-ZIT",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 3662,
+      "likes": 203,
+      "nsfw": false,
+      "tags": "concept,feet,high heels,shoes,z image turbo,krea2,toe-cleavage",
+      "desc": "Shoes-Cleavage for Krea2 / Z-Image-Turbo / MOSS MOSS version has been uploaded！ v 2.0 Kera2 Stockings has been uploaded ! This version enhances prompt stability",
+      "category": "其他"
+    },
+    {
+      "id": 3021116,
+      "name": "Malfoid (Genderbent Draco Malfoy meme character) | Krea 2 + MOSS",
+      "bases": [
+        "Krea 2",
+        "MOSS Image"
+      ],
+      "downloads": 3127,
+      "likes": 213,
+      "nsfw": false,
+      "tags": "character,meme,harry potter,malfoy,movie character,book character,draco malfoy,krea,krea2,krea 2,malfoid",
+      "desc": "Krea 2 and MOSS character LoRA for Malfoid (Genderbent Draco Malfoy) . How to use Trigger word: M4lfoid Works on: 0.8-1 weights If you have any problem try copy",
+      "category": "其他"
+    },
+    {
+      "id": 2747452,
+      "name": "DETAILCORE FOREVER 🔍​ BY STX",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 3095,
+      "likes": 264,
+      "nsfw": false,
+      "tags": "anime,cyberpunk,style,detail,colorbomb",
+      "desc": "DETAILCORE FOREVER 🔍​ BY STX 1. Core Artistic Identity DETAILCORE FOREVER is a specialized style and detail-enhancement LoRA trained to push anime generations i",
+      "category": "其他"
+    },
+    {
+      "id": 2899694,
+      "name": "Phoenix Reffaella フィオニー・レファエラ, 3 Outfits — Zenless Zone Zero ゼンレスゾーンゼロ [Anima+Illustrious+MOSS]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2943,
+      "likes": 152,
+      "nsfw": false,
+      "tags": "character,zenless zone zero,game",
+      "desc": "💬 Discord — join here / 参加はこちら · 🔓 Patreon — new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi — support the factory / 応援する · 💼 Request Commission / コミッション依頼 Phoen",
+      "category": "其他"
+    },
+    {
+      "id": 2875441,
+      "name": "Anastasya Feodorovna Snezhnaya アナスターシャ (The Tsaritsa 氷の女皇) — Genshin Impact 原神 [Anima+Illustrious]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2913,
+      "likes": 148,
+      "nsfw": false,
+      "tags": "character,genshin impact,game",
+      "desc": "💬 Discord — join here / 参加はこちら · 🔓 Patreon — new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi — support the factory / 応援する · 💼 Request Commission / コミッション依頼 Anast",
+      "category": "其他"
+    },
+    {
+      "id": 2949494,
+      "name": "Krea 2 鸣潮 cos服  合集 | Krea 2 Wuthering Waves Cosplay Collection",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 2811,
+      "likes": 43,
+      "nsfw": false,
+      "tags": "character,cosplay,lily,wuthering waves,yangyang,changli,suoming,xinyuehu",
+      "desc": "此Lora是以Krea-2-Raw为底膜，使用AI-ToolKit进行训练，可适用于krea2_turbo_bf16，krea2_turbo_fp8_scaled.safetensors等模型进行生图 更多lora看主页网盘",
+      "category": "其他"
+    },
+    {
+      "id": 2926616,
+      "name": "Sumin : Insadong Charm",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 2809,
+      "likes": 217,
+      "nsfw": false,
+      "tags": "character,sexy,asian,gorgeous,cute,korean,korean girl,asian woman,ai character,ai model,crush,ai girl,k-fashion",
+      "desc": "Soft, doll-like features paired with a bratty, confident streak. Krea2 V2 Update : Fixed the accidental bleeding effect that somehow made her look like she was ",
+      "category": "其他"
+    },
+    {
+      "id": 2834394,
+      "name": "Si スー — Arknights: Endfield アークナイツ：エンドフィールド [Anima+Illustrious]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2741,
+      "likes": 118,
+      "nsfw": false,
+      "tags": "character",
+      "desc": "💬 Discord — join here / 参加はこちら · 🔓 Patreon — new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi — support the factory / 応援する · 💼 Request Commission / コミッション依頼 Si スー",
+      "category": "其他"
+    },
+    {
+      "id": 2870245,
+      "name": "Ronova ロノヴァ — Genshin Impact 原神 [Anima+Illustrious]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2715,
+      "likes": 154,
+      "nsfw": false,
+      "tags": "character,genshin impact,game",
+      "desc": "💬 Discord — join here / 参加はこちら · 🔓 Patreon — new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi — support the factory / 応援する · 💼 Request Commission / コミッション依頼 Ronov",
+      "category": "其他"
+    },
+    {
+      "id": 2871922,
+      "name": "DC Vast Expanse",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 2565,
+      "likes": 284,
+      "nsfw": false,
+      "tags": "futuristic,midjourney,high quality,portrait,sci-fi,style,epic,fantasy,portraits,wallpaper,detail,surreal,contrast,scale,clean,vast,monumental,dcloras",
+      "desc": "Trigger Word = DCVSTEXP. v1 [Krea2Raw] Trained on a dataset of 448 Midjourney Images Using Moodboards, Trained with Ostris AI-Toolkit at 10,000 Steps Rank 32, W",
+      "category": "其他"
+    },
+    {
+      "id": 2891142,
+      "name": "Sunna 千夏, 3 Outfits — Zenless Zone Zero ゼンレスゾーンゼロ [Anima+Illustrious]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2500,
+      "likes": 155,
+      "nsfw": false,
+      "tags": "character,gacha,zenless zone zero",
+      "desc": "💬 Discord — join here / 参加はこちら · 🔓 Patreon — new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi — support the factory / 応援する · 💼 Request Commission / コミッション依頼 Sunna",
+      "category": "其他"
+    },
+    {
+      "id": 2776289,
+      "name": "KR2 MOSS Tiger Kittens",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 2478,
+      "likes": 103,
+      "nsfw": false,
+      "tags": "character,blonde,asian,japanese,brunette,influencer,red head,native american",
+      "desc": "Introducing the Tiger Kittens Collection 🐯✨ Meet the Tiger Kittens – a fierce and fabulous group of AI influencers, each with a unique, bold personality that li",
+      "category": "其他"
+    },
+    {
+      "id": 2516075,
+      "name": "Digital Painting",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 2445,
+      "likes": 208,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "Based on art by Anato Finnstark.",
+      "category": "其他"
+    },
+    {
+      "id": 2695911,
+      "name": "Velina Airgid ヴェリナ・エガード, 2 Outfits — Zenless Zone Zero ゼンレスゾーンゼロ [Anima+Illustrious+MOSS]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2364,
+      "likes": 158,
+      "nsfw": false,
+      "tags": "character",
+      "desc": "💬 Discord : join here / 参加はこちら · 🔓 Patreon : new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi : support the factory / 応援する · 💼 Request Commission / コミッション依頼 Velin",
+      "category": "其他"
+    },
+    {
+      "id": 2851384,
+      "name": "Odette オデット — Genshin Impact 原神 [Anima+Illustrious]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2169,
+      "likes": 113,
+      "nsfw": false,
+      "tags": "character,genshin impact,odette",
+      "desc": "💬 Discord — join here / 参加はこちら · 🔓 Patreon — new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi — support the factory / 応援する · 💼 Request Commission / コミッション依頼 Odett",
+      "category": "其他"
+    },
+    {
+      "id": 2906958,
+      "name": "Storyflow Character Card",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 2108,
+      "likes": 150,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "MOSS Reference v1.0 — Single Pass Open the current reference version : choose a face and outfit and generate all four character-card panels together. This versi",
+      "category": "其他"
+    },
+    {
+      "id": 2695197,
+      "name": "Nangong Yu 南宮羽, 3 Outfits — Zenless Zone Zero ゼンレスゾーンゼロ [Anima+Illustrious]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 2050,
+      "likes": 127,
+      "nsfw": false,
+      "tags": "character",
+      "desc": "💬 Discord — join here / 参加はこちら · 🔓 Patreon — new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi — support the factory / 応援する · 💼 Request Commission / コミッション依頼 Nango",
+      "category": "其他"
+    },
+    {
+      "id": 3028191,
+      "name": "SnapRef",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 1976,
+      "likes": 122,
+      "nsfw": false,
+      "tags": "comfyui,tool,anima,reference,character reference,forge neo,ref-adapter,snapref",
+      "desc": "Official Forge Neo support SnapRef now has an official Forge Neo extension , with BF16 and FP8 adapters, up to four reference images, per-reference Strength, Ch",
+      "category": "其他"
+    },
+    {
+      "id": 3030231,
+      "name": "Mr Piglets Chavettes and Essex women for Krea 2",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 1898,
+      "likes": 53,
+      "nsfw": false,
+      "tags": "character,lady,women",
+      "desc": "You don't have to like the LoRa, but you can show your appreciation for the work put into it with a thumbs-up if you download it.",
+      "category": "其他"
+    },
+    {
+      "id": 2925065,
+      "name": "Norman Rockwell — The Poet of Everyday America | Saturday Evening Post Covers, Four Freedoms & Small-Town Storytelling | LoRA (Krea2 Turbo)",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 1897,
+      "likes": 196,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "Norman Rockwell — The Poet of Everyday America | Saturday Evening Post Covers, Four Freedoms &amp; Small-Town Storytelling | LoRA (Krea2 Turbo) LoRA trained on ",
+      "category": "其他"
+    },
+    {
+      "id": 2646737,
+      "name": "Nino Nakano (中野 二乃) - The Quintessential Quintuplets (Gotoubun no Hanayome) (五等分の花嫁)",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 1860,
+      "likes": 111,
+      "nsfw": false,
+      "tags": "character",
+      "desc": "Order a commission here! https://www.fiverr.com/s/vvE412e Support my work by subscribing to patreon! https://patreon.com/nochekaiser Join my discord server! htt",
+      "category": "其他"
+    },
+    {
+      "id": 2860678,
+      "name": "Anima 卡拉彼丘 Lora 合集 |  Anima Strinova LoRA Collection",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 1726,
+      "likes": 11,
+      "nsfw": false,
+      "tags": "character,lora,anima,strinova,norn,kanami,yowu misty wandering of sanzu,hoshie spring blaze",
+      "desc": "此Lora合集的Lora都是以Anima-Base-v1___0-Diffusers为底膜喵，使用AI-ToolKit进行训练喵，训练集全部来源于游戏截图喵，卡拉彼丘似乐喵 更多lora看主页网盘喵，懒得上传了喵~~",
+      "category": "其他"
+    },
+    {
+      "id": 2887364,
+      "name": "Krea 2 鸣潮 Lora 合集 | Krea 2 Wuthering Waves LoRA Collection",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 1666,
+      "likes": 37,
+      "nsfw": false,
+      "tags": "character,lily,lora,wuthering waves,chisa,shorekeeper,cartethyia,aemeath,denia,qingxiao,suoming,hsin,krea 2,denia_awakened",
+      "desc": "此Lora合集是以Krea-2-Raw为底膜，使用AI-ToolKit进行训练，训练素材全部来源于游戏截图 更多lora看主页网盘，懒得上传了~~",
+      "category": "其他"
+    },
+    {
+      "id": 3013167,
+      "name": "Mr Piglets Oldies and brats Moss image",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1661,
+      "likes": 26,
+      "nsfw": false,
+      "tags": "character,ladies,granny,girls,women,mature,oldies,brats,20´s",
+      "desc": "You don't have to like the LoRa, but you can show your appreciation for the work put into it with a thumbs-up if you download it. My first Moss image, might nee",
+      "category": "其他"
+    },
+    {
+      "id": 2881582,
+      "name": "Eye Detailer 目のディテール — Utility LoRA [Anima]",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 1559,
+      "likes": 72,
+      "nsfw": false,
+      "tags": "concept,detailer",
+      "desc": "💬 Discord — join here / 参加はこちら · 🔓 Patreon — new LoRAs 7 days early / 新作LoRAを7日早く · ☕ Ko-fi — support the factory / 応援する · 💼 Request Commission / コミッション依頼 Eye D",
+      "category": "其他"
+    },
+    {
+      "id": 3018472,
+      "name": "Mrpopo's clarity-moss-image",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1539,
+      "likes": 156,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "did the thing. still experimental i suggest using 12 steps with the turbo lora i use. further testing on civitai generator, the difference in quality is insane.",
+      "category": "其他"
+    },
+    {
+      "id": 2977579,
+      "name": "Krea 2 星穹铁道 Lora 合集 | Krea 2 Honkai: Star Rail LoRA Collection",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 1518,
+      "likes": 19,
+      "nsfw": false,
+      "tags": "character,pearl,firefly,sparkle,robin,honkai: star rail,fu_xuan,yunli,castorice,silver_wolf,evernight,sparxie,krea 2,firefly_spring_missive,castorice_dreamy_flutter,aha,evanescia_moon_waiting_blossom,hyacine_warmth_among_clouds,sparxie_candy_coated_waves,robin_summeretto",
+      "desc": "此Lora合集是以Krea-2-Raw为底膜，使用AI-ToolKit进行训练，训练素材全部来源于游戏截图 更多lora看主页网盘，懒得上传了~~",
+      "category": "其他"
+    },
+    {
+      "id": 2649456,
+      "name": "Inoue Orihime (井上 織姫) - Bleach (ブリーチ)",
+      "bases": [
+        "Anima"
+      ],
+      "downloads": 1501,
+      "likes": 136,
+      "nsfw": false,
+      "tags": "character",
+      "desc": "Order a commission here! https://www.fiverr.com/s/vvE412e Support my work by subscribing to patreon! https://patreon.com/nochekaiser Join my discord server! htt",
+      "category": "其他"
+    },
+    {
+      "id": 2996770,
+      "name": "MS_Girls_Krea 2, Part 2",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 1461,
+      "likes": 61,
+      "nsfw": false,
+      "tags": "character,woman,girls",
+      "desc": "no trigger, weight 1",
+      "category": "其他"
+    },
+    {
+      "id": 2803772,
+      "name": "moss image  anima 2.5d? 3d?",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1408,
+      "likes": 87,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "已更新moss版本....(moss版触发词为wangzhe) 也许你仍然需要一个饱和度工具...... pixiv凩秋画风,图内含工作流,欢迎返图",
+      "category": "其他"
+    },
+    {
+      "id": 3038322,
+      "name": "HaDeS MOSS Turbo",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1359,
+      "likes": 66,
+      "nsfw": false,
+      "tags": "tool,moss,turbo,moss sft,openmoss",
+      "desc": "HaDeS MOSS Turbo, version v1.0 Version name: Turbo 8-steps v1.0 File: HaDeS-MOSS-Turbo-8steps-v1.0.safetensors (3.56 MB, SHA256 fccd4ef0debca8f0da8b111224cfbcd1",
+      "category": "其他"
+    },
+    {
+      "id": 3008042,
+      "name": "AI Character - Malfoy",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 1355,
+      "likes": 137,
+      "nsfw": false,
+      "tags": "character,blonde,malfoid",
+      "desc": "AI Character Adult female Malfoy from this - https://x.com/Foyege24/status/2109580528135574014?s=20 Trigger Word - malfoyyy Id reccomend every version there all",
+      "category": "其他"
+    },
+    {
+      "id": 3030662,
+      "name": "Home DV — The Tape That Should Have Stayed in the Drawer | MOSS&Krea2",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1321,
+      "likes": 82,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "The look of a 2000s family camcorder tape: 4:3 frame, soft detail, noisy shadows, blooming highlights, a warm yellow cast and a white date stamp at the lower ri",
+      "category": "其他"
+    },
+    {
+      "id": 2862845,
+      "name": "Girly-Next-Door Beauties - Alina",
+      "bases": [
+        "Krea 2"
+      ],
+      "downloads": 1319,
+      "likes": 78,
+      "nsfw": false,
+      "tags": "character,sexy,model,idol,cute,tanned,louise,willow,char,tiana,girly,alina,juniper,freya,skylar,lili,angelina,becky,nari,savannah,vesna,yelena,maddie,harper,krea,ai_girl,estrella,fabiana,sorina,wilai",
+      "desc": "Trigger for Model Emily: German_Emily (golden-brown-haired playful beauty) Trigger for Model Kaya: South_African_Kaya (striking, exotic diamond) Trigger for Mod",
+      "category": "其他"
+    },
+    {
+      "id": 3029251,
+      "name": "Braces",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1257,
+      "likes": 52,
+      "nsfw": false,
+      "tags": "concept,braces",
+      "desc": "Braces LoRA for Moss",
+      "category": "其他"
+    },
+    {
+      "id": 3011866,
+      "name": "Moss Imagefinish tweaker",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1150,
+      "likes": 67,
+      "nsfw": false,
+      "tags": "concept,detail,tweaker,enhance",
+      "desc": "Adjusts the level of image refinement through different LoRA weights, with minimal impact on composition. Works with weights [-2, 2]",
+      "category": "其他"
+    },
+    {
+      "id": 3007506,
+      "name": "RDBT | MOSS",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1047,
+      "likes": 90,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "RDBT | MOSS A LoRA from a personal all-in-one dataset, mainly for digital art and drawings, focusing on lighting, textures. Covered from wallpaper level digital",
+      "category": "其他"
+    },
+    {
+      "id": 3014333,
+      "name": "Ultimate Digital Artwork",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 1019,
+      "likes": 63,
+      "nsfw": false,
+      "tags": "anime,digital painting,style",
+      "desc": "Ultimate Digital Artwork (UDA) is a Lora focused on anime and digital artwork focused lora. It was built from a combined dataset from my Vintage Anime, Anime/Di",
+      "category": "其他"
+    },
+    {
+      "id": 3024007,
+      "name": "Moss East Asian Girl",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 904,
+      "likes": 39,
+      "nsfw": false,
+      "tags": "character",
+      "desc": "This LoRA transforms female faces into Asian women with large eyes. It was trained using AI-generated images of non-existent people. No specific trigger words a",
+      "category": "其他"
+    },
+    {
+      "id": 3015496,
+      "name": "MOSS DMD 8-Step — QKV Forge Neo Fix",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 891,
+      "likes": 44,
+      "nsfw": false,
+      "tags": "base model,moss",
+      "desc": "MOSS DMD 8-Step — QKV Forge Neo Fix Experimental LoRA Compatibility Conversion | MOSS-Image-SFT An experimental QKV-compatible conversion of the original MOSS-I",
+      "category": "其他"
+    },
+    {
+      "id": 3039326,
+      "name": "少把盐 Moss Heal",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 774,
+      "likes": 85,
+      "nsfw": false,
+      "tags": "style",
+      "desc": "1",
+      "category": "其他"
+    },
+    {
+      "id": 3022015,
+      "name": "Antiblur MOSS Base",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 757,
+      "likes": 57,
+      "nsfw": false,
+      "tags": "background",
+      "desc": "Blur / Anti-Blur slider LoRA for MOSS. Negative weights make backgrounds clearer; positive weights increase background blur. Use 0 for the baseline",
+      "category": "其他"
+    },
+    {
+      "id": 3049899,
+      "name": "Moss Image AI Babe Pack ( Part 01 ) by Sarcastic TOFU",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 748,
+      "likes": 27,
+      "nsfw": false,
+      "tags": "character,female character,fictional woman,virtual babe,consistent character pack,ai nobody",
+      "desc": "Moss Image AI Babe Pack by Sarcastic TOFU aims to provide quality LORAs for Beautiful AI Generated Characters trained for specific sets of beautiful physical at",
+      "category": "其他"
+    },
+    {
+      "id": 3049907,
+      "name": "Moss Image AI Babe Pack ( Part 04 ) by Sarcastic TOFU",
+      "bases": [
+        "MOSS Image"
+      ],
+      "downloads": 720,
+      "likes": 16,
+      "nsfw": false,
+      "tags": "character,female character,fictional woman,virtual babe,consistent character pack,ai nobody",
+      "desc": "Moss Image AI Babe Pack by Sarcastic TOFU aims to provide quality LORAs for Beautiful AI Generated Characters trained for specific sets of beautiful physical at",
+      "category": "其他"
+    }
+  ]
+}

@@ -1,0 +1,3110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ODD 出图 · Studio</title>
+<style>
+:root{
+  --bg:#06070d;
+  --glass:rgba(16, 20, 34, 0.62);
+  --glass-strong:rgba(20, 25, 42, 0.78);
+  --glass-card:rgba(255, 255, 255, 0.038);
+  --glass-card-hi:rgba(255, 255, 255, 0.072);
+  --line:rgba(255, 255, 255, 0.085);
+  --line-hi:rgba(255, 255, 255, 0.18);
+  --tx:#f3f6ff;
+  --tx2:#9aa7c4;
+  --tx3:#63708d;
+  --acc:#818cf8;
+  --acc2:#6366f1;
+  --cyan:#22d3ee;
+  --pink:#f472b6;
+  --acc-glow:rgba(129, 140, 248, 0.36);
+  --grad:linear-gradient(135deg, #6366f1 0%, #a855f7 52%, #ec4899 100%);
+  --grad-hi:linear-gradient(135deg, #7c80ff 0%, #ba6dff 52%, #f472b6 100%);
+  --grad-gold:linear-gradient(135deg, #fcd34d 0%, #f59e0b 55%, #f97316 100%);
+  --ok:#34d399;
+  --warn:#fbbf24;
+  --err:#fb7185;
+  --char:#f472b6;
+  --style:#c084fc;
+  --ctrl:#38bdf8;
+  --q:#34d399;
+  --x:#94a3b8;
+  --radius:16px;
+  --radius-sm:10px;
+  --ease:cubic-bezier(.22, 1, .36, 1);
+  --scroll-thumb:rgba(165, 180, 252, 0.22);
+  --scroll-thumb-hi:rgba(165, 180, 252, 0.45);
+}
+
+/* ---------- 全局与极光动态背景 ---------- */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;overflow:hidden}
+body{
+  font:13.5px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+  background-color:var(--bg);
+  background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size:24px 24px;
+  color:var(--tx);
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+.ambient-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.ambient-bg i{
+  position:absolute;border-radius:50%;filter:blur(95px);opacity:.26;
+  animation:floatOrb 18s ease-in-out infinite alternate;
+}
+.ambient-bg i:nth-child(1){
+  width:520px;height:520px;top:-160px;left:-100px;
+  background:radial-gradient(circle, #6366f1 0%, transparent 70%);
+}
+.ambient-bg i:nth-child(2){
+  width:460px;height:460px;top:-120px;right:-80px;
+  background:radial-gradient(circle, #ec4899 0%, transparent 70%);
+  animation-delay:-6s;animation-duration:22s;
+}
+.ambient-bg i:nth-child(3){
+  width:540px;height:540px;bottom:-220px;left:36%;
+  background:radial-gradient(circle, #06b6d4 0%, transparent 70%);
+  opacity:.2;animation-delay:-11s;animation-duration:25s;
+}
+@keyframes floatOrb{
+  0%{transform:translate(0,0) scale(1)}
+  100%{transform:translate(45px,30px) scale(1.12)}
+}
+
+*{scrollbar-width:thin;scrollbar-color:var(--scroll-thumb) transparent}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:var(--scroll-thumb-hi)}
+::-webkit-scrollbar-corner{background:transparent}
+
+/* ---------- 顶部悬浮玻璃导航 ---------- */
+header{
+  position:relative;z-index:20;
+  height:56px;
+  margin:10px 14px 0;
+  padding:0 16px;
+  border-radius:16px;
+  display:flex;align-items:center;gap:12px;
+  background:var(--glass-strong);
+  backdrop-filter:blur(22px) saturate(150%);
+  border:1px solid var(--line);
+  box-shadow:0 10px 32px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.1);
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{
+  width:30px;height:30px;border-radius:10px;
+  background:var(--grad);
+  display:grid;place-items:center;
+  font-weight:900;font-size:15px;color:#fff;
+  box-shadow:0 0 22px rgba(168,85,247,.55), inset 0 1px 1px rgba(255,255,255,.45);
+  position:relative;
+}
+header h1{
+  font-size:16.5px;margin:0;font-weight:800;letter-spacing:.6px;
+  background:linear-gradient(90deg, #ffffff 0%, #c4b5fd 50%, #67e8f9 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.brand-sub{
+  font-size:9.5px;font-weight:700;color:#c4b5fd;
+  text-transform:uppercase;letter-spacing:1.4px;
+  padding:2px 8px;border-radius:99px;
+  border:1px solid rgba(192,132,252,.35);
+  background:rgba(168,85,247,.12);
+}
+#status{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:99px;
+  background:rgba(255,255,255,.06);color:var(--tx2);border:1px solid var(--line);
+}
+#status::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+#status.online{
+  background:rgba(52,211,153,.12);color:var(--ok);border-color:rgba(52,211,153,.32);
+  box-shadow:0 0 14px rgba(52,211,153,.15);
+}
+#status.online::before{box-shadow:0 0 10px var(--ok);animation:pulse 2.2s ease-in-out infinite}
+#status.offline{background:rgba(251,113,133,.14);color:var(--err);border-color:rgba(251,113,133,.32)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.85)}}
+
+#queueinfo{
+  font-size:11.5px;color:var(--cyan);font-weight:600;
+  padding:4px 11px;border-radius:99px;cursor:pointer;user-select:none;
+  background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.32);
+  transition:all .16s var(--ease);
+}
+#queueinfo:hover{background:rgba(34,211,238,.24);border-color:#67e8f9;color:#fff;transform:translateY(-1px)}
+#queueinfo:empty{display:none}
+.btn-stop{
+  background:rgba(251,113,133,.14);border-color:rgba(251,113,133,.38);color:#fda4af;
+}
+.btn-stop:hover{background:rgba(244,63,94,.85);border-color:transparent;color:#fff}
+.btn-free{
+  background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.32);color:#6ee7b7;
+}
+.btn-free:hover{background:rgba(16,185,129,.82);border-color:transparent;color:#fff}
+#queueModal{
+  position:fixed;inset:0;z-index:118;
+  background:rgba(4,6,14,.8);backdrop-filter:blur(14px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+#queueModal.open{display:flex}
+.qm-dialog{
+  width:min(680px, 94vw);max-height:86vh;
+  background:rgba(16,20,34,.94);backdrop-filter:blur(26px);
+  border:1px solid rgba(56,189,248,.28);border-radius:18px;
+  box-shadow:0 24px 70px rgba(0,0,0,.78);
+  display:flex;flex-direction:column;overflow:hidden;
+  animation:pmIn .18s var(--ease);
+}
+.qm-list{padding:14px 16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;max-height:60vh}
+.qm-group-t{font-size:11.5px;font-weight:700;color:var(--tx2);margin-top:4px}
+.qm-card{
+  padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);
+  display:flex;gap:10px;align-items:flex-start;
+}
+.qm-card.running{border-color:rgba(52,211,153,.4);background:rgba(52,211,153,.06)}
+.qm-meta{flex:1;min-width:0}
+.qm-top{font-size:12px;font-weight:700;color:#fff;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.qm-prompt{font-size:11px;color:var(--tx2);margin-top:5px;line-height:1.45;word-break:break-word;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#genProgWrap{
+  display:none;align-items:center;gap:8px;
+  padding:4px 11px;border-radius:99px;
+  background:rgba(129,140,248,.12);border:1px solid rgba(165,180,252,.32);
+  box-shadow:0 0 16px rgba(129,140,248,.18);
+}
+#genProgWrap.active{display:inline-flex}
+.prog-track{
+  width:116px;height:7px;border-radius:99px;overflow:hidden;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);
+}
+.prog-bar{
+  height:100%;width:0%;border-radius:99px;
+  background:linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #ec4899 100%);
+  box-shadow:0 0 10px rgba(168,85,247,.7);
+  transition:width .22s ease-out;
+}
+.prog-bar.indet{
+  width:38% !important;
+  animation:indetSlide 1.2s ease-in-out infinite;
+}
+@keyframes indetSlide{0%{transform:translateX(-110%)}100%{transform:translateX(280%)}}
+#genProgText{
+  font-size:11px;font-weight:700;color:#e0e7ff;
+  font-family:ui-monospace,Consolas,monospace;white-space:nowrap;
+}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.hdr-kbd{
+  font-size:11px;color:var(--tx2);display:flex;align-items:center;gap:4px;
+  padding:4px 10px;border-radius:99px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);
+}
+.hdr-kbd kbd{
+  font-family:ui-monospace,Consolas,monospace;font-size:10px;color:#e0e7ff;
+  background:rgba(129,140,248,.18);padding:1px 6px;border-radius:5px;border:1px solid rgba(129,140,248,.32);
+}
+
+/* ---------- 三栏悬浮玻璃岛画布 ---------- */
+main{
+  position:relative;z-index:10;
+  display:grid;
+  grid-template-columns:366px minmax(420px, 1fr) 416px;
+  gap:14px;
+  padding:12px 14px 14px;
+  height:calc(100vh - 66px);
+  overflow:hidden;
+}
+.col{height:100%;overflow-y:auto;padding:0 2px 4px 0;border:none}
+.col-left{display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.col-mid{display:flex;flex-direction:column;gap:12px}
+.col-right{display:flex;flex-direction:column;gap:12px}
+
+/* ---------- 悬浮磨砂玻璃卡片 ---------- */
+.sec{
+  background:var(--glass);
+  backdrop-filter:blur(20px) saturate(140%);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:13px 14px;
+  box-shadow:0 12px 32px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.085);
+  transition:border-color .22s var(--ease), box-shadow .22s var(--ease);
+}
+.sec:hover{
+  border-color:rgba(255,255,255,.15);
+  box-shadow:0 14px 36px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.12);
+}
+.sec h2{
+  font-size:12.5px;margin:0 0 10px;color:#d6e0f5;
+  letter-spacing:.35px;font-weight:700;
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+}
+.sec h2 .h2-l{display:flex;align-items:center;gap:7px}
+.sec h2 .dot-title{
+  width:7px;height:7px;border-radius:50%;background:var(--acc);
+  box-shadow:0 0 10px currentColor;
+}
+.badge{
+  font-size:10.5px;font-weight:700;
+  background:rgba(255,255,255,.06);border:1px solid var(--line);
+  padding:2px 8px;border-radius:99px;color:var(--tx2);
+}
+.badge.hi{background:rgba(129,140,248,.18);border-color:rgba(129,140,248,.4);color:#c7d2fe}
+
+/* ---------- 灵动表单控件 ---------- */
+select,input,textarea,button{
+  font:inherit;color:var(--tx);
+  background:rgba(10, 13, 24, 0.58);
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+  padding:7px 11px;
+  width:100%;
+  outline:none;
+  transition:all .18s var(--ease);
+}
+select option{background:#121728;color:#f3f6ff}
+select,input[type=text],input:not([type]),input[type=number]{height:36px}
+select:hover,input:hover,textarea:hover{
+  border-color:var(--line-hi);
+  background:rgba(15, 20, 36, 0.72);
+}
+select:focus,input:focus,textarea:focus{
+  border-color:var(--acc);
+  box-shadow:0 0 0 3px rgba(129,140,248,.22), 0 0 18px rgba(129,140,248,.15);
+  background:rgba(15, 20, 38, 0.85);
+}
+textarea{
+  resize:vertical;min-height:78px;
+  font-family:ui-monospace,"Cascadia Code","Segoe UI",Consolas,monospace;
+  font-size:12.5px;line-height:1.6;
+}
+button{
+  cursor:pointer;font-weight:600;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+}
+button:hover{
+  background:rgba(255,255,255,.09);
+  border-color:var(--line-hi);
+  transform:translateY(-1px);
+}
+button:active{transform:translateY(0) scale(.985)}
+button.btn-sm{width:auto;height:31px;padding:0 12px;font-size:12px;border-radius:99px}
+button.btn-ghost{background:rgba(255,255,255,.03);border-color:var(--line);color:var(--tx2)}
+button.btn-ghost:hover{background:rgba(255,255,255,.09);color:#fff}
+
+/* 扫光流光主按钮 */
+button.primary, .btn-wf-run{position:relative;overflow:hidden}
+button.primary::after, .btn-wf-run::after{
+  content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.32), transparent);
+  transform:skewX(-22deg);
+  transition:left .65s var(--ease);
+  pointer-events:none;
+}
+button.primary:hover::after, .btn-wf-run:hover::after{left:140%}
+
+button.primary{
+  background:var(--grad);
+  border:1px solid rgba(255,255,255,.22);
+  color:#fff;font-weight:800;font-size:14.5px;letter-spacing:.6px;
+  height:44px;border-radius:12px;
+  box-shadow:0 8px 26px rgba(139,92,246,.42), inset 0 1px 0 rgba(255,255,255,.3);
+}
+button.primary:hover{
+  background:var(--grad-hi);
+  box-shadow:0 12px 32px rgba(168,85,247,.56), inset 0 1px 0 rgba(255,255,255,.4);
+  transform:translateY(-1.5px);
+}
+button.primary:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+
+button.combo-btn{
+  width:auto;flex:0 0 auto;height:36px;padding:0 16px;border-radius:10px;
+  background:linear-gradient(135deg, rgba(99,102,241,.28), rgba(236,72,153,.26));
+  border:1px solid rgba(192,132,252,.48);color:#fff;font-weight:700;
+  box-shadow:0 4px 16px rgba(168,85,247,.2);
+}
+button.combo-btn:hover{
+  background:linear-gradient(135deg, rgba(99,102,241,.46), rgba(236,72,153,.42));
+  border-color:rgba(244,114,182,.75);
+  box-shadow:0 6px 22px rgba(236,72,153,.32);
+}
+
+.row{display:flex;gap:8px;align-items:center}
+.row .grow{flex:1;min-width:0}
+.check-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--tx2);user-select:none}
+.check-row label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.check-row input[type=checkbox]{width:15px;height:15px;margin:0;accent-color:#a855f7;cursor:pointer}
+
+/* ---------- 左栏：悬浮磨砂素材浏览器 ---------- */
+.asset-shell{
+  flex:1;min-height:0;
+  display:flex;flex-direction:column;
+  background:var(--glass);
+  backdrop-filter:blur(20px) saturate(140%);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 12px 32px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.085);
+}
+.seg-tabs{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:6px;padding:8px;
+  background:rgba(5,7,14,.38);
+  border-bottom:1px solid var(--line);
+}
+.seg-tab{
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  padding:8px 4px;border-radius:11px;
+  border:1px solid transparent;
+  background:transparent;color:var(--tx2);
+  cursor:pointer;transition:all .2s var(--ease);
+}
+.seg-tab:hover{background:rgba(255,255,255,.06);color:#fff;transform:none}
+.seg-tab.active{
+  background:linear-gradient(135deg, rgba(99,102,241,.28), rgba(168,85,247,.24));
+  border-color:rgba(165,180,252,.45);
+  color:#fff;
+  box-shadow:0 4px 16px rgba(99,102,241,.26), inset 0 1px 0 rgba(255,255,255,.22);
+}
+.seg-tab .st-title{font-size:13px;font-weight:700;display:flex;align-items:center;gap:4px}
+.seg-tab .st-num{font-size:10px;color:var(--tx3);font-weight:600}
+.seg-tab.active .st-num{color:#c7d2fe}
+.seg-tab .st-sel{
+  display:none;position:absolute;top:5px;right:6px;
+  min-width:17px;height:17px;padding:0 5px;border-radius:99px;
+  background:var(--grad);color:#fff;font-size:9.5px;font-weight:800;
+  align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(236,72,153,.5);
+}
+.seg-tab .st-sel.show{display:inline-flex}
+
+.asset-pane{display:none;flex:1;min-height:0;flex-direction:column;padding:11px;gap:9px}
+.asset-pane.active{display:flex}
+.asset-scroll{flex:1;min-height:0;overflow-y:auto;padding-right:3px}
+
+/* ---------- 姿势库：2 列艺术画廊大图卡片 ---------- */
+#poses, #poseSensList{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:8px;
+}
+#poses .ghost, #poseSensList .ghost{grid-column:1 / -1}
+.pose-card{
+  position:relative;display:flex;flex-direction:column;
+  padding:0;margin:0;
+  border:1px solid var(--line);
+  border-radius:12px;overflow:hidden;cursor:pointer;
+  background:rgba(10,13,24,.7);
+  aspect-ratio:3 / 4;
+  transition:all .22s var(--ease);
+}
+.pose-card:hover{
+  border-color:rgba(165,180,252,.65);
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,.45), 0 0 18px rgba(129,140,248,.22);
+}
+.pose-card.active{
+  border-color:#a855f7;
+  box-shadow:0 0 0 2px rgba(168,85,247,.55), 0 10px 24px rgba(168,85,247,.32);
+}
+.pthumb{
+  width:100%;height:100%;object-fit:cover;display:block;
+  background:#090b12;transition:transform .32s var(--ease);
+}
+.pose-card:hover .pthumb{transform:scale(1.06)}
+.pnoimg{width:100%;height:100%;background:linear-gradient(135deg,#181e30,#111524);display:block}
+.pmeta{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:22px 8px 7px;
+  background:linear-gradient(180deg, transparent 0%, rgba(6,8,16,.84) 48%, rgba(6,8,16,.96) 100%);
+  pointer-events:none;
+}
+.pname{
+  font-size:11.5px;font-weight:700;color:#fff;line-height:1.3;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  text-shadow:0 1px 4px rgba(0,0,0,.8);
+}
+.psub{font-size:9.5px;color:#b4c0dc;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.angn{
+  background:rgba(9,12,24,.76);color:#67e8f9;border:1px solid rgba(56,189,248,.42);
+  font-size:9.5px;padding:0 5px;border-radius:99px;font-weight:700;margin-left:4px;
+}
+.pcat{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14);
+  font-size:9px;padding:0 4px;border-radius:4px;margin-right:4px;color:#e2e8f0;
+}
+.angrow{display:none !important}
+
+/* ---------- 服装 & 角色 Pills ---------- */
+.pills{display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start}
+.pill{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11.5px;padding:5px 10px;border-radius:99px;
+  background:var(--glass-card);border:1px solid var(--line);
+  cursor:pointer;user-select:none;transition:all .16s var(--ease);max-width:100%;
+}
+.pill:hover{border-color:rgba(165,180,252,.55);background:var(--glass-card-hi);transform:translateY(-1px)}
+.pill.active{
+  background:linear-gradient(135deg, rgba(99,102,241,.36), rgba(168,85,247,.34));
+  border-color:#a5b4fc;color:#fff;box-shadow:0 4px 14px rgba(129,140,248,.32);
+}
+.pillwork{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);
+  font-size:9.5px;padding:0 5px;border-radius:99px;color:var(--tx2);
+}
+.pill.active .pillwork{background:rgba(255,255,255,.18);color:#fff;border-color:transparent}
+.pillpop{background:rgba(244,114,182,.18);color:#f9a8d4;font-size:9.5px;padding:0 5px;border-radius:99px;font-weight:700}
+
+button.more{
+  width:100%;font-size:11.5px;height:32px;margin-top:9px;
+  background:rgba(255,255,255,.035);border:1px dashed var(--line-hi);border-radius:99px;color:var(--tx2);
+}
+button.more:hover{border-color:var(--acc);color:#fff;background:rgba(129,140,248,.14)}
+
+button.sens-toggle{
+  width:100%;font-size:11.5px;height:34px;margin-top:9px;padding:0 12px;justify-content:flex-start;
+  background:rgba(251,191,36,.07);border:1px dashed rgba(251,191,36,.32);border-radius:10px;color:#fcd34d;
+}
+button.sens-toggle:hover{border-color:var(--warn);background:rgba(251,191,36,.15);color:#fef08a}
+#sensWrap,#poseSensWrap{
+  margin-top:8px;padding:9px;border:1px solid rgba(251,191,36,.25);border-radius:12px;background:rgba(251,191,36,.04);
+}
+.hint{font-size:11px;color:var(--tx3)}
+
+/* ---------- 中栏：一键搭配 + 提示词 + LoRA ---------- */
+.combo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:9px}
+.combo-row{
+  font-size:12px;padding:7px 9px;border-radius:10px;
+  background:var(--glass-card);border:1px solid var(--line);
+  display:flex;align-items:center;gap:6px;transition:all .16s var(--ease);
+}
+.combo-row.locked{border-color:rgba(168,85,247,.55);background:rgba(139,92,246,.12)}
+.combo-row.empty{opacity:.62;border-style:dashed}
+.combo-row-main{flex:1;min-width:0;display:flex;align-items:baseline;gap:5px;flex-wrap:wrap}
+.combo-row b{color:#c7d2fe;font-size:10px;font-weight:700;background:rgba(129,140,248,.18);padding:1px 6px;border-radius:99px;flex:0 0 auto}
+.combo-row .cb-val{font-size:11.5px;color:#fff;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}
+.cb-extra{color:var(--tx3);font-size:10px}
+.cb-acts{display:flex;gap:3px;flex:0 0 auto}
+.cb-btn{
+  width:22px;height:22px;padding:0;border-radius:6px;font-size:11px;
+  background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--tx2);
+}
+.cb-btn:hover{background:rgba(129,140,248,.28);border-color:rgba(165,180,252,.55);color:#fff;transform:none}
+.cb-btn.on{background:rgba(168,85,247,.32);border-color:#c084fc;color:#fff}
+.cb-btn.del:hover{background:rgba(244,63,94,.75);border-color:transparent;color:#fff}
+#comboPickerModal{
+  position:fixed;inset:0;z-index:119;
+  background:rgba(4,6,14,.8);backdrop-filter:blur(14px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+#comboPickerModal.open{display:flex}
+.cp-dialog{
+  width:min(640px, 94vw);max-height:84vh;
+  background:rgba(16,20,34,.95);backdrop-filter:blur(26px);
+  border:1px solid rgba(192,132,252,.32);border-radius:18px;
+  box-shadow:0 24px 70px rgba(0,0,0,.78);
+  display:flex;flex-direction:column;overflow:hidden;animation:pmIn .18s var(--ease);
+}
+.cp-body{padding:12px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;flex:1;min-height:0}
+.cp-list{
+  flex:1;min-height:200px;max-height:54vh;overflow-y:auto;
+  display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;
+  padding:8px;border-radius:12px;background:rgba(6,8,16,.5);border:1px solid var(--line);
+}
+.cp-item{
+  width:auto;height:auto;padding:5px 10px;border-radius:99px;font-size:11.5px;
+  background:var(--glass-card);border:1px solid var(--line);color:var(--tx);
+}
+.cp-item:hover{background:rgba(129,140,248,.26);border-color:#a5b4fc;color:#fff}
+.cp-item small{color:var(--tx3);font-size:10px;margin-left:4px}
+.combo-nl{
+  grid-column:1 / -1;font-size:11.5px;color:var(--tx2);padding:8px 11px;border-radius:10px;
+  background:rgba(6,8,18,.42);border:1px dashed var(--line);line-height:1.55;font-style:italic;
+}
+
+.prompt-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.prompt-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+.char-cnt{font-size:11px;color:var(--cyan);font-family:ui-monospace,Consolas,monospace;font-weight:600}
+
+/* LoRA 区域 */
+.tabs{display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap}
+.tabs .tab{
+  font-size:11px;font-weight:600;padding:4px 11px;border-radius:99px;
+  background:var(--glass-card);border:1px solid var(--line);
+  color:var(--tx2);cursor:pointer;transition:all .16s var(--ease);user-select:none;
+}
+.tabs .tab:hover{border-color:var(--line-hi);color:#fff;background:var(--glass-card-hi)}
+.tabs .tab.active{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(139,92,246,.38)}
+
+#activeLoras{display:flex;flex-direction:column;gap:7px}
+.active-lora-card{
+  display:flex;gap:10px;align-items:center;padding:8px 11px;border-radius:12px;
+  background:linear-gradient(90deg, rgba(99,102,241,.14), rgba(168,85,247,.08));
+  border:1px solid rgba(165,180,252,.32);
+}
+.lora-slider{width:92px;height:4px;padding:0;border:none;background:transparent;accent-color:#a855f7;cursor:pointer}
+.lora-num{
+  width:56px !important;height:28px !important;padding:2px 6px !important;
+  font-size:11.5px;text-align:center;font-family:ui-monospace,Consolas,monospace;border-radius:8px;
+}
+
+#loraLib{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:8px;max-height:310px;overflow-y:auto;padding-right:3px;
+}
+.lora-item{
+  display:flex;gap:9px;align-items:flex-start;padding:9px 10px;
+  border:1px solid var(--line);border-radius:12px;background:var(--glass-card);transition:all .18s var(--ease);
+}
+.lora-item:hover{border-color:rgba(165,180,252,.45);background:var(--glass-card-hi);transform:translateY(-1px)}
+.lora-item.mounted{border-color:rgba(168,85,247,.6);background:rgba(139,92,246,.14);box-shadow:0 4px 14px rgba(139,92,246,.18)}
+.lora-item .catdot{width:4px;align-self:stretch;border-radius:99px;flex:0 0 auto;min-height:30px}
+.lora-item .meta{flex:1;min-width:0}
+.lora-item .nm{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lora-item .sub{font-size:10.5px;color:var(--tx2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lora-item .rm{
+  flex:0 0 auto;width:27px;height:27px;padding:0;border-radius:9px;
+  background:rgba(255,255,255,.06);border:1px solid var(--line);color:#fff;font-size:15px;line-height:1;
+}
+.lora-item .rm:hover{background:var(--grad);border-color:transparent;color:#fff}
+.lora-item.mounted .rm{background:rgba(251,113,133,.18);border-color:rgba(251,113,133,.4);color:#fda4af}
+.lora-item.mounted .rm:hover{background:var(--err);color:#fff}
+.active-lora-card .rm{
+  flex:0 0 auto;width:27px;height:27px;padding:0;border-radius:9px;
+  background:rgba(251,113,133,.14);border:1px solid rgba(251,113,133,.32);color:#fda4af;
+}
+.active-lora-card .rm:hover{background:var(--err);color:#fff}
+
+.iso-tag{background:var(--warn);color:#111;font-size:9px;font-weight:800;padding:1px 5px;border-radius:99px;margin-left:4px}
+.lbase{background:rgba(255,255,255,.08);border:1px solid var(--line);font-size:9.5px;padding:0 5px;border-radius:4px;margin-right:4px}
+.ldesc{font-size:10.5px;color:var(--tx2);margin-top:3px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lwarn{font-size:10px;color:#fcd34d;margin-top:3px;line-height:1.3}
+.ltrig{font-size:10px;color:var(--cyan);margin-top:3px;font-family:ui-monospace,Consolas,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.gallery-prog{
+  display:none;flex-direction:column;gap:6px;
+  margin-bottom:10px;padding:9px 11px;border-radius:11px;
+  background:rgba(129,140,248,.09);border:1px solid rgba(165,180,252,.28);
+}
+.gallery-prog.active{display:flex}
+.gp-head{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  font-size:11.5px;color:#e0e7ff;font-weight:600;
+}
+.gp-pct{
+  font-family:ui-monospace,Consolas,monospace;font-size:13px;font-weight:800;
+  color:#67e8f9;
+}
+.gp-track{
+  width:100%;height:9px;border-radius:99px;overflow:hidden;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08);
+}
+.gp-bar{
+  height:100%;width:0%;border-radius:99px;
+  background:linear-gradient(90deg, #38bdf8 0%, #818cf8 48%, #ec4899 100%);
+  box-shadow:0 0 12px rgba(168,85,247,.75);
+  transition:width .22s ease-out;
+}
+.gp-bar.indet{
+  width:36% !important;
+  animation:indetSlide 1.2s ease-in-out infinite;
+}
+
+/* ---------- 右栏：画廊 + 一条龙 + 参数 + GitHub ---------- */
+.gallery-stage{
+  min-height:260px;border-radius:14px;
+  background:radial-gradient(circle at 50% 45%, rgba(129,140,248,.11), transparent 65%), rgba(6, 8, 16, 0.66);
+  border:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:10px;position:relative;overflow:hidden;
+}
+#gallery{width:100%;display:flex;flex-direction:column;gap:8px;align-items:center}
+#gallery .img-wrap{
+  position:relative;width:100%;border-radius:11px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);background:#000;box-shadow:0 12px 32px rgba(0,0,0,.55);
+}
+#gallery img{width:100%;max-height:420px;object-fit:contain;display:block;cursor:zoom-in}
+.img-actions{position:absolute;top:9px;right:9px;display:flex;gap:6px;opacity:0;transition:.18s}
+.img-wrap:hover .img-actions{opacity:1}
+.img-act-btn{
+  width:auto;height:30px;padding:0 11px;font-size:11.5px;font-weight:600;border-radius:99px;
+  background:rgba(10,13,24,.82);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;
+  display:inline-flex;align-items:center;gap:4px;
+}
+.img-act-btn:hover{background:var(--grad);border-color:transparent}
+
+.hist-strip{display:flex;gap:7px;overflow-x:auto;padding-top:9px;width:100%}
+.hist-strip:empty{display:none}
+.hist-thumb{
+  width:48px;height:62px;object-fit:cover;border-radius:8px;flex:0 0 auto;
+  border:2px solid transparent;cursor:pointer;opacity:.7;transition:all .16s var(--ease);
+}
+.hist-thumb:hover,.hist-thumb.active{opacity:1;border-color:#c084fc;transform:translateY(-2px)}
+
+.empty-canvas{text-align:center;padding:34px 16px;color:var(--tx3)}
+.empty-canvas .ec-icon{
+  width:52px;height:52px;margin:0 auto 12px;border-radius:16px;
+  background:linear-gradient(135deg, rgba(99,102,241,.22), rgba(236,72,153,.18));
+  border:1px solid rgba(192,132,252,.35);
+  display:grid;place-items:center;font-size:22px;color:#e9d5ff;
+  box-shadow:0 0 28px rgba(168,85,247,.25);
+}
+.empty-canvas .ec-t{font-size:13.5px;color:#e2e8f0;font-weight:700}
+.empty-canvas .ec-s{font-size:11.5px;color:var(--tx3);margin-top:4px}
+
+/* 一条龙工作流卡片 */
+.wf-sec{
+  border-color:rgba(251,191,36,.3);
+  background:linear-gradient(155deg, rgba(251,191,36,.09) 0%, var(--glass) 60%);
+}
+.wf-desc{
+  font-size:11px;color:var(--tx2);line-height:1.48;margin-top:8px;padding:8px 10px;
+  border-radius:10px;background:rgba(6,8,16,.44);border:1px solid var(--line);
+}
+.wf-meta-pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.wf-pill{
+  font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;
+  background:rgba(255,255,255,.07);border:1px solid var(--line);color:var(--tx2);
+}
+.wf-pill.hi{background:rgba(251,191,36,.18);border-color:rgba(251,191,36,.42);color:#fde68a}
+.wf-actions{display:grid;grid-template-columns:1fr 1.4fr;gap:8px;margin-top:10px}
+.btn-wf-run{
+  height:38px;border-radius:11px;font-size:13px;font-weight:800;color:#1c1100;
+  background:var(--grad-gold);border:1px solid rgba(254,240,138,.55);
+  box-shadow:0 6px 20px rgba(245,158,11,.35);
+}
+.btn-wf-run:hover{box-shadow:0 9px 26px rgba(245,158,11,.52);transform:translateY(-1.5px)}
+.btn-wf-run:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}
+
+.pose-ctrl-box{
+  margin-top:10px;padding:10px 11px;border-radius:12px;
+  background:rgba(168,85,247,.07);border:1px solid rgba(192,132,252,.28);
+}
+.pc-preview{
+  display:flex;align-items:center;gap:9px;margin-top:8px;padding:6px 8px;
+  border-radius:9px;background:rgba(6,8,16,.48);border:1px solid var(--line);
+}
+.pc-preview img{width:38px;height:50px;object-fit:cover;border-radius:6px;background:#080a12;flex:0 0 auto}
+.pc-info{flex:1;min-width:0}
+.pc-name{font-size:11.5px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-id{font-size:10px;color:var(--tx3);font-family:ui-monospace,Consolas,monospace}
+.pc-multi-tip{
+  margin-top:6px;padding:5px 8px;border-radius:7px;font-size:10.5px;line-height:1.4;
+  background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.32);color:#fde68a;
+}
+.pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.pc-grid .field label{font-size:10.5px}
+.pc-grid input{height:30px;padding:3px 7px;font-size:11.5px;text-align:center}
+
+.hires-box{
+  margin-top:11px;padding:10px 11px;border-radius:12px;
+  background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.24);
+}
+.hires-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.hires-grid .field label{font-size:10px}
+.hires-grid input{height:30px;padding:3px 6px;font-size:11.5px;text-align:center}
+
+/* 参数预设与网格 */
+.preset-bar{display:flex;gap:5px;margin-bottom:10px;flex-wrap:wrap}
+.preset-chip{
+  width:auto;height:26px;padding:0 10px;font-size:10.5px;border-radius:99px;
+  background:var(--glass-card);border:1px solid var(--line);color:var(--tx2);
+}
+.preset-chip:hover{border-color:#a5b4fc;color:#fff;background:rgba(129,140,248,.22)}
+
+.param-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field.full{grid-column:1 / -1}
+.field label{font-size:11px;color:var(--tx2);font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.field-inline{display:flex;gap:6px}
+.seed-dice{width:36px;flex:0 0 36px;padding:0;font-size:14px;border-radius:10px}
+
+/* GitHub 折叠抽屉 */
+details.sec-details{
+  background:var(--glass);backdrop-filter:blur(20px);
+  border:1px solid var(--line);border-radius:var(--radius);padding:11px 14px;
+}
+details.sec-details summary{
+  list-style:none;cursor:pointer;font-size:12px;font-weight:700;color:var(--tx2);
+  display:flex;align-items:center;justify-content:space-between;user-select:none;
+}
+details.sec-details summary::-webkit-details-marker{display:none}
+details.sec-details summary::after{content:"▸";color:var(--tx3);transition:.2s}
+details.sec-details[open] summary::after{transform:rotate(90deg)}
+details.sec-details .details-body{margin-top:10px}
+
+.gh-item{padding:9px 11px;border:1px solid var(--line);border-radius:10px;margin-top:7px;background:var(--glass-card)}
+.gh-item a{color:#a5b4fc;text-decoration:none;font-weight:700;font-size:12px}
+.gh-item a:hover{text-decoration:underline}
+.gh-item .d{font-size:11px;color:var(--tx2);margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.gh-item .s{font-size:10px;color:var(--warn);margin-top:4px}
+
+.ghost{font-size:12px;color:var(--tx3);text-align:center;padding:18px 10px}
+.spinner{
+  display:inline-block;width:11px;height:11px;
+  border:2px solid currentColor;border-top-color:transparent;
+  border-radius:50%;animation:spin .7s linear infinite;vertical-align:-1px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- 服装子分类按钮 ---------- */
+.sub-tabs{display:flex;flex-wrap:wrap;gap:5px}
+.sub-tab{
+  width:auto;height:28px;padding:0 11px;border-radius:99px;
+  font-size:11.5px;font-weight:600;
+  background:var(--glass-card);border:1px solid var(--line);color:var(--tx2);
+  cursor:pointer;transition:all .16s var(--ease);
+}
+.sub-tab:hover{border-color:rgba(165,180,252,.55);color:#fff;background:var(--glass-card-hi)}
+.sub-tab.active{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(139,92,246,.38)}
+.sub-tab.spec{border-color:rgba(244,114,182,.35);color:#f9a8d4}
+.sub-tab.spec:hover{border-color:var(--pink);color:#fff}
+.sub-tab.spec.active{
+  background:linear-gradient(135deg,#ec4899,#8b5cf6);border-color:transparent;color:#fff;
+  box-shadow:0 4px 16px rgba(236,72,153,.42);
+}
+
+/* ---------- 姿势高清放大选择弹窗 ---------- */
+#poseModal{
+  position:fixed;inset:0;z-index:115;
+  background:rgba(4,6,14,.8);backdrop-filter:blur(14px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+#poseModal.open{display:flex}
+.pm-dialog{
+  width:min(780px, 94vw);max-height:92vh;
+  background:rgba(16,20,34,.92);backdrop-filter:blur(26px);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:20px;box-shadow:0 28px 80px rgba(0,0,0,.78), inset 0 1px 0 rgba(255,255,255,.12);
+  display:flex;flex-direction:column;overflow:hidden;
+  animation:pmIn .2s var(--ease);
+}
+@keyframes pmIn{from{opacity:0;transform:scale(.94) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.pm-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.pm-title-wrap{min-width:0}
+.pm-title{font-size:15.5px;font-weight:800;color:#fff;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pm-sub{font-size:11.5px;color:var(--tx2);margin-top:3px}
+.pm-close{
+  width:34px;height:34px;flex:0 0 34px;padding:0;border-radius:10px;
+  background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--tx2);font-size:18px;
+}
+.pm-close:hover{background:rgba(251,113,133,.22);border-color:rgba(251,113,133,.45);color:#fff}
+.pm-stage{
+  flex:1;min-height:280px;max-height:60vh;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at center, rgba(129,140,248,.1), transparent 68%), rgba(6,8,16,.75);
+  padding:14px;position:relative;overflow:hidden;
+}
+.pm-stage img{max-width:100%;max-height:56vh;object-fit:contain;border-radius:10px;box-shadow:0 14px 40px rgba(0,0,0,.65);background:#080a12}
+.pm-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:38px;height:54px;padding:0;border-radius:12px;
+  background:rgba(16,20,34,.82);border:1px solid rgba(255,255,255,.18);
+  color:#fff;font-size:18px;backdrop-filter:blur(8px);
+}
+.pm-nav:hover{background:var(--grad);border-color:transparent;transform:translateY(-50%) scale(1.05)}
+.pm-nav.prev{left:14px}
+.pm-nav.next{right:14px}
+.pm-angles{
+  display:flex;gap:8px;padding:11px 16px;overflow-x:auto;
+  border-top:1px solid var(--line);background:rgba(6,8,16,.35);justify-content:center;flex-wrap:wrap;
+}
+.pm-ang-btn{
+  position:relative;width:auto;padding:4px;border-radius:10px;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  background:var(--glass-card);border:2px solid transparent;cursor:pointer;transition:all .16s var(--ease);
+}
+.pm-ang-btn:hover{border-color:rgba(165,180,252,.6)}
+.pm-ang-btn.viewing{border-color:#a855f7;background:rgba(168,85,247,.18)}
+.pm-ang-btn img{width:54px;height:70px;object-fit:cover;border-radius:7px;background:#080a12;display:block}
+.pm-ang-btn span{font-size:10.5px;color:var(--tx2);max-width:60px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pm-ang-btn.viewing span{color:#fff;font-weight:700}
+.pm-ang-btn .pm-check{
+  position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:99px;
+  background:var(--ok);color:#042419;font-size:11px;font-weight:900;
+  display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.5);
+}
+.pm-ang-btn.picked .pm-check{display:flex}
+.pm-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 18px;border-top:1px solid var(--line)}
+.pm-foot-info{font-size:12px;color:var(--tx2)}
+.pm-foot-acts{display:flex;gap:8px;align-items:center}
+.pm-pick-btn{
+  width:auto;height:38px;padding:0 20px;border-radius:99px;font-size:13px;font-weight:700;
+  background:var(--grad);border:1px solid rgba(255,255,255,.22);color:#fff;box-shadow:0 6px 20px rgba(139,92,246,.42);
+}
+.pm-pick-btn:hover{background:var(--grad-hi)}
+.pm-pick-btn.picked{background:rgba(251,113,133,.18);border-color:rgba(251,113,133,.48);color:#fda4af;box-shadow:none}
+.pm-pick-btn.picked:hover{background:var(--err);color:#fff}
+
+/* ---------- 洁美奈 UX 增强：已选素材汇总条 & 快捷美学芯片 ---------- */
+.sel-bar{
+  display:none;flex-wrap:wrap;gap:5px;align-items:center;
+  margin-bottom:8px;padding:7px 9px;border-radius:10px;
+  background:rgba(129,140,248,.07);border:1px solid rgba(165,180,252,.22);
+}
+.sel-bar.show{display:flex}
+.sel-bar-lbl{font-size:10.5px;color:#c7d2fe;font-weight:700;margin-right:2px}
+.sel-chip{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11px;padding:2px 8px;border-radius:99px;
+  background:rgba(168,85,247,.18);border:1px solid rgba(192,132,252,.38);color:#f3e8ff;
+}
+.sel-chip.pose{background:rgba(56,189,248,.16);border-color:rgba(56,189,248,.38);color:#e0f2fe}
+.sel-chip.outfit{background:rgba(244,114,182,.16);border-color:rgba(244,114,182,.38);color:#fce7f3}
+.sel-chip.char{background:rgba(52,211,153,.16);border-color:rgba(52,211,153,.38);color:#d1fae5}
+.sel-chip i{
+  font-style:normal;cursor:pointer;opacity:.7;font-weight:800;margin-left:2px;
+}
+.sel-chip i:hover{opacity:1;color:#fff}
+
+.quick-tags{
+  display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;align-items:center;
+}
+.qt-btn{
+  width:auto;height:24px;padding:0 9px;border-radius:99px;
+  font-size:10.5px;font-weight:600;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--tx2);
+}
+.qt-btn:hover{
+  background:rgba(129,140,248,.22);border-color:rgba(165,180,252,.55);color:#fff;
+}
+.pose-filter-row{
+  display:flex;align-items:center;gap:6px;
+}
+.pose-filter-row input{flex:1;min-width:0}
+.only-img-lbl{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
+  font-size:11px;color:var(--tx2);cursor:pointer;user-select:none;
+  padding:0 9px;height:36px;border-radius:var(--radius-sm);
+  background:rgba(10,13,24,.58);border:1px solid var(--line);white-space:nowrap;
+}
+.only-img-lbl:hover{border-color:var(--line-hi);color:#fff}
+.only-img-lbl input{width:13px;height:13px;margin:0;accent-color:#a855f7}
+.gemina-sig{
+  font-size:10px;color:rgba(196,181,253,.55);letter-spacing:.8px;margin-top:10px;
+}
+
+/* ---------- 拖图反推弹窗 (WD14 Tagger) ---------- */
+.btn-tagger{
+  background:linear-gradient(135deg, rgba(34,211,238,.2), rgba(129,140,248,.22));
+  border-color:rgba(56,189,248,.42);color:#e0f2fe;
+}
+.btn-tagger:hover{
+  background:linear-gradient(135deg, rgba(34,211,238,.36), rgba(129,140,248,.36));
+  border-color:#38bdf8;color:#fff;
+}
+#taggerModal{
+  position:fixed;inset:0;z-index:116;
+  background:rgba(4,6,14,.82);backdrop-filter:blur(14px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+#taggerModal.open{display:flex}
+.tm-dialog{
+  width:min(820px, 94vw);max-height:92vh;
+  background:rgba(16,20,34,.94);backdrop-filter:blur(26px);
+  border:1px solid rgba(56,189,248,.28);border-radius:20px;
+  box-shadow:0 28px 80px rgba(0,0,0,.78), inset 0 1px 0 rgba(255,255,255,.12);
+  display:flex;flex-direction:column;overflow:hidden;
+  animation:pmIn .2s var(--ease);
+}
+.tm-body{
+  display:grid;grid-template-columns:270px 1fr;gap:14px;
+  padding:16px;overflow-y:auto;flex:1;min-height:0;
+}
+.tm-drop{
+  min-height:280px;border-radius:14px;padding:14px;
+  border:2px dashed rgba(56,189,248,.4);background:rgba(6,8,16,.55);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;cursor:pointer;position:relative;overflow:hidden;transition:all .18s var(--ease);
+}
+.tm-drop:hover,.tm-drop.dragover{
+  border-color:#38bdf8;background:rgba(34,211,238,.1);
+  box-shadow:0 0 24px rgba(34,211,238,.2);
+}
+.tm-drop img{
+  max-width:100%;max-height:260px;object-fit:contain;border-radius:10px;display:none;
+}
+.tm-drop.has-img img{display:block}
+.tm-drop.has-img .tm-drop-ph{display:none}
+.tm-drop-ph{color:var(--tx2);font-size:12.5px;line-height:1.6}
+.tm-drop-ph b{display:block;font-size:28px;margin-bottom:6px;color:#67e8f9}
+.tm-right{display:flex;flex-direction:column;gap:10px;min-width:0}
+.tm-ctrl{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:8px 11px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid var(--line);
+}
+.tm-tags{
+  flex:1;min-height:150px;max-height:260px;overflow-y:auto;
+  padding:10px;border-radius:12px;background:rgba(6,8,16,.5);border:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;
+}
+.tm-chip{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11.5px;padding:4px 9px;border-radius:99px;cursor:pointer;user-select:none;
+  background:rgba(56,189,248,.14);border:1px solid rgba(56,189,248,.35);color:#e0f2fe;
+  transition:.14s;
+}
+.tm-chip.char{background:rgba(244,114,182,.16);border-color:rgba(244,114,182,.38);color:#fbcfe8}
+.tm-chip.off{opacity:.32;text-decoration:line-through;background:rgba(255,255,255,.03);border-color:var(--line)}
+.tm-chip small{font-size:9.5px;opacity:.68}
+@media (max-width:720px){.tm-body{grid-template-columns:1fr}}
+
+/* ---------- 姿势悬浮预览 / 灯箱 / Toast ---------- */
+#posePreviewPop{
+  position:fixed;z-index:90;pointer-events:none;display:none;padding:6px;border-radius:12px;
+  background:rgba(14,18,32,.92);border:1px solid rgba(165,180,252,.5);
+  box-shadow:0 18px 46px rgba(0,0,0,.7);backdrop-filter:blur(12px);
+}
+#posePreviewPop img{display:block;max-width:210px;max-height:280px;border-radius:8px;background:#080a12}
+
+#lightbox{
+  position:fixed;inset:0;z-index:120;
+  background:rgba(4,6,14,.88);backdrop-filter:blur(14px);
+  display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out;
+}
+#lightbox.open{display:flex}
+#lightbox img{
+  max-width:94vw;max-height:92vh;border-radius:14px;
+  box-shadow:0 24px 70px rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.18);
+}
+
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translate(-50%,10px);
+  background:rgba(18,23,40,.92);border:1px solid rgba(192,132,252,.5);
+  backdrop-filter:blur(14px);color:#fff;
+  padding:10px 20px;border-radius:99px;font-size:12.5px;font-weight:600;
+  box-shadow:0 12px 34px rgba(0,0,0,.55), 0 0 20px rgba(168,85,247,.25);
+  opacity:0;transition:all .24s var(--ease);pointer-events:none;z-index:130;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:1180px){
+  main{grid-template-columns:320px 1fr 360px}
+}
+@media (max-width:960px){
+  html,body{overflow:auto}
+  main{grid-template-columns:1fr;height:auto;overflow:visible}
+  .col,.col-left,.col-right{height:auto;overflow:visible}
+  .asset-shell{height:540px}
+}
+</style>
+</head>
+<body>
+<div class="ambient-bg"><i></i><i></i><i></i></div>
+
+<header>
+  <div class="brand">
+    <div class="brand-mark">O</div>
+    <h1>ODD 出图</h1>
+    <span class="brand-sub">Studio</span>
+  </div>
+  <span id="status">检查中</span>
+  <span id="queueinfo" title="点击查看当前队列明细与取消任务"></span>
+  <div id="genProgWrap" title="实时产图进度">
+    <div class="prog-track"><div class="prog-bar" id="genProgBar"></div></div>
+    <span id="genProgText">准备中</span>
+  </div>
+  <div class="hdr-right">
+    <button id="btnStop" type="button" class="btn-sm btn-stop" title="立即中断当前正在生成的任务">⏹ 停止当前</button>
+    <button id="btnFreeMem" type="button" class="btn-sm btn-free" title="卸载闲置模型，释放显存与物理内存">🧹 清显存</button>
+    <span class="hdr-kbd" title="在页面任意位置按 Ctrl+Enter 立即生成"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> 出图</span>
+    <button id="btnReindex" class="btn-sm btn-ghost">↻ 重建 LoRA 索引</button>
+  </div>
+</header>
+
+<main>
+  <!-- ==================== 左栏：底模 + Tab 素材库 ==================== -->
+  <div class="col col-left">
+    <div class="sec" style="flex:0 0 auto">
+      <h2><span class="h2-l"><span class="dot-title"></span>底模引擎</span></h2>
+      <select id="model"></select>
+    </div>
+
+    <div class="asset-shell">
+      <div class="seg-tabs" id="assetTabs">
+        <button type="button" class="seg-tab active" data-pane="poses">
+          <span class="st-title">姿势</span>
+          <span class="st-num" id="poseCount">0</span>
+          <span class="st-sel" id="selPoseBadge">0</span>
+        </button>
+        <button type="button" class="seg-tab" data-pane="outfits">
+          <span class="st-title">服装</span>
+          <span class="st-num" id="outfitCount">0</span>
+          <span class="st-sel" id="selOutfitBadge">0</span>
+        </button>
+        <button type="button" class="seg-tab" data-pane="characters">
+          <span class="st-title">角色</span>
+          <span class="st-num" id="charCount">0</span>
+          <span class="st-sel" id="selCharBadge">0</span>
+        </button>
+      </div>
+
+      <!-- 姿势面板 -->
+      <div class="asset-pane active" data-pane="poses">
+        <div class="pose-filter-row">
+          <input id="poseSearch" placeholder="🔍 搜索姿势（standing / 站姿 / P001）…">
+          <label class="only-img-lbl" title="隐藏无图的纯文字姿势，只看 1,439 张高清姿势图">
+            <input type="checkbox" id="poseOnlyImg" checked> 仅看带图
+          </label>
+        </div>
+        <div class="asset-scroll">
+          <div id="poses"></div>
+          <button class="more" id="morePoses" style="display:none">加载更多</button>
+          <button class="sens-toggle" id="poseSensToggle">▸ 敏感姿势（性感/贴身/体位）</button>
+          <div id="poseSensWrap" style="display:none">
+            <input id="poseSensSearch" placeholder="搜索敏感姿势…" style="margin-bottom:6px">
+            <div id="poseSensList"></div>
+            <button class="more" id="morePoseSens" style="display:none">加载更多</button>
+          </div>
+        </div>
+        <div class="hint">点击任意姿势弹出高清大图 · 多选合并标签</div>
+      </div>
+
+      <!-- 服装面板 -->
+      <div class="asset-pane" data-pane="outfits">
+        <input id="outfitSearch" placeholder="🔍 搜索服装（maid / 女仆 / 校服）…">
+        <div class="sub-tabs" id="outfitSubTabs">
+          <button type="button" class="sub-tab active" data-group="">全部</button>
+          <button type="button" class="sub-tab" data-group="上装">上装</button>
+          <button type="button" class="sub-tab" data-group="下装">下装</button>
+          <button type="button" class="sub-tab" data-group="袜鞋">鞋袜</button>
+          <button type="button" class="sub-tab spec" data-group="wardrobe">★ 角色专属</button>
+          <button type="button" class="sub-tab" data-group="连衣裙">连衣裙</button>
+          <button type="button" class="sub-tab" data-group="制服">制服</button>
+          <button type="button" class="sub-tab" data-group="配饰">配饰</button>
+        </div>
+        <div class="asset-scroll">
+          <div id="outfits" class="pills"></div>
+          <button class="more" id="moreOutfits" style="display:none">加载更多</button>
+          <button class="sens-toggle" id="sensToggle">▸ 敏感内容（情趣/内衣/泳装）</button>
+          <div id="sensWrap" style="display:none">
+            <input id="sensSearch" placeholder="搜索敏感服装…" style="margin-bottom:6px">
+            <div id="sensList" class="pills"></div>
+            <button class="more" id="moreSens" style="display:none">加载更多</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 角色面板 -->
+      <div class="asset-pane" data-pane="characters">
+        <input id="charSearch" placeholder="🔍 搜索角色（miku / 初音 / 作品名）…">
+        <select id="charWork"><option value="">全部作品</option></select>
+        <div class="asset-scroll">
+          <div id="chars" class="pills"></div>
+          <button class="more" id="moreChars" style="display:none">加载更多</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 中栏：一键搭配 + 提示词 + LoRA ==================== -->
+  <div class="col col-mid">
+    <div class="sec">
+      <h2>
+        <span class="h2-l"><span class="dot-title" style="background:var(--style)"></span>灵感一键搭配</span>
+        <span class="badge hi" id="comboLv">Lv0</span>
+      </h2>
+      <div class="row" style="margin-bottom:8px">
+        <select id="comboLevel" class="grow">
+          <option value="0">Lv0 全年龄</option>
+          <option value="1">Lv1 轻微</option>
+          <option value="2">Lv2 暗示</option>
+          <option value="3">Lv3 露骨</option>
+          <option value="4">Lv4 极致</option>
+        </select>
+        <button id="btnCombo" class="combo-btn">🎲 一键搭配</button>
+      </div>
+      <div class="check-row" style="margin-bottom:6px">
+        <label><input type="checkbox" id="comboUsePose" checked> 带姿势</label>
+        <label><input type="checkbox" id="comboUseScene" checked> 带场景</label>
+        <label title="把 Wardrobe V5 的英文自然语言画面描述一并写入正面提示词，画面感大幅提升"><input type="checkbox" id="comboUseNL" checked> ✨ 附带自然语言</label>
+        <label><input type="checkbox" id="comboWrite" checked> 直接写入提示词</label>
+      </div>
+      <div id="comboResult" class="ghost">点「一键搭配」随机组合：场景 × 角色 × 服装 × 姿势 × 画风</div>
+    </div>
+
+    <div class="sec">
+      <h2>
+        <span class="h2-l"><span class="dot-title" style="background:var(--ok)"></span>提示词编排</span>
+        <span class="char-cnt" id="posLen">0 字符</span>
+      </h2>
+      <div class="sel-bar" id="selectedBar"></div>
+      <div class="prompt-grid">
+        <div>
+          <textarea id="positive" rows="5" placeholder="正面提示词（Positive Prompt）… 支持从左栏点选后组装，或直接输入英文标签/自然语言"></textarea>
+          <div class="quick-tags" id="quickTags">
+            <span class="hint" style="margin-right:2px">快捷词:</span>
+            <button type="button" class="qt-btn" data-tag="full body">+ 全身</button>
+            <button type="button" class="qt-btn" data-tag="alternate costume">+ 强制换装</button>
+            <button type="button" class="qt-btn" data-tag="2girls">+ 双女主</button>
+            <button type="button" class="qt-btn" data-tag="cinematic lighting, volumetric fog, tyndall effect">+ 丁达尔神光</button>
+            <button type="button" class="qt-btn" data-tag="low angle, dramatic perspective">+ 大仰拍张力</button>
+          </div>
+          <div class="prompt-bar">
+            <div class="row" style="gap:6px">
+              <button id="btnBuild" class="btn-sm">＋ 由已选素材组装</button>
+              <button id="btnOpenTagger" type="button" class="btn-sm btn-tagger">🖼️ 拖图反推</button>
+              <button id="btnCopyPos" type="button" class="btn-sm btn-ghost">📋 复制</button>
+              <button id="btnClearTags" class="btn-sm btn-ghost">清空正面</button>
+            </div>
+            <span class="hint">已选角色 LoRA 触发词将自动并入</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--tx2);margin-bottom:4px">负面提示词（Negative Prompt）</div>
+          <textarea id="negative" rows="2" placeholder="负面提示词（留空则使用默认或由一键搭配填充）…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>
+        <span class="h2-l"><span class="dot-title" style="background:var(--char)"></span>已挂 LoRA</span>
+        <span class="badge hi" id="loraCount">0</span>
+      </h2>
+      <div id="activeLoras"><div class="ghost">还没挂载 LoRA，从下方 LoRA 库点击 ＋ 添加</div></div>
+    </div>
+
+    <div class="sec">
+      <h2>
+        <span class="h2-l"><span class="dot-title" style="background:var(--ctrl)"></span>LoRA 库</span>
+        <span class="badge" id="libCount">0</span>
+      </h2>
+      <div class="tabs" id="baseTabs"></div>
+      <div class="tabs" id="catTabs"></div>
+      <div class="row" style="margin-bottom:8px">
+        <input id="loraSearch" class="grow" placeholder="🔍 搜索 LoRA 名称 / 触发词…">
+        <label class="check-row" style="flex:0 0 auto;white-space:nowrap">
+          <input type="checkbox" id="showIsolated"> 写实隔离区
+        </label>
+      </div>
+      <div id="loraLib"></div>
+    </div>
+  </div>
+
+  <!-- ==================== 右栏：成图画廊 + 参数与生成 + GitHub ==================== -->
+  <div class="col col-right">
+    <div class="sec">
+      <h2>
+        <span class="h2-l"><span class="dot-title" style="background:var(--ok)"></span>成图画廊</span>
+        <span class="badge" id="genState">待命</span>
+      </h2>
+      <div class="gallery-prog" id="galleryProgWrap">
+        <div class="gp-head">
+          <span id="gpLabel">准备中…</span>
+          <span class="gp-pct" id="gpPct">0%</span>
+        </div>
+        <div class="gp-track"><div class="gp-bar" id="gpBar"></div></div>
+      </div>
+      <div class="gallery-stage">
+        <div id="gallery">
+          <div class="empty-canvas">
+            <div class="ec-icon">✦</div>
+            <div class="ec-t">画布已就绪</div>
+            <div class="ec-s">配置提示词与参数后，点击下方「立即生成」</div>
+            <div class="gemina-sig">✦ ODD ATELIER · GEMINA EDITION 🐾</div>
+          </div>
+        </div>
+        <div class="hist-strip" id="histStrip"></div>
+      </div>
+    </div>
+
+    <div class="sec wf-sec">
+      <h2>
+        <span class="h2-l"><span class="dot-title" style="background:var(--warn)"></span>⚡ 一条龙工作流</span>
+        <span class="badge" id="wfBadge">F盘已整合</span>
+      </h2>
+      <select id="wfSelect">
+        <option value="">自由模式（手动参数与 LoRA）</option>
+      </select>
+      <div class="wf-desc" id="wfDesc">选择桌面整合的 Anima 工作流预设，可一键挂载画风/画质 LoRA 并开启二段高清精绘一条龙出图。</div>
+      <div class="wf-actions">
+        <button type="button" id="btnApplyWf" style="height:36px;font-size:12px">套用配置</button>
+        <button type="button" id="btnRunWf" class="btn-wf-run">⚡ 一条龙出图</button>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>
+        <span class="h2-l"><span class="dot-title"></span>生成参数</span>
+        <span class="hint">快捷比例</span>
+      </h2>
+      <div class="preset-bar">
+        <button type="button" class="preset-chip" data-w="832" data-h="1216">竖图 832×1216</button>
+        <button type="button" class="preset-chip" data-w="1024" data-h="1024">方图 1024×1024</button>
+        <button type="button" class="preset-chip" data-w="1216" data-h="832">横图 1216×832</button>
+        <button type="button" class="preset-chip" data-w="768" data-h="1344">壁纸 768×1344</button>
+      </div>
+      <div class="param-grid">
+        <div class="field">
+          <label>宽度 (Width)</label>
+          <input id="width" type="number" step="64" value="832">
+        </div>
+        <div class="field">
+          <label>高度 (Height)</label>
+          <input id="height" type="number" step="64" value="1216">
+        </div>
+        <div class="field">
+          <label>步数 (Steps)</label>
+          <input id="steps" type="number" min="1" max="100" value="20">
+        </div>
+        <div class="field">
+          <label>引导系数 (CFG)</label>
+          <input id="cfg" type="number" step="0.1" value="4">
+        </div>
+        <div class="field">
+          <label>采样器</label>
+          <select id="sampler">
+            <option>euler</option>
+            <option>euler_ancestral</option>
+            <option>er_sde</option>
+            <option>dpmpp_2m</option>
+            <option>dpmpp_sde</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>权重精度</label>
+          <select id="precision">
+            <option value="fp8_e4m3fn">FP8 快（推荐）</option>
+            <option value="fp8_e4m3fn_fast">FP8 极速</option>
+            <option value="default">BF16 精细</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label>种子 (Seed) <span style="color:var(--tx3)">0 = 随机</span></label>
+          <div class="field-inline">
+            <input id="seed" type="number" value="0" placeholder="0=随机">
+            <button type="button" id="btnRandSeed" class="seed-dice" title="重置为随机种子 (0)">🎲</button>
+          </div>
+        </div>
+      </div>
+      <div class="pose-ctrl-box">
+        <div class="check-row" style="justify-content:space-between">
+          <label style="color:var(--tx);font-weight:600"><input type="checkbox" id="poseCtrlOn"> 🕺 姿势图控图 (LLLite)</label>
+          <span class="hint" id="pcHint">左栏选带图姿势自动绑定</span>
+        </div>
+        <div id="pcBody" style="display:none">
+          <div class="pc-preview">
+            <img id="pcThumb" src="" alt="控图姿势">
+            <div class="pc-info">
+              <div class="pc-name" id="pcName">未选择姿势图</div>
+              <div class="pc-id" id="pcId"></div>
+            </div>
+            <button type="button" id="pcClear" class="btn-sm btn-ghost" style="height:26px;padding:0 8px;font-size:11px">清除</button>
+          </div>
+          <div class="pc-multi-tip" id="pcMultiTip" style="display:none">⚠ 检测到双人/多人姿势：请将正面提示词改为 <b>2girls</b> 或 <b>1girl, 1boy</b> 并删掉 <b>solo</b>，建议用横图/方图防重叠。</div>
+          <div class="pc-grid">
+            <div class="field"><label>控图强度 (0.3–1.2)</label><input id="pcStrength" type="number" step="0.05" min="0.1" max="1.5" value="0.85"></div>
+            <div class="field"><label>结束时机 (0.3–1.0)</label><input id="pcEnd" type="number" step="0.05" min="0.1" max="1.0" value="0.85"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hires-box">
+        <div class="check-row" style="justify-content:space-between">
+          <label style="color:var(--tx);font-weight:600"><input type="checkbox" id="hiresOn"> 二段高清精绘 (HiRes Fix)</label>
+          <span class="hint">Latent 放大 + 二次采样</span>
+        </div>
+        <div class="hires-grid" id="hiresFields" style="display:none">
+          <div class="field"><label>倍数</label><input id="hiresScale" type="number" step="0.1" min="1" max="2" value="1.5"></div>
+          <div class="field"><label>步数</label><input id="hiresSteps" type="number" min="1" max="50" value="15"></div>
+          <div class="field"><label>CFG</label><input id="hiresCfg" type="number" step="0.5" value="7"></div>
+          <div class="field"><label>重绘</label><input id="hiresDenoise" type="number" step="0.05" min="0.1" max="1" value="0.7"></div>
+        </div>
+      </div>
+      <button class="primary" id="btnGen" style="margin-top:12px">✦ 立即生成</button>
+    </div>
+
+    <details class="sec-details">
+      <summary>GitHub 节点 / 工具搜索</summary>
+      <div class="details-body">
+        <div class="row">
+          <input id="ghq" class="grow" placeholder="如 comfyui lora manager">
+          <button id="btnGh" class="btn-sm" style="flex:0 0 auto">搜索</button>
+        </div>
+        <div id="ghResults"></div>
+      </div>
+    </details>
+  </div>
+</main>
+
+<div id="comboPickerModal">
+  <div class="cp-dialog">
+    <div class="pm-head">
+      <div class="pm-title-wrap">
+        <div class="pm-title" id="cpTitle">自主选择</div>
+        <div class="pm-sub" id="cpSub">输入关键词搜索，点击即可替换当前搭配项并自动重算提示词</div>
+      </div>
+      <button type="button" class="pm-close" id="cpClose" title="关闭 (Esc)">×</button>
+    </div>
+    <div class="cp-body">
+      <div class="row">
+        <input id="cpSearch" class="grow" placeholder="🔍 搜索名称 / 关键词…">
+        <button type="button" id="cpUseLeft" class="btn-sm btn-tagger" style="display:none">📥 使用左栏已选</button>
+      </div>
+      <div class="cp-list" id="cpList"><div class="ghost" style="width:100%">加载中…</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="queueModal">
+  <div class="qm-dialog">
+    <div class="pm-head">
+      <div class="pm-title-wrap">
+        <div class="pm-title">📋 当前生成队列明细</div>
+        <div class="pm-sub">查看正在运行和排队等待的任务，支持随时停止当前任务或取消排队</div>
+      </div>
+      <button type="button" class="pm-close" id="qmClose" title="关闭 (Esc)">×</button>
+    </div>
+    <div class="qm-list" id="qmList"><div class="ghost">加载中…</div></div>
+    <div class="pm-foot">
+      <button type="button" class="btn-sm btn-ghost" id="qmRefresh">↻ 刷新</button>
+      <div class="pm-foot-acts">
+        <button type="button" class="btn-sm btn-stop" id="qmStopCur">⏹ 停止当前</button>
+        <button type="button" class="btn-sm btn-ghost" id="qmClearPend">🗑 清空等待队列</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="taggerModal">
+  <div class="tm-dialog">
+    <div class="pm-head">
+      <div class="pm-title-wrap">
+        <div class="pm-title">🖼️ WD14 本地拖图反推 <span class="badge hi">wd-swinv2-v3</span></div>
+        <div class="pm-sub">把图片拖进左侧画框（或点击选图 / Ctrl+V 粘贴截图），自动反推服装、姿势、场景英文标签</div>
+      </div>
+      <button type="button" class="pm-close" id="tmClose" title="关闭 (Esc)">×</button>
+    </div>
+    <div class="tm-body">
+      <div class="tm-drop" id="tmDrop">
+        <input type="file" id="tmFile" accept="image/*" style="display:none">
+        <img id="tmPreview" src="" alt="待反推图片">
+        <div class="tm-drop-ph">
+          <b>⬆</b>
+          拖拽图片到这里<br>或点击选择文件<br><span style="font-size:11px;color:var(--tx3)">支持 Ctrl+V 直接粘贴截图</span>
+        </div>
+      </div>
+      <div class="tm-right">
+        <div class="tm-ctrl">
+          <label class="check-row" style="gap:6px;cursor:pointer">
+            <input type="checkbox" id="tmNoChar" checked> 排除原图角色名（只抄衣服/构图防夺舍）
+          </label>
+          <div style="display:flex;align-items:center;gap:6px;margin-left:auto;font-size:11.5px;color:var(--tx2)">
+            <span>阈值</span>
+            <input type="range" id="tmThresh" min="0.2" max="0.7" step="0.05" value="0.35" style="width:76px;height:4px;padding:0;border:none;accent-color:#38bdf8">
+            <span id="tmThreshVal" style="font-family:monospace;color:#67e8f9">0.35</span>
+          </div>
+          <button type="button" id="tmRun" class="btn-sm btn-tagger" disabled>🔍 重新反推</button>
+        </div>
+        <div class="tm-tags" id="tmTags"><div class="ghost" style="width:100%">拖入图片后将自动开始反推…</div></div>
+        <div class="hint">点击任意标签可划掉剔除 · 粉色为角色标签，蓝色为通用标签（服装/动作/画风）</div>
+      </div>
+    </div>
+    <div class="pm-foot">
+      <div class="pm-foot-info" id="tmStatus">等待拖入图片</div>
+      <div class="pm-foot-acts">
+        <button type="button" class="btn-sm btn-ghost" id="tmOverwrite" disabled>↻ 覆盖正面</button>
+        <button type="button" class="pm-pick-btn" id="tmAppend" disabled>＋ 追加到正面提示词</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="poseModal">
+  <div class="pm-dialog">
+    <div class="pm-head">
+      <div class="pm-title-wrap">
+        <div class="pm-title" id="pmTitle">姿势预览</div>
+        <div class="pm-sub" id="pmSub"></div>
+      </div>
+      <button type="button" class="pm-close" id="pmClose" title="关闭 (Esc)">×</button>
+    </div>
+    <div class="pm-stage">
+      <button type="button" class="pm-nav prev" id="pmPrev" title="上一视角 (←)">‹</button>
+      <img id="pmImg" src="" alt="姿势高清大图">
+      <button type="button" class="pm-nav next" id="pmNext" title="下一视角 (→)">›</button>
+    </div>
+    <div class="pm-angles" id="pmAngles"></div>
+    <div class="pm-foot">
+      <div class="pm-foot-info" id="pmFootInfo"></div>
+      <div class="pm-foot-acts">
+        <button type="button" class="btn-sm btn-ghost" id="pmDone">关闭</button>
+        <button type="button" class="pm-pick-btn" id="pmPick">✓ 选用当前视角</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="posePreviewPop"><img src="" alt=""></div>
+<div id="lightbox"><img src="" alt="预览大图"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const state = {
+  models: [], loras: [], categories: {}, assets: {poses:[],outfits:[],characters:[]},
+  active: [],           // [{file, weight, category}]
+  selPoses: new Set(), selOutfits: new Set(), selChars: new Set(),
+  picked: {poses:{}, outfits:{}, characters:{}},
+  assetQuery: {}, assetStats: {}, works: {},
+  baseFilter: 'all', catFilter: 'all', search: '',
+  outfitGroup: '',
+  showIsolated: false,
+  workflows: [], activeWf: null,
+  historyImgs: [],
+  pollTimer: null
+};
+
+function toast(msg, ms=2200){
+  const t=$('#toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'), ms);
+}
+async function api(path, opt){
+  const r = await fetch(path, opt);
+  return r.json();
+}
+
+/* ---------- 左栏素材 Tab 切换 ---------- */
+document.querySelectorAll('#assetTabs .seg-tab').forEach(btn=>{
+  btn.onclick = ()=>{
+    const pane = btn.dataset.pane;
+    document.querySelectorAll('#assetTabs .seg-tab').forEach(b=>b.classList.toggle('active', b===btn));
+    document.querySelectorAll('.asset-pane').forEach(p=>p.classList.toggle('active', p.dataset.pane===pane));
+  };
+});
+
+function updateSelBadges(){
+  const sets = [
+    ['#selPoseBadge', state.selPoses.size],
+    ['#selOutfitBadge', state.selOutfits.size],
+    ['#selCharBadge', state.selChars.size]
+  ];
+  sets.forEach(([sel, n])=>{
+    const el = $(sel);
+    if(!el) return;
+    el.textContent = n;
+    el.classList.toggle('show', n > 0);
+  });
+  renderSelectedBar();
+}
+
+function renderSelectedBar(){
+  const bar = $('#selectedBar');
+  if(!bar) return;
+  const chips = [];
+  const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+  state.selChars.forEach(id=>{
+    const it = state.picked.characters[id];
+    chips.push(`<span class="sel-chip char">角色: ${esc(it?.name||id)} <i data-rm="characters" data-id="${esc(id)}">×</i></span>`);
+  });
+  state.selOutfits.forEach(id=>{
+    const it = state.picked.outfits[id];
+    const nm = it?.char_name ? `${it.char_name}·${it.name}` : (it?.name||id);
+    chips.push(`<span class="sel-chip outfit">服装: ${esc(nm)} <i data-rm="outfits" data-id="${esc(id)}">×</i></span>`);
+  });
+  state.selPoses.forEach(id=>{
+    const it = state.picked.poses[id];
+    chips.push(`<span class="sel-chip pose">姿势: ${esc(it?.name||id)} <i data-rm="poses" data-id="${esc(id)}">×</i></span>`);
+  });
+  if(!chips.length){ bar.classList.remove('show'); bar.innerHTML=''; return; }
+  bar.classList.add('show');
+  bar.innerHTML = '<span class="sel-bar-lbl">已选素材</span>' + chips.join('');
+  bar.querySelectorAll('i[data-rm]').forEach(btn=>{
+    btn.onclick = ()=>{
+      const cat = btn.dataset.rm, id = btn.dataset.id;
+      const setMap = {poses:state.selPoses, outfits:state.selOutfits, characters:state.selChars};
+      setMap[cat]?.delete(id);
+      delete state.picked[cat][id];
+      renderCat(cat);
+      if(cat==='poses') syncPoseCtrlUI(false);
+      updateSelBadges();
+    };
+  });
+}
+
+document.querySelectorAll('#quickTags .qt-btn').forEach(btn=>{
+  btn.onclick = ()=>{
+    const tag = btn.dataset.tag;
+    if(!tag) return;
+    const cur = $('#positive').value.trim();
+    if(cur.toLowerCase().includes(tag.toLowerCase())){ toast('提示词里已经有这个词啦'); return; }
+    $('#positive').value = cur ? (cur.replace(/,\s*$/,'') + ', ' + tag) : tag;
+    updatePosLen();
+    toast('已追加：' + btn.textContent.replace(/^\+\s*/,''));
+  };
+});
+$('#btnCopyPos').onclick = async()=>{
+  const txt = $('#positive').value.trim();
+  if(!txt){ toast('正面提示词还是空的'); return; }
+  try{ await navigator.clipboard.writeText(txt); toast('已复制正面提示词 📋'); }
+  catch(e){ toast('复制失败，请手动 Ctrl+C'); }
+};
+$('#poseOnlyImg').onchange = ()=>renderCat('poses');
+
+/* ---------- 姿势缩略图悬浮预览 ---------- */
+const pop = $('#posePreviewPop');
+const popImg = pop.querySelector('img');
+function bindPoseHover(container){
+  container.querySelectorAll('.pthumb, .angimg').forEach(img=>{
+    img.onmouseenter = (e)=>{
+      if(!img.src) return;
+      popImg.src = img.src;
+      pop.style.display = 'block';
+      movePop(e);
+    };
+    img.onmousemove = movePop;
+    img.onmouseleave = ()=>{ pop.style.display = 'none'; };
+  });
+}
+function movePop(e){
+  const pad = 16;
+  const w = 225, h = 295;
+  let x = e.clientX + pad;
+  let y = e.clientY - 40;
+  if(x + w > window.innerWidth) x = e.clientX - w - pad;
+  if(y + h > window.innerHeight) y = window.innerHeight - h - pad;
+  if(y < 8) y = 8;
+  pop.style.left = x + 'px';
+  pop.style.top = y + 'px';
+}
+
+/* ---------- 提示词字数统计 ---------- */
+function updatePosLen(){
+  const el = $('#posLen');
+  if(el) el.textContent = ($('#positive').value||'').length + ' 字符';
+}
+$('#positive').addEventListener('input', updatePosLen);
+
+/* ---------- 快捷比例与随机种子 ---------- */
+document.querySelectorAll('.preset-chip').forEach(btn=>{
+  btn.onclick = ()=>{
+    $('#width').value = btn.dataset.w;
+    $('#height').value = btn.dataset.h;
+    toast(`分辨率已设为 ${btn.dataset.w} × ${btn.dataset.h}`);
+  };
+});
+$('#btnRandSeed').onclick = ()=>{ $('#seed').value = 0; toast('已重置为随机种子 (0)'); };
+
+/* ---------- 服装子分类按钮切换 ---------- */
+document.querySelectorAll('#outfitSubTabs .sub-tab').forEach(btn=>{
+  btn.onclick = ()=>{
+    state.outfitGroup = btn.dataset.group || '';
+    document.querySelectorAll('#outfitSubTabs .sub-tab').forEach(b=>b.classList.toggle('active', b===btn));
+    loadCat('outfits');
+  };
+});
+
+/* ---------- 姿势高清放大弹窗 ---------- */
+const poseModal = { item: null, idx: 0 };
+function getPoseImgUrl(a){
+  if(a?.img) return '/pose-img/' + a.img.split('/').pop();
+  if(a?.thumb) return '/pose-thumb/' + a.thumb.split('/').pop();
+  return '';
+}
+function getPoseThumbUrl(a){
+  return a?.thumb ? ('/pose-thumb/' + a.thumb.split('/').pop()) : getPoseImgUrl(a);
+}
+function openPoseModal(it){
+  if(!it) return;
+  pop.style.display = 'none';
+  poseModal.item = it;
+  const angles = it.angles || [];
+  // 默认定位到第一个已选视角，否则第 0 个
+  const selIdx = angles.findIndex(a=>state.selPoses.has(a.id));
+  poseModal.idx = selIdx >= 0 ? selIdx : 0;
+  renderPoseModal();
+  $('#poseModal').classList.add('open');
+}
+function closePoseModal(){
+  $('#poseModal').classList.remove('open');
+  poseModal.item = null;
+}
+function renderPoseModal(){
+  const it = poseModal.item;
+  if(!it) return;
+  const angles = it.angles || [];
+  const cur = angles[poseModal.idx] || angles[0] || {};
+  const isPicked = cur.id ? state.selPoses.has(cur.id) : false;
+
+  $('#pmTitle').innerHTML = `${it.name || it.id}${cur.angle ? ` <span class="angn">${cur.angle}</span>` : ''}`;
+  $('#pmSub').textContent = [it.cat, it.system, angles.length > 1 ? `共 ${angles.length} 个视角 (${poseModal.idx+1}/${angles.length})` : '单视角'].filter(Boolean).join(' · ');
+
+  const imgEl = $('#pmImg');
+  const fullUrl = getPoseImgUrl(cur);
+  const thumbUrl = getPoseThumbUrl(cur);
+  imgEl.onerror = ()=>{ if(thumbUrl && imgEl.src !== location.origin + thumbUrl) imgEl.src = thumbUrl; };
+  imgEl.src = fullUrl || thumbUrl || '';
+
+  $('#pmPrev').style.display = angles.length > 1 ? '' : 'none';
+  $('#pmNext').style.display = angles.length > 1 ? '' : 'none';
+
+  const angWrap = $('#pmAngles');
+  if(angles.length > 1){
+    angWrap.style.display = 'flex';
+    angWrap.innerHTML = angles.map((a, i)=>{
+      const viewing = i === poseModal.idx;
+      const picked = state.selPoses.has(a.id);
+      return `<button type="button" class="pm-ang-btn ${viewing?'viewing':''} ${picked?'picked':''}" data-idx="${i}">
+        <span class="pm-check">✓</span>
+        <img src="${getPoseThumbUrl(a)}" alt="${a.angle||''}">
+        <span>${a.angle || ('视角'+(i+1))}</span>
+      </button>`;
+    }).join('');
+    angWrap.querySelectorAll('.pm-ang-btn').forEach(b=>{
+      b.onclick = ()=>{ poseModal.idx = +b.dataset.idx; renderPoseModal(); };
+    });
+  } else {
+    angWrap.style.display = 'none';
+  }
+
+  const pickedCount = angles.filter(a=>state.selPoses.has(a.id)).length;
+  $('#pmFootInfo').textContent = pickedCount > 0 ? `此姿势已选用 ${pickedCount} 个视角` : '查看清晰动作细节后点击右侧按钮选用';
+
+  const pickBtn = $('#pmPick');
+  pickBtn.classList.toggle('picked', isPicked);
+  pickBtn.textContent = isPicked ? '✕ 取消选用当前视角' : '✓ 选用当前视角';
+}
+function toggleCurrentModalPose(){
+  const it = poseModal.item;
+  if(!it) return;
+  const angles = it.angles || [];
+  const a = angles[poseModal.idx] || angles[0];
+  if(!a || !a.id) return;
+  if(state.selPoses.has(a.id)){
+    state.selPoses.delete(a.id);
+    delete state.picked.poses[a.id];
+    toast('已取消选用姿势');
+  } else {
+    state.selPoses.add(a.id);
+    state.picked.poses[a.id] = {
+      id: a.id,
+      name: (it.name||'') + (a.angle ? ' ['+a.angle+']' : ''),
+      cat: it.cat || '',
+      system: it.system || '',
+      tags: '',
+      angles: [a]
+    };
+    toast('已选用姿势：' + (it.name||a.id));
+  }
+  renderPoseModal();
+  renderCat('poses');
+  if(poseSensState.open) renderPoseSens();
+  updateSelBadges();
+  syncPoseCtrlUI(true);
+}
+
+/* ---------- 姿势图 LLLite 控图联动 ---------- */
+function getActivePoseCtrlItem(){
+  const vals = Object.values(state.picked.poses || {});
+  for(let i = vals.length - 1; i >= 0; i--){
+    const p = vals[i];
+    const a = (p.angles && p.angles[0]) || p;
+    if(a && (a.thumb || a.img)) return { id: p.id, name: p.name || p.id, system: p.system || '', thumb: a.thumb || a.img };
+  }
+  return null;
+}
+function syncPoseCtrlUI(autoEnable=false){
+  const item = getActivePoseCtrlItem();
+  const chk = $('#poseCtrlOn'), body = $('#pcBody'), hint = $('#pcHint');
+  if(!chk || !body) return;
+  if(item){
+    state.poseCtrlId = item.id;
+    $('#pcThumb').src = '/pose-thumb/' + item.thumb.split('/').pop();
+    $('#pcName').textContent = item.name;
+    $('#pcId').textContent = item.id;
+    const isMulti = /双人|多人|pair|couple/i.test(item.id + ' ' + item.name + ' ' + item.system);
+    $('#pcMultiTip').style.display = isMulti ? 'block' : 'none';
+    if(autoEnable) chk.checked = true;
+    body.style.display = chk.checked ? 'block' : 'none';
+    hint.textContent = chk.checked ? '已启用 LLLite 线稿控图' : '已绑定姿势（未勾选启用）';
+  } else {
+    state.poseCtrlId = '';
+    chk.checked = false;
+    body.style.display = 'none';
+    hint.textContent = '左栏选带图姿势自动绑定';
+  }
+}
+$('#poseCtrlOn').onchange = e=>{
+  if(e.target.checked && !state.poseCtrlId){
+    e.target.checked = false;
+    toast('请先在左栏「姿势」里点选一个带图姿势（单人或双人均可）');
+    return;
+  }
+  $('#pcBody').style.display = e.target.checked ? 'block' : 'none';
+  $('#pcHint').textContent = e.target.checked ? '已启用 LLLite 线稿控图' : '已绑定姿势（未勾选启用）';
+};
+$('#pcClear').onclick = ()=>{
+  state.selPoses.clear();
+  state.picked.poses = {};
+  state.poseCtrlId = '';
+  renderCat('poses');
+  if(poseSensState.open) renderPoseSens();
+  updateSelBadges();
+  syncPoseCtrlUI(false);
+  toast('已清除姿势控图');
+};
+$('#pmClose').onclick = closePoseModal;
+$('#pmDone').onclick = closePoseModal;
+$('#pmPick').onclick = toggleCurrentModalPose;
+$('#pmPrev').onclick = ()=>{
+  const n = (poseModal.item?.angles||[]).length;
+  if(n > 1){ poseModal.idx = (poseModal.idx - 1 + n) % n; renderPoseModal(); }
+};
+$('#pmNext').onclick = ()=>{
+  const n = (poseModal.item?.angles||[]).length;
+  if(n > 1){ poseModal.idx = (poseModal.idx + 1) % n; renderPoseModal(); }
+};
+$('#poseModal').onclick = e=>{ if(e.target === $('#poseModal')) closePoseModal(); };
+
+/* ---------- 灯箱预览 ---------- */
+const lb = $('#lightbox');
+const lbImg = lb.querySelector('img');
+function openLightbox(url){ lbImg.src = url; lb.classList.add('open'); }
+lb.onclick = ()=>lb.classList.remove('open');
+document.addEventListener('keydown', e=>{
+  if(e.key === 'Escape'){
+    lb.classList.remove('open');
+    closePoseModal();
+  }
+  if($('#poseModal').classList.contains('open')){
+    if(e.key === 'ArrowLeft') $('#pmPrev').click();
+    if(e.key === 'ArrowRight') $('#pmNext').click();
+  }
+  if((e.ctrlKey || e.metaKey) && e.key === 'Enter'){
+    const btn = $('#btnGen');
+    if(btn && !btn.disabled) btn.click();
+  }
+});
+
+/* ---------- 初始化 ---------- */
+async function boot(){
+  const st = await api('/api/status');
+  const el=$('#status');
+  if(st.comfy==='online'){ el.textContent='ComfyUI 在线'; el.className='online'; }
+  else { el.textContent='ComfyUI 离线'; el.className='offline'; }
+
+  const m = await api('/api/models');
+  state.models = m.items || [];
+  $('#model').innerHTML = state.models.map(x=>`<option value="${x}">${x}</option>`).join('');
+
+  const wf = await api('/api/workflows').catch(()=>({items:[]}));
+  state.workflows = wf.items || [];
+  renderWorkflowSelect();
+
+  const l = await api('/api/loras');
+  state.loras = l.items || [];
+  state.categories = l.categories || {};
+  state.bases = l.bases || ['anima','moss','krea2'];
+  renderBaseTabs(); renderCatTabs(); renderLoraLib();
+
+  const a = await api('/api/assets');
+  state.assetStats = a.stats || {};
+  state.works = a.works || {};
+  $('#poseCount').textContent = (a.stats?.poses||0).toLocaleString();
+  $('#outfitCount').textContent = (a.stats?.outfits||0).toLocaleString();
+  $('#charCount').textContent = (a.stats?.characters||0).toLocaleString();
+
+  const wsel = $('#charWork');
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  wsel.innerHTML = '<option value="">全部作品（'+Object.keys(state.works).length+'）</option>'
+    + Object.entries(state.works).slice(0,400).map(([w,n])=>`<option value="${esc(w)}">${esc(w)} (${n})</option>`).join('');
+
+  await Promise.all([ loadCat('poses'), loadCat('outfits'), loadCat('characters') ]);
+  updateSelBadges();
+  updatePosLen();
+}
+
+/* ---------- 词库分页加载 ---------- */
+const PAGE = 60;
+
+async function loadCat(cat, append){
+  const q = state.assetQuery?.[cat]?.q || '';
+  const group = (cat==='characters') ? ($('#charWork')?.value||'') : (cat==='outfits' ? (state.outfitGroup||'') : '');
+  const offset = append ? (state.assetQuery[cat].items.length) : 0;
+  const params = new URLSearchParams({cat, limit:PAGE, offset});
+  if(cat==='poses'){ params.set('collapsed','1'); params.set('part','normal'); }
+  if(cat==='outfits') params.set('part','normal');
+  if(q) params.set('q', q);
+  if(group) params.set('group', group);
+  const r = await api('/api/assets?'+params.toString());
+  if(!state.assetQuery) state.assetQuery = {};
+  const prev = append ? (state.assetQuery[cat]?.items || []) : [];
+  state.assetQuery[cat] = { q, group, offset, total: r.total, items: prev.concat(r.items||[]) };
+  renderCat(cat);
+}
+
+function finishCat(cat, d){
+  const moreSel = {poses:'#morePoses', outfits:'#moreOutfits', characters:'#moreChars'}[cat];
+  const cntSel = {poses:'#poseCount', outfits:'#outfitCount', characters:'#charCount'}[cat];
+  $(cntSel).textContent = (d.total||state.assetStats?.[cat]||0).toLocaleString();
+  const btn = $(moreSel);
+  if(!btn) return;
+  if(d.items.length < d.total){
+    btn.style.display='';
+    btn.textContent = `加载更多（已显示 ${d.items.length} / ${d.total}）`;
+    btn.onclick = ()=>loadCat(cat, true);
+  } else {
+    btn.style.display='none';
+  }
+}
+
+function renderCat(cat){
+  const map = {poses:'#poses', outfits:'#outfits', characters:'#chars'};
+  const cnt = {poses:'#poseCount', outfits:'#outfitCount', characters:'#charCount'};
+  const more = {poses:'#morePoses', outfits:'#moreOutfits', characters:'#moreChars'};
+  const sel = {poses:state.selPoses, outfits:state.selOutfits, characters:state.selChars};
+  const d = state.assetQuery?.[cat] || {items:[], total:0};
+  const picked = state.picked[cat];
+
+  const pickedItems = Object.values(picked);
+  const pickedIds = new Set(pickedItems.map(x=>x.id));
+  const list = pickedItems.concat(d.items.filter(x=>!pickedIds.has(x.id)));
+
+  const el = $(map[cat]);
+  if(cat === 'poses'){
+    const onlyImg = $('#poseOnlyImg')?.checked;
+    const renderList = onlyImg
+      ? list.filter(it => (it.angles||[]).some(a => a && (a.thumb || a.img)))
+      : list;
+    el.innerHTML = renderList.map(it=>{
+      const angles = it.angles || [];
+      const first = angles[0] || {};
+      const on = angles.some(a=>sel.poses.has(a.id));
+      const thumbUrl = first.thumb ? ('/pose-thumb/' + first.thumb.split('/').pop()) : '';
+      const badge = angles.length>1 ? `<span class="angn">${angles.length}视角</span>` : '';
+      const catTag = it.cat ? `<span class="pcat">${it.cat}</span>` : '';
+      return `<div class="pose-card ${on?'active':''}" data-gid="${it.id}">
+        ${thumbUrl?`<img class="pthumb" src="${thumbUrl}" loading="lazy" alt="">`:`<span class="pnoimg"></span>`}
+        <div class="pmeta">
+          <div class="pname">${it.name}${badge}</div>
+          <div class="psub">${catTag}${it.system||''}</div>
+        </div>
+      </div>
+      <div class="angrow" data-row="${it.id}" style="display:none">
+        ${angles.map(a=>`<img class="angimg ${sel.poses.has(a.id)?'sel':''}" data-pid="${a.id}" data-thumb="${a.thumb}" title="${a.angle}" src="/pose-thumb/${(a.thumb||'').split('/').pop()}" loading="lazy">`).join('')}
+      </div>`;
+    }).join('') || '<div class="ghost">无匹配姿势</div>';
+
+    el.querySelectorAll('.pose-card').forEach(card=>{
+      card.onclick = ()=>{
+        const gid = card.dataset.gid;
+        const it = list.find(x=>x.id===gid);
+        if(it) openPoseModal(it);
+      };
+    });
+    bindPoseHover(el);
+    updateSelBadges();
+    return finishCat(cat, d);
+  }
+
+  el.innerHTML = list.map(it=>{
+    const on = sel[cat].has(it.id);
+    const t = (it.tags||it.trigger||'').replace(/"/g,'&quot;');
+    let label = it.name || '';
+    let extra = '';
+    if(cat==='characters'){
+      const popNum = it.pop ? (it.pop>=1000 ? Math.round(it.pop/1000)+'k' : it.pop) : '';
+      extra = `<span class="pillwork">${it.work||''}</span>${popNum?`<span class="pillpop">♥${popNum}</span>`:''}`;
+    } else if(cat==='outfits'){
+      if(it.src==='wardrobe'){
+        const cn = it.char_name || (it.group||'').replace(/_/g,' ');
+        const cw = it.char_work || '';
+        if(cn && !String(label).includes(cn)){
+          label = `<b style="color:#f9a8d4;font-weight:600">${cn}</b> · ${label}`;
+        }
+        extra = (cw ? `<span class="pillwork">${cw}</span>` : '') + '<span class="pillpop">专属</span>';
+      } else {
+        const g = it.group && !it.group.includes('_') ? `<span class="pillwork">${it.group}</span>` : '';
+        extra = g;
+      }
+    }
+    const tip = (cat==='outfits' && it.src==='wardrobe' && it.char_name)
+      ? `所属：${it.char_name}${it.char_work?'（'+it.char_work+'）':''}｜${t}`
+      : t;
+    return `<span class="pill ${on?'active':''}" data-id="${it.id}" title="${tip}">${label}${extra}</span>`;
+  }).join('') || '<div class="ghost">无匹配</div>';
+
+  el.querySelectorAll('.pill').forEach(p=>{
+    p.onclick = ()=>{
+      const id = p.dataset.id;
+      const it = list.find(x=>x.id===id);
+      if(sel[cat].has(id)){ sel[cat].delete(id); delete picked[id]; }
+      else { sel[cat].add(id); if(it) picked[id]=it; }
+      renderCat(cat); updateSelBadges();
+    };
+  });
+  finishCat(cat, d);
+  $(cnt[cat]).textContent = (state.assetStats?.[cat]||0).toLocaleString();
+  const btn = $(more[cat]);
+  if(btn){
+    if(d.items.length < d.total){
+      btn.style.display='';
+      btn.textContent = `加载更多（已显示 ${d.items.length} / ${d.total}）`;
+      btn.onclick=()=>loadCat(cat, true);
+    } else btn.style.display='none';
+  }
+  updateSelBadges();
+}
+
+/* ---------- LoRA 库 ---------- */
+function renderCatTabs(){
+  const cats = state.categories;
+  const tabs = [['all','全部']];
+  for(const [k,v] of Object.entries(cats)){
+    tabs.push([k, v.label.split(' ')[0]]);
+  }
+  $('#catTabs').innerHTML = tabs.map(([k,label])=>
+    `<span class="tab ${state.catFilter===k?'active':''}" data-k="${k}">${label}</span>`).join('');
+  $('#catTabs').querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+    state.catFilter=t.dataset.k; renderCatTabs(); renderLoraLib();
+  });
+}
+function renderBaseTabs(){
+  const bases = ['all', ...(state.bases||['anima','moss','krea2'])];
+  const labels = {all:'全部底模', anima:'Anima', moss:'MOSS', krea2:'Krea 2'};
+  $('#baseTabs').innerHTML = bases.map(b=>{
+    const n = state.loras.filter(l=> b==='all' ? true : (l.base===b)).length;
+    return `<span class="tab ${state.baseFilter===b?'active':''}" data-b="${b}">${labels[b]||b} ${n}</span>`;
+  }).join('');
+  $('#baseTabs').querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+    state.baseFilter=t.dataset.b; renderBaseTabs(); renderLoraLib();
+  });
+}
+function renderLoraLib(){
+  let list = state.loras;
+  if(state.baseFilter!=='all') list = list.filter(l=>l.base===state.baseFilter);
+  if(!state.showIsolated) list = list.filter(l=>!l.isolated);
+  else if(state.showIsolated && state.baseFilter==='all'){
+    list = [...list.filter(l=>!l.isolated), ...list.filter(l=>l.isolated)];
+  }
+  if(state.catFilter!=='all') list = list.filter(l=>l.category===state.catFilter);
+  if(state.search){
+    const q=state.search.toLowerCase();
+    list = list.filter(l=>
+      l.file.toLowerCase().includes(q) ||
+      (l.cn||'').toLowerCase().includes(q) ||
+      (l.trigger||'').toLowerCase().includes(q)
+    );
+  }
+  $('#libCount').textContent = list.length;
+  const activeFiles = new Set(state.active.map(a=>a.file));
+  $('#loraLib').innerHTML = list.map(l=>{
+    const cat = l.category||'x';
+    const on = activeFiles.has(l.file);
+    const iso = l.isolated ? ' <span class="iso-tag">写实</span>' : '';
+    const baseTag = l.base && l.base!=='unknown' ? `<span class="lbase">${l.base}</span>` : '';
+    const cnName = l.cn || l.name.replace(/\.safetensors$/i,'');
+    const sub = [baseTag, l.weight_hint?`权重 ${l.weight_hint}`:'', l.size_mb?`${l.size_mb}MB`:''].filter(Boolean).join(' · ');
+    return `<div class="lora-item ${on?'mounted':''}" data-file="${l.file}">
+      <span class="catdot" style="background:var(--${cat})"></span>
+      <div class="meta">
+        <div class="nm" title="${l.file}">${cnName}${iso}</div>
+        <div class="sub">${sub}</div>
+        ${l.desc?`<div class="ldesc" title="${l.desc.replace(/"/g,'&quot;')}">${l.desc}</div>`:''}
+        ${l.warn?`<div class="lwarn">⚠ ${l.warn}</div>`:''}
+        ${l.trigger?`<div class="ltrig" title="${l.trigger.replace(/"/g,'&quot;')}">触发: ${l.trigger}</div>`:''}
+      </div>
+      <button class="rm" title="${on?'移除':'挂载'}">${on?'−':'+'}</button>
+    </div>`;
+  }).join('') || '<div class="ghost" style="grid-column:1/-1">没有匹配的 LoRA</div>';
+
+  $('#loraLib').querySelectorAll('.lora-item').forEach(it=>{
+    const file=it.dataset.file;
+    it.querySelector('.rm').onclick = ()=>{
+      if(activeFiles.has(file)) removeLora(file); else addLora(file);
+    };
+  });
+}
+function addLora(file){
+  if(state.active.find(a=>a.file===file)) return;
+  const meta = state.loras.find(l=>l.file===file) || {};
+  const cat = meta.category||'x';
+  const catMeta = state.categories[cat]||{};
+  state.active.push({file, weight: meta.weight ?? catMeta.default_weight ?? 0.5, category:cat});
+  renderActive(); renderLoraLib();
+}
+function removeLora(file){
+  state.active = state.active.filter(a=>a.file!==file);
+  renderActive(); renderLoraLib();
+}
+function renderActive(){
+  $('#loraCount').textContent = state.active.length;
+  const el=$('#activeLoras');
+  if(!state.active.length){
+    el.innerHTML='<div class="ghost">还没挂载 LoRA，从下方 LoRA 库点击 ＋ 添加</div>';
+    return;
+  }
+  el.innerHTML = state.active.map((a,i)=>{
+    const cat=a.category||'x';
+    const meta = state.loras.find(l=>l.file===a.file) || {};
+    const rng = state.categories[cat]?.weight || [0.2,1];
+    const displayName = meta.cn || a.file.split('\\').pop().replace(/\.safetensors$/i,'');
+    const isSlider = /slider|滑杆/i.test(a.file + ' ' + displayName);
+    const minW = isSlider ? -3 : -2;
+    const maxW = isSlider ? 3 : 2;
+    const hintTxt = isSlider ? '双向滑杆 · 负值反向 / 正值增强' : `建议 ${rng[0]}–${rng[1]}`;
+    return `<div class="active-lora-card">
+      <span class="catdot" style="width:4px;align-self:stretch;border-radius:99px;background:var(--${cat})"></span>
+      <div class="meta" style="flex:1;min-width:0">
+        <div class="nm" style="font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${a.file}">${displayName}</div>
+        <div class="sub" style="font-size:10.5px;color:var(--tx2)">${state.categories[cat]?.label||cat} · ${hintTxt}</div>
+      </div>
+      <input class="lora-slider" type="range" step="0.05" min="${minW}" max="${maxW}" value="${a.weight}" data-i="${i}">
+      <input class="lora-num" type="number" step="0.05" min="${minW}" max="${maxW}" value="${a.weight}" data-i="${i}">
+      <button class="rm" data-i="${i}" title="卸载">×</button>
+    </div>`;
+  }).join('');
+
+  el.querySelectorAll('.lora-slider').forEach(sl=>{
+    sl.oninput = ()=>{
+      const idx = +sl.dataset.i;
+      const v = parseFloat(sl.value)||0;
+      state.active[idx].weight = v;
+      const num = el.querySelector(`.lora-num[data-i="${idx}"]`);
+      if(num) num.value = v;
+    };
+  });
+  el.querySelectorAll('.lora-num').forEach(inp=>{
+    inp.onchange = ()=>{
+      const idx = +inp.dataset.i;
+      const v = parseFloat(inp.value)||0;
+      state.active[idx].weight = v;
+      const sl = el.querySelector(`.lora-slider[data-i="${idx}"]`);
+      if(sl) sl.value = v;
+    };
+  });
+  el.querySelectorAll('.rm').forEach(b=>{
+    b.onclick=()=>removeLora(state.active[+b.dataset.i].file);
+  });
+}
+
+/* ---------- 组装提示词 ---------- */
+function collectTags(){
+  const parts=[];
+  state.selPoses.forEach(id=>{
+    const p=state.picked.poses[id];
+    if(p && p.tags){ parts.push(p.tags); }
+  });
+  state.selOutfits.forEach(id=>{ const o=state.picked.outfits[id]; if(o){ const t=o.tags||o.id; if(t) parts.push(t); } });
+  state.selChars.forEach(id=>{ const c=state.picked.characters[id]; if(c){ const t=c.trigger||c.tags||c.id; if(t) parts.push(t); } });
+  state.active.filter(a=>a.category==='char').forEach(a=>{
+    const meta = state.loras.find(l=>l.file===a.file);
+    if(meta && meta.trigger) parts.push(meta.trigger);
+  });
+  return parts.join(', ');
+}
+$('#btnBuild').onclick=()=>{
+  const t=collectTags();
+  if(!t){ toast('还没有选择素材或角色 LoRA'); return; }
+  const cur=$('#positive').value.trim();
+  $('#positive').value = cur ? (cur.replace(/,\s*$/,'') + ', ' + t) : t;
+  updatePosLen();
+  toast('已追加选中标签');
+};
+$('#btnClearTags').onclick=()=>{ $('#positive').value=''; updatePosLen(); };
+
+/* ---------- 敏感姿势独立分区 ---------- */
+const poseSensState = { items: [], total: 0, q: '', open: false };
+
+async function loadPoseSens(append){
+  const offset = append ? poseSensState.items.length : 0;
+  const params = new URLSearchParams({cat:'poses', part:'sensitive', collapsed:'1', limit:60, offset});
+  if(poseSensState.q) params.set('q', poseSensState.q);
+  const r = await api('/api/assets?'+params.toString());
+  poseSensState.total = r.total;
+  poseSensState.items = (append ? poseSensState.items : []).concat(r.items||[]);
+  renderPoseSens();
+}
+
+function renderPoseSens(){
+  const el = $('#poseSensList');
+  if(!el) return;
+  el.innerHTML = poseSensState.items.map(it=>{
+    const angles = it.angles || [];
+    const first = angles[0] || {};
+    const on = angles.some(a=>state.selPoses.has(a.id));
+    const thumbUrl = first.thumb ? ('/pose-thumb/' + first.thumb.split('/').pop()) : '';
+    const badge = angles.length>1 ? `<span class="angn">${angles.length}视角</span>` : '';
+    const catTag = it.cat ? `<span class="pcat">${it.cat}</span>` : '';
+    return `<div class="pose-card ${on?'active':''}" data-gid="${it.id}">
+      ${thumbUrl?`<img class="pthumb" src="${thumbUrl}" loading="lazy" alt="">`:`<span class="pnoimg"></span>`}
+      <div class="pmeta">
+        <div class="pname">${it.name}${badge}</div>
+        <div class="psub">${catTag}${it.system||''}</div>
+      </div>
+    </div>
+    <div class="angrow" data-row="${it.id}" style="display:none">
+      ${angles.map(a=>`<img class="angimg ${state.selPoses.has(a.id)?'sel':''}" data-pid="${a.id}" data-thumb="${a.thumb}" title="${a.angle}" src="/pose-thumb/${(a.thumb||'').split('/').pop()}" loading="lazy">`).join('')}
+    </div>`;
+  }).join('') || '<div class="ghost">无匹配</div>';
+
+  el.querySelectorAll('.pose-card').forEach(card=>{
+    card.onclick = ()=>{
+      const gid = card.dataset.gid;
+      const it = poseSensState.items.find(x=>x.id===gid);
+      if(it) openPoseModal(it);
+    };
+  });
+  bindPoseHover(el);
+  const btn = $('#morePoseSens');
+  if(btn){
+    if(poseSensState.items.length < poseSensState.total){
+      btn.style.display=''; btn.textContent = `加载更多（${poseSensState.items.length}/${poseSensState.total}）`;
+      btn.onclick = ()=>loadPoseSens(true);
+    } else btn.style.display='none';
+  }
+}
+
+$('#poseSensToggle').onclick = async ()=>{
+  poseSensState.open = !poseSensState.open;
+  $('#poseSensWrap').style.display = poseSensState.open ? '' : 'none';
+  $('#poseSensToggle').textContent = (poseSensState.open?'▾ ':'▸ ') + '敏感姿势（性感/贴身/体位）';
+  if(poseSensState.open && poseSensState.items.length===0) await loadPoseSens(false);
+};
+
+let poseSensTimer=null;
+$('#poseSensSearch').oninput = e=>{
+  if(poseSensTimer) clearTimeout(poseSensTimer);
+  poseSensTimer = setTimeout(()=>{ poseSensState.q = e.target.value; loadPoseSens(false); }, 300);
+};
+
+/* ---------- 敏感服装独立分区 ---------- */
+const sensState = { items: [], total: 0, q: '', open: false };
+
+async function loadSens(append){
+  const offset = append ? sensState.items.length : 0;
+  const params = new URLSearchParams({cat:'outfits', part:'sensitive', limit:60, offset});
+  if(sensState.q) params.set('q', sensState.q);
+  const r = await api('/api/assets?'+params.toString());
+  sensState.total = r.total;
+  sensState.items = (append ? sensState.items : []).concat(r.items||[]);
+  renderSens();
+}
+
+function renderSens(){
+  const el = $('#sensList');
+  if(!el) return;
+  el.innerHTML = sensState.items.map(it=>{
+    const on = state.selOutfits.has(it.id);
+    const t = (it.tags||'').replace(/"/g,'&quot;');
+    const g = it.group ? `<span class="pillwork">${it.group}</span>` : '';
+    return `<span class="pill ${on?'active':''}" data-id="${it.id}" title="${t}">${it.name}${g}</span>`;
+  }).join('') || '<div class="ghost">无匹配</div>';
+  el.querySelectorAll('.pill').forEach(pl=>{
+    pl.onclick = ()=>{
+      const id = pl.dataset.id;
+      const it = sensState.items.find(x=>x.id===id);
+      if(state.selOutfits.has(id)){ state.selOutfits.delete(id); delete state.picked.outfits[id]; }
+      else { state.selOutfits.add(id); if(it) state.picked.outfits[id]=it; }
+      renderSens(); renderCat('outfits'); updateSelBadges();
+    };
+  });
+  const btn = $('#moreSens');
+  if(btn){
+    if(sensState.items.length < sensState.total){
+      btn.style.display=''; btn.textContent = `加载更多（${sensState.items.length}/${sensState.total}）`;
+      btn.onclick = ()=>loadSens(true);
+    } else btn.style.display='none';
+  }
+}
+
+$('#sensToggle').onclick = async ()=>{
+  sensState.open = !sensState.open;
+  $('#sensWrap').style.display = sensState.open ? '' : 'none';
+  $('#sensToggle').textContent = (sensState.open?'▾ ':'▸ ') + '敏感内容（情趣/内衣/泳装）';
+  if(sensState.open && sensState.items.length===0) await loadSens(false);
+};
+
+let sensTimer=null;
+$('#sensSearch').oninput = e=>{
+  if(sensTimer) clearTimeout(sensTimer);
+  sensTimer = setTimeout(()=>{ sensState.q = e.target.value; loadSens(false); }, 300);
+};
+
+/* ---------- 一键搭配（支持锁定 / 单项重抽 / 自主搜索替换 / 单项清空） ---------- */
+const comboState = {
+  cur: null,
+  locks: new Set(),       // 锁定的槽位 key：scene/character/character2/outfit/pose/style_hint
+  disabled: new Set(),    // 手动清空的槽位 key
+  optionsCache: null,
+  pickerKey: ''
+};
+$('#comboLevel').onchange = e => {
+  $('#comboLv').textContent = 'Lv'+e.target.value;
+  comboState.optionsCache = null;
+};
+
+async function runComboRequest(overrideLocked=null, overrideDisabled=null, toastMsg=''){
+  const lv = +$('#comboLevel').value || 0;
+  const work = $('#charWork')?.value || '';
+  const use_pose = $('#comboUsePose').checked;
+  const use_scene = $('#comboUseScene').checked;
+  const btn = $('#btnCombo');
+  btn.disabled = true; btn.textContent = '组合中…';
+  try{
+    let locked = {};
+    let disabled = Array.from(comboState.disabled);
+    if(overrideLocked !== null){
+      locked = overrideLocked;
+    } else if(comboState.cur){
+      comboState.locks.forEach(k=>{
+        if(comboState.cur[k]) locked[k] = comboState.cur[k];
+      });
+    }
+    if(overrideDisabled !== null) disabled = overrideDisabled;
+
+    const r = await api('/api/combo', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({level: lv, work, use_pose, use_scene, locked, disabled})
+    });
+    if(r.error){ toast('搭配失败: '+r.error); return; }
+    comboState.cur = r;
+    renderComboCards();
+    applyComboResultToUI(r, toastMsg);
+  }catch(e){
+    toast('失败: '+e.message);
+  }finally{
+    btn.disabled = false; btn.textContent = '🎲 一键搭配';
+  }
+}
+
+function applyComboResultToUI(r, customMsg=''){
+  if($('#comboWrite').checked){
+    let finalPrompt = (r.prompt || '').trim();
+    if($('#comboUseNL')?.checked && r.scene_nl){
+      const nl = String(r.scene_nl).trim();
+      if(nl && !finalPrompt.includes(nl)){
+        finalPrompt = finalPrompt ? (finalPrompt.replace(/[.,\s]+$/,'') + '. ' + nl) : nl;
+      }
+    }
+    $('#positive').value = finalPrompt;
+    $('#negative').value = r.negative || '';
+    updatePosLen();
+  }
+  state.selChars.clear(); state.selOutfits.clear(); state.selPoses.clear();
+  state.picked.characters = {}; state.picked.outfits = {}; state.picked.poses = {};
+  if(r.character && r.character.id){
+    state.selChars.add(r.character.id);
+    state.picked.characters[r.character.id] = r.character;
+  }
+  if(r.character2 && r.character2.id){
+    state.selChars.add(r.character2.id);
+    state.picked.characters[r.character2.id] = r.character2;
+  }
+  if(r.pose && r.pose.id && r.pose.thumb && !r.pose_conflict){
+    state.selPoses.add(r.pose.id);
+    state.picked.poses[r.pose.id] = {
+      id: r.pose.id, name: r.pose.name || r.pose.id,
+      cat: r.pose.cat || '', system: r.pose.system || '',
+      tags: '', angles: [{id: r.pose.id, angle: r.pose.angle || '', thumb: r.pose.thumb, img: r.pose.img || ''}]
+    };
+  }
+  renderCat('poses');
+  renderCat('outfits');
+  renderCat('characters');
+  if(poseSensState.open) renderPoseSens();
+  if(sensState.open) renderSens();
+  updateSelBadges();
+  syncPoseCtrlUI(!!(r.pose && r.pose.thumb && !r.pose_conflict));
+  if(customMsg) toast(customMsg);
+  else toast(r.pose_conflict ? '搭配完成（场景自带体位，已跳过姿势控图防冲突）' : '搭配完成 ✨');
+}
+
+function renderComboCards(){
+  const r = comboState.cur;
+  if(!r) return;
+  const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+  const slots = [
+    {key:'scene', label:'场景', obj:r.scene, extra:r.scene?.theme||''},
+    {key:'character', label:'角色', obj:r.character, extra:r.character?.work||''},
+    ...(r.character2 || comboState.locks.has('character2') ? [{key:'character2', label:'角色 2', obj:r.character2, extra:r.character2?.work||''}] : []),
+    {key:'outfit', label:'服装', obj:r.outfit, extra:r.outfit ? (r.outfit.src==='character'?'角色专属':'通用') : ''},
+    {key:'pose', label:'姿势', obj:r.pose, extra:r.pose && r.pose_conflict ? '与场景冲突·仅参考' : ''},
+    {key:'style_hint', label:'画风', obj:typeof r.style_hint==='string'?{id:r.style_hint,name:r.style_hint}:r.style_hint, extra:''},
+  ];
+  let html = slots.map(sl=>{
+    const locked = comboState.locks.has(sl.key);
+    const val = sl.obj ? (sl.obj.name || sl.obj.zh || sl.obj.id) : '已清空';
+    return `<div class="combo-row ${locked?'locked':''} ${!sl.obj?'empty':''}" data-key="${sl.key}">
+      <div class="combo-row-main">
+        <b>${sl.label}</b>
+        <span class="cb-val" title="${esc(val)}">${esc(val)}</span>
+        ${sl.extra?`<span class="cb-extra">${esc(sl.extra)}</span>`:''}
+      </div>
+      <div class="cb-acts">
+        <button type="button" class="cb-btn ${locked?'on':''}" data-act="lock" title="${locked?'点击解锁':'锁定此项（整套重抽时保留）'}">${locked?'🔒':'🔓'}</button>
+        <button type="button" class="cb-btn" data-act="roll" title="仅重抽此项">🎲</button>
+        <button type="button" class="cb-btn" data-act="edit" title="自主挑选修改此项">✏️</button>
+        ${sl.obj?`<button type="button" class="cb-btn del" data-act="del" title="移除此项（解除冲突）">×</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+  if(r.scene_nl) html += `<div class="combo-nl">${esc(r.scene_nl)}</div>`;
+  $('#comboResult').className = 'combo-grid';
+  $('#comboResult').innerHTML = html;
+
+  $('#comboResult').querySelectorAll('.combo-row').forEach(rowEl=>{
+    const k = rowEl.dataset.key;
+    rowEl.querySelectorAll('.cb-btn').forEach(b=>{
+      b.onclick = ()=>{
+        const act = b.dataset.act;
+        if(act === 'lock'){
+          if(comboState.locks.has(k)) comboState.locks.delete(k);
+          else if(comboState.cur?.[k]) comboState.locks.add(k);
+          renderComboCards();
+        } else if(act === 'roll'){
+          // 保留其他所有当前项，仅重抽 k
+          comboState.disabled.delete(k);
+          const keep = {};
+          ['scene','character','character2','outfit','pose','style_hint'].forEach(x=>{
+            if(x !== k && comboState.cur?.[x]) keep[x] = comboState.cur[x];
+          });
+          runComboRequest(keep, Array.from(comboState.disabled), `已单独重抽「${rowEl.querySelector('b').textContent}」🎲`);
+        } else if(act === 'del'){
+          comboState.locks.delete(k);
+          comboState.disabled.add(k);
+          const keep = {};
+          ['scene','character','character2','outfit','pose','style_hint'].forEach(x=>{
+            if(x !== k && comboState.cur?.[x]) keep[x] = comboState.cur[x];
+          });
+          runComboRequest(keep, Array.from(comboState.disabled), `已移除「${rowEl.querySelector('b').textContent}」`);
+        } else if(act === 'edit'){
+          openComboPicker(k, rowEl.querySelector('b').textContent);
+        }
+      };
+    });
+  });
+}
+
+async function openComboPicker(key, label){
+  comboState.pickerKey = key;
+  $('#cpTitle').textContent = `✏️ 自主修改「${label}」`;
+  $('#cpSearch').value = '';
+  $('#cpList').innerHTML = '<div class="ghost" style="width:100%"><span class="spinner"></span> 加载可选项…</div>';
+  const leftBtn = $('#cpUseLeft');
+  const mapLeft = {character:'characters', character2:'characters', outfit:'outfits', pose:'poses'};
+  leftBtn.style.display = mapLeft[key] ? '' : 'none';
+  $('#comboPickerModal').classList.add('open');
+  await loadComboPickerList('');
+}
+
+async function loadComboPickerList(q){
+  const key = comboState.pickerKey;
+  const lv = +$('#comboLevel').value || 0;
+  const el = $('#cpList');
+  const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+  let items = [];
+  if(key === 'scene' || key === 'style_hint'){
+    if(!comboState.optionsCache){
+      comboState.optionsCache = await api(`/api/combo/options?level=${lv}`);
+    }
+    const raw = key === 'scene' ? (comboState.optionsCache.scenes||[]) : (comboState.optionsCache.styles||[]);
+    const ql = (q||'').toLowerCase();
+    items = raw.filter(x=> !ql || JSON.stringify(x).toLowerCase().includes(ql)).slice(0, 120).map(x=>({
+      obj: x,
+      title: x.zh || x.name || x.id,
+      sub: x.theme || (x.level !== undefined ? `Lv${x.level}` : '')
+    }));
+  } else {
+    const cat = (key === 'character' || key === 'character2') ? 'characters' : (key === 'outfit' ? 'outfits' : 'poses');
+    const params = new URLSearchParams({cat, limit:80, offset:0});
+    if(cat === 'poses'){ params.set('collapsed','1'); params.set('part','normal'); }
+    if(q) params.set('q', q);
+    const r = await api('/api/assets?'+params.toString());
+    items = (r.items||[]).map(x=>{
+      if(cat === 'poses'){
+        const a = (x.angles && x.angles[0]) || x;
+        return { obj: {id: a.id || x.id, name: x.name, cat: x.cat||'', system: x.system||'', thumb: a.thumb||'', img: a.img||''}, title: x.name, sub: x.cat||'' };
+      }
+      const title = x.char_name ? `${x.char_name} · ${x.name}` : (x.name || x.id);
+      return { obj: x, title, sub: x.char_work || x.work || x.group || '' };
+    });
+  }
+  el.innerHTML = items.map((it, idx)=>
+    `<button type="button" class="cp-item" data-idx="${idx}">${esc(it.title)}${it.sub?`<small>${esc(it.sub)}</small>`:''}</button>`
+  ).join('') || '<div class="ghost" style="width:100%">没有找到匹配项，换个关键词试试</div>';
+  el.querySelectorAll('.cp-item').forEach(btn=>{
+    btn.onclick = ()=>{
+      const chosen = items[+btn.dataset.idx].obj;
+      applyManualComboChoice(key, chosen);
+    };
+  });
+}
+
+function applyManualComboChoice(key, chosenObj){
+  comboState.disabled.delete(key);
+  comboState.locks.add(key); // 手动改过的项自动锁定，防止下次误冲掉
+  const keep = {};
+  ['scene','character','character2','outfit','pose','style_hint'].forEach(x=>{
+    if(comboState.cur?.[x]) keep[x] = comboState.cur[x];
+  });
+  keep[key] = chosenObj;
+  $('#comboPickerModal').classList.remove('open');
+  runComboRequest(keep, Array.from(comboState.disabled), `已替换为「${chosenObj.zh || chosenObj.name || chosenObj.id}」并锁定 🔒`);
+}
+
+let cpTimer = null;
+$('#cpSearch').oninput = e=>{
+  clearTimeout(cpTimer);
+  cpTimer = setTimeout(()=>loadComboPickerList(e.target.value.trim()), 260);
+};
+$('#cpUseLeft').onclick = ()=>{
+  const key = comboState.pickerKey;
+  const map = {character:'characters', character2:'characters', outfit:'outfits', pose:'poses'};
+  const cat = map[key];
+  const vals = Object.values(state.picked[cat] || {});
+  if(!vals.length){ toast('左栏当前还没有选中此类素材哦'); return; }
+  const last = vals[vals.length - 1];
+  const chosen = cat === 'poses'
+    ? {id: last.id, name: last.name, cat: last.cat||'', system: last.system||'', thumb: (last.angles?.[0]?.thumb)||'', img: (last.angles?.[0]?.img)||''}
+    : last;
+  applyManualComboChoice(key, chosen);
+};
+$('#cpClose').onclick = ()=>$('#comboPickerModal').classList.remove('open');
+$('#comboPickerModal').onclick = e=>{ if(e.target === $('#comboPickerModal')) $('#comboPickerModal').classList.remove('open'); };
+document.addEventListener('keydown', e=>{
+  if(e.key === 'Escape') $('#comboPickerModal').classList.remove('open');
+});
+
+async function doCombo(){
+  comboState.disabled.clear();
+  await runComboRequest(null, []);
+}
+$('#btnCombo').onclick = doCombo;
+
+/* ---------- 画廊渲染与会话历史 ---------- */
+function renderGalleryImage(url, filename){
+  $('#gallery').innerHTML = `<div class="img-wrap">
+    <img src="${url}" alt="${filename||'生成结果'}" onclick="openLightbox('${url}')">
+    <div class="img-actions">
+      <a class="img-act-btn" href="${url}" target="_blank">↗ 原图</a>
+      <a class="img-act-btn" href="${url}" download="${filename||'anima.png'}">⬇ 保存</a>
+    </div>
+  </div>`;
+}
+function renderHistStrip(activeUrl){
+  const strip = $('#histStrip');
+  if(!strip) return;
+  strip.innerHTML = state.historyImgs.map(it=>
+    `<img class="hist-thumb ${it.url===activeUrl?'active':''}" src="${it.url}" title="${it.filename}" data-url="${it.url}" data-fn="${it.filename}">`
+  ).join('');
+  strip.querySelectorAll('.hist-thumb').forEach(th=>{
+    th.onclick = ()=>{
+      renderGalleryImage(th.dataset.url, th.dataset.fn);
+      renderHistStrip(th.dataset.url);
+    };
+  });
+}
+
+/* ---------- 一条龙工作流 ---------- */
+function renderWorkflowSelect(){
+  const sel = $('#wfSelect');
+  if(!sel) return;
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  sel.innerHTML = '<option value="">自由模式（手动参数与 LoRA）</option>'
+    + state.workflows.map(w=>`<option value="${esc(w.id)}">${esc(w.name)}</option>`).join('');
+  $('#wfBadge').textContent = state.workflows.length ? `${state.workflows.length} 套已整合` : '无预设';
+  renderWfDesc();
+}
+
+function renderWfDesc(){
+  const id = $('#wfSelect')?.value || '';
+  const wf = state.workflows.find(x=>x.id===id);
+  const el = $('#wfDesc');
+  if(!wf){
+    el.innerHTML = '选择桌面整合的 Anima 工作流预设，可一键挂载画风/画质 LoRA 并开启二段高清精绘一条龙出图。';
+    return;
+  }
+  const hi = wf.hires?.enabled
+    ? `二段精绘 ${wf.hires.scale}× (${wf.hires.steps}步 / 重绘${wf.hires.denoise})`
+    : '单段直出';
+  el.innerHTML = `<div>${wf.desc||''}</div>
+    <div class="wf-meta-pills">
+      <span class="wf-pill hi">${wf.tag||'工作流'}</span>
+      <span class="wf-pill">${wf.width}×${wf.height}</span>
+      <span class="wf-pill">${wf.steps}步 · ${wf.sampler}</span>
+      <span class="wf-pill">自带 ${(wf.loras||[]).length} 个 LoRA</span>
+      <span class="wf-pill">${hi}</span>
+    </div>`;
+}
+
+function applyWorkflow(id, silent){
+  const wf = state.workflows.find(x=>x.id===id);
+  if(!wf){
+    state.activeWf = null;
+    if(!silent) toast('已切换回自由模式');
+    return false;
+  }
+  state.activeWf = wf;
+  // 切换底模
+  if(wf.model && [...$('#model').options].some(o=>o.value===wf.model)){
+    $('#model').value = wf.model;
+  }
+  // 填充基础参数
+  if(wf.width) $('#width').value = wf.width;
+  if(wf.height) $('#height').value = wf.height;
+  if(wf.steps) $('#steps').value = wf.steps;
+  if(wf.cfg !== undefined) $('#cfg').value = wf.cfg;
+  if(wf.sampler && [...$('#sampler').options].some(o=>o.value===wf.sampler)){
+    $('#sampler').value = wf.sampler;
+  }
+  if(wf.weight_dtype && $('#precision')) $('#precision').value = wf.weight_dtype;
+  if(wf.negative && !$('#negative').value.trim()) $('#negative').value = wf.negative;
+
+  // 保留已挂的角色 LoRA，替换为该工作流自带的画风/画质 LoRA 链
+  const keptChars = state.active.filter(a=>a.category==='char');
+  const wfLoras = (wf.loras||[]).map(item=>{
+    const meta = state.loras.find(l=>l.file===item.file) || {};
+    return {file: item.file, weight: item.weight, category: meta.category || 'style'};
+  });
+  const seen = new Set(keptChars.map(x=>x.file));
+  state.active = [...keptChars, ...wfLoras.filter(x=>!seen.has(x.file))];
+  renderActive(); renderLoraLib();
+
+  // 同步二段高清参数
+  const h = wf.hires || {};
+  $('#hiresOn').checked = !!h.enabled;
+  $('#hiresFields').style.display = h.enabled ? 'grid' : 'none';
+  if(h.scale) $('#hiresScale').value = h.scale;
+  if(h.steps) $('#hiresSteps').value = h.steps;
+  if(h.cfg) $('#hiresCfg').value = h.cfg;
+  if(h.denoise) $('#hiresDenoise').value = h.denoise;
+
+  if(!silent) toast(`已套用「${wf.name}」配置 ✨`);
+  return true;
+}
+
+$('#wfSelect').onchange = ()=>{
+  renderWfDesc();
+  const id = $('#wfSelect').value;
+  if(id) applyWorkflow(id, false);
+  else state.activeWf = null;
+};
+$('#btnApplyWf').onclick = ()=>{
+  const id = $('#wfSelect').value;
+  if(!id){ toast('请先在上方下拉框选择一个工作流预设'); return; }
+  applyWorkflow(id, false);
+};
+$('#btnRunWf').onclick = ()=>{
+  let id = $('#wfSelect').value;
+  if(!id && state.workflows.length){
+    id = state.workflows[0].id;
+    $('#wfSelect').value = id;
+    renderWfDesc();
+  }
+  if(id) applyWorkflow(id, true);
+  if(!$('#btnGen').disabled) $('#btnGen').click();
+};
+$('#hiresOn').onchange = e=>{
+  $('#hiresFields').style.display = e.target.checked ? 'grid' : 'none';
+};
+
+/* ---------- 生成 ---------- */
+$('#btnGen').onclick=async()=>{
+  const btn=$('#btnGen');
+  const runWfBtn=$('#btnRunWf');
+  btn.disabled=true;
+  if(runWfBtn) runWfBtn.disabled=true;
+  $('#genState').innerHTML='<span class="spinner"></span> 提交中';
+  showProgress(0, '已提交，等待执行…', true);
+  try{
+    const hiresOn = $('#hiresOn')?.checked;
+    const poseCtrlOn = $('#poseCtrlOn')?.checked && !!state.poseCtrlId;
+    const payload={
+      model: $('#model').value,
+      positive: $('#positive').value,
+      negative: $('#negative').value,
+      width:+$('#width').value, height:+$('#height').value,
+      steps:+$('#steps').value, cfg:+$('#cfg').value,
+      seed:+$('#seed').value, sampler:$('#sampler').value, scheduler:'simple',
+      weight_dtype: $('#precision') ? $('#precision').value : 'fp8_e4m3fn',
+      loras: state.active.map(a=>({file:a.file, weight:a.weight})),
+      prefix: state.activeWf?.prefix || 'frontend',
+      pose_ctrl: poseCtrlOn ? {
+        enabled: true,
+        pose_id: state.poseCtrlId,
+        strength: +$('#pcStrength').value || 0.85,
+        end_percent: +$('#pcEnd').value || 0.85
+      } : {enabled: false},
+      hires: hiresOn ? {
+        enabled: true,
+        scale: +$('#hiresScale').value || 1.5,
+        method: 'nearest-exact',
+        steps: +$('#hiresSteps').value || 15,
+        cfg: +$('#hiresCfg').value || 7,
+        denoise: +$('#hiresDenoise').value || 0.7
+      } : {enabled: false}
+    };
+    const r=await api('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!r.ok){
+      toast('提交失败: '+r.error); $('#genState').textContent='失败';
+      btn.disabled=false; if(runWfBtn) runWfBtn.disabled=false; return;
+    }
+    poll(r.prompt_id);
+  }catch(e){
+    toast('出错: '+e.message); $('#genState').textContent='出错';
+    btn.disabled=false; if(runWfBtn) runWfBtn.disabled=false;
+  }
+};
+
+function poll(pid){
+  $('#genState').innerHTML='<span class="spinner"></span> 生成中 0s';
+  clearInterval(state.pollTimer);
+  const t0 = Date.now();
+  let missing = 0;
+  state.pollTimer=setInterval(async()=>{
+    try{
+      const elapsed = Math.floor((Date.now()-t0)/1000);
+      $('#genState').innerHTML='<span class="spinner"></span> 生成中 '+elapsed+'s';
+      const h=await api('/api/history?id='+encodeURIComponent(pid));
+      const e=h[pid];
+      if(e && e.status){
+        const st = e.status;
+        const done = st.completed || st.status_str === 'success' || st.status_str === 'error';
+        if(done){
+          clearInterval(state.pollTimer);
+          $('#btnGen').disabled=false;
+          if($('#btnRunWf')) $('#btnRunWf').disabled=false;
+          if(st.status_str === 'error'){
+            const msgs = (st.messages||[]).filter(m=>m[0]==='execution_error');
+            const err = msgs.length ? (msgs[0][1]?.exception_message || JSON.stringify(msgs[0][1]||'').slice(0,200)) : '未知错误';
+            $('#genState').textContent='出错';
+            $('#gallery').innerHTML = '<div class="ghost">生成失败: '+err.replace(/</g,'&lt;')+'</div>';
+            toast('生成失败: '+err.slice(0,80));
+            return;
+          }
+          $('#genState').textContent=`完成 (${elapsed}s)`;
+          const imgs=[];
+          for(const node of Object.values(e.outputs||{})){
+            (node.images||[]).forEach(im=>imgs.push(im));
+          }
+          if(imgs.length){
+            const ts = Date.now();
+            imgs.forEach(im=>{
+              const url = `/api/image?filename=${encodeURIComponent(im.filename)}&subfolder=${encodeURIComponent(im.subfolder||'')}&type=${encodeURIComponent(im.type||'output')}&t=${ts}`;
+              state.historyImgs.unshift({url, filename: im.filename});
+            });
+            state.historyImgs = state.historyImgs.slice(0, 16);
+            renderGalleryImage(state.historyImgs[0].url, state.historyImgs[0].filename);
+            renderHistStrip(state.historyImgs[0].url);
+          } else {
+            $('#gallery').innerHTML = '<div class="ghost">无输出图像</div>';
+          }
+          toast('生成完成 ✨');
+          return;
+        }
+      }
+      const q = await api('/api/queue').catch(()=>null);
+      if(q){
+        const inQ = [...(q.queue_running||[]),...(q.queue_pending||[])].some(it=>Array.isArray(it) && it[1]===pid);
+        if(!inQ && !e){ missing++; } else { missing=0; }
+        if(missing >= 3){
+          clearInterval(state.pollTimer);
+          $('#btnGen').disabled=false;
+          if($('#btnRunWf')) $('#btnRunWf').disabled=false;
+          $('#genState').textContent='丢失';
+          toast('任务不在队列且无历史记录，可能被取消或 ComfyUI 重启');
+        }
+      }
+    }catch(err){}
+  }, 1500);
+}
+
+/* ---------- GitHub ---------- */
+$('#btnGh').onclick=async()=>{
+  const q=$('#ghq').value.trim();
+  if(!q) return;
+  $('#ghResults').innerHTML='<div class="ghost"><span class="spinner"></span> 搜索中…</div>';
+  const r=await api('/api/github?q='+encodeURIComponent(q));
+  if(r.error){ $('#ghResults').innerHTML='<div class="ghost">出错: '+r.error+'</div>'; return; }
+  $('#ghResults').innerHTML=(r.items||[]).map(it=>
+    `<div class="gh-item">
+       <a href="${it.html_url}" target="_blank">${it.full_name}</a>
+       <div class="d">${it.description||'(无描述)'}</div>
+       <div class="s">★ ${it.stars} · ${(it.updated||'').slice(0,10)}</div>
+     </div>`).join('') || '<div class="ghost">没找到相关仓库</div>';
+};
+$('#ghq').addEventListener('keydown', e=>{ if(e.key==='Enter') $('#btnGh').click(); });
+
+/* ---------- 其他监听 ---------- */
+$('#loraSearch').oninput=e=>{ state.search=e.target.value; renderLoraLib(); };
+['poses','outfits','characters'].forEach(cat=>{
+  const sel = {poses:'#poseSearch', outfits:'#outfitSearch', characters:'#charSearch'}[cat];
+  const elx = $(sel);
+  if(elx){
+    let tm=null;
+    elx.oninput = e=>{
+      if(tm) clearTimeout(tm);
+      tm = setTimeout(()=>{
+        if(!state.assetQuery[cat]) state.assetQuery[cat]={q:'',items:[],total:0};
+        state.assetQuery[cat].q = e.target.value;
+        loadCat(cat);
+      }, 300);
+    };
+  }
+});
+$('#charWork').onchange = ()=>loadCat('characters');
+$('#showIsolated').onchange=e=>{ state.showIsolated=e.target.checked; renderLoraLib(); };
+$('#btnReindex').onclick=async()=>{
+  const r=await api('/api/reindex');
+  if(r.ok){ toast('索引重建完成: '+r.count+' 个'); boot(); } else toast('失败: '+r.error);
+};
+
+/* ---------- WD14 拖图反推弹窗 ---------- */
+const taggerState = { dataUrl: '', general: [], characters: [], disabled: new Set() };
+function openTaggerModal(){ $('#taggerModal').classList.add('open'); }
+function closeTaggerModal(){ $('#taggerModal').classList.remove('open'); }
+$('#btnOpenTagger').onclick = openTaggerModal;
+$('#tmClose').onclick = closeTaggerModal;
+$('#taggerModal').onclick = e=>{ if(e.target === $('#taggerModal')) closeTaggerModal(); };
+$('#tmThresh').oninput = e=>{ $('#tmThreshVal').textContent = (+e.target.value).toFixed(2); };
+
+function loadTaggerImageFile(file){
+  if(!file || !file.type.startsWith('image/')){ toast('请拖入图片文件'); return; }
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    taggerState.dataUrl = reader.result;
+    $('#tmPreview').src = taggerState.dataUrl;
+    $('#tmDrop').classList.add('has-img');
+    $('#tmRun').disabled = false;
+    runTaggerNow();
+  };
+  reader.readAsDataURL(file);
+}
+$('#tmDrop').onclick = ()=>$('#tmFile').click();
+$('#tmFile').onchange = e=>{ if(e.target.files?.[0]) loadTaggerImageFile(e.target.files[0]); };
+['dragenter','dragover'].forEach(ev=>{
+  $('#tmDrop').addEventListener(ev, e=>{ e.preventDefault(); e.stopPropagation(); $('#tmDrop').classList.add('dragover'); });
+});
+['dragleave','drop'].forEach(ev=>{
+  $('#tmDrop').addEventListener(ev, e=>{ e.preventDefault(); e.stopPropagation(); $('#tmDrop').classList.remove('dragover'); });
+});
+$('#tmDrop').addEventListener('drop', e=>{
+  const f = e.dataTransfer?.files?.[0];
+  if(f) loadTaggerImageFile(f);
+});
+document.addEventListener('paste', e=>{
+  if(!$('#taggerModal').classList.contains('open')) return;
+  const items = e.clipboardData?.items || [];
+  for(const it of items){
+    if(it.type && it.type.startsWith('image/')){
+      const f = it.getAsFile();
+      if(f){ loadTaggerImageFile(f); break; }
+    }
+  }
+});
+document.addEventListener('keydown', e=>{
+  if(e.key === 'Escape' && $('#taggerModal').classList.contains('open')) closeTaggerModal();
+});
+
+async function runTaggerNow(){
+  if(!taggerState.dataUrl) return;
+  $('#tmRun').disabled = true;
+  $('#tmAppend').disabled = true;
+  $('#tmOverwrite').disabled = true;
+  $('#tmStatus').innerHTML = '<span class="spinner"></span> 正在本地反推标签…';
+  $('#tmTags').innerHTML = '<div class="ghost" style="width:100%"><span class="spinner"></span> WD14 分析图像中（首次加载约 2-3 秒）…</div>';
+  try{
+    const r = await api('/api/tagger', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        image: taggerState.dataUrl,
+        threshold: +$('#tmThresh').value || 0.35,
+        char_threshold: 0.75
+      })
+    });
+    if(!r.ok){
+      $('#tmStatus').textContent = '反推失败';
+      $('#tmTags').innerHTML = `<div class="ghost" style="width:100%;color:var(--err)">${r.error||'未知错误'}</div>`;
+      toast('反推失败: ' + (r.error||''));
+      return;
+    }
+    taggerState.general = r.general || [];
+    taggerState.characters = r.characters || [];
+    taggerState.disabled.clear();
+    renderTaggerChips();
+  }catch(e){
+    $('#tmStatus').textContent = '请求出错';
+    $('#tmTags').innerHTML = `<div class="ghost" style="width:100%;color:var(--err)">${e.message}</div>`;
+  }finally{
+    $('#tmRun').disabled = false;
+  }
+}
+
+function getSelectedTaggerTags(){
+  const noChar = $('#tmNoChar').checked;
+  const list = [];
+  if(!noChar){
+    taggerState.characters.forEach(c=>{ if(!taggerState.disabled.has('c:'+c.tag)) list.push(c.tag); });
+  }
+  taggerState.general.forEach(g=>{ if(!taggerState.disabled.has('g:'+g.tag)) list.push(g.tag); });
+  return list;
+}
+
+function renderTaggerChips(){
+  const noChar = $('#tmNoChar').checked;
+  const chips = [];
+  if(!noChar){
+    taggerState.characters.forEach(c=>{
+      const k = 'c:' + c.tag;
+      const off = taggerState.disabled.has(k);
+      chips.push(`<span class="tm-chip char ${off?'off':''}" data-k="${k.replace(/"/g,'&quot;')}">${c.tag}<small>${Math.round(c.score*100)}%</small></span>`);
+    });
+  }
+  taggerState.general.forEach(g=>{
+    const k = 'g:' + g.tag;
+    const off = taggerState.disabled.has(k);
+    chips.push(`<span class="tm-chip ${off?'off':''}" data-k="${k.replace(/"/g,'&quot;')}">${g.tag}<small>${Math.round(g.score*100)}%</small></span>`);
+  });
+  $('#tmTags').innerHTML = chips.join('') || '<div class="ghost" style="width:100%">未识别出超过阈值的标签，可适当调低阈值重试</div>';
+  $('#tmTags').querySelectorAll('.tm-chip').forEach(ch=>{
+    ch.onclick = ()=>{
+      const k = ch.dataset.k;
+      if(taggerState.disabled.has(k)) taggerState.disabled.delete(k);
+      else taggerState.disabled.add(k);
+      renderTaggerChips();
+    };
+  });
+  const sel = getSelectedTaggerTags();
+  $('#tmStatus').textContent = `已选 ${sel.length} 个标签（角色 ${taggerState.characters.length} / 通用 ${taggerState.general.length}）`;
+  $('#tmAppend').disabled = sel.length === 0;
+  $('#tmOverwrite').disabled = sel.length === 0;
+}
+
+$('#tmRun').onclick = runTaggerNow;
+$('#tmNoChar').onchange = renderTaggerChips;
+$('#tmAppend').onclick = ()=>{
+  const tags = getSelectedTaggerTags().join(', ');
+  if(!tags) return;
+  const cur = $('#positive').value.trim();
+  $('#positive').value = cur ? (cur.replace(/,\s*$/,'') + ', ' + tags) : tags;
+  updatePosLen();
+  closeTaggerModal();
+  toast(`已追加 ${getSelectedTaggerTags().length} 个反推标签 ✨`);
+};
+$('#tmOverwrite').onclick = ()=>{
+  const tags = getSelectedTaggerTags().join(', ');
+  if(!tags) return;
+  $('#positive').value = tags;
+  updatePosLen();
+  closeTaggerModal();
+  toast(`已写入 ${getSelectedTaggerTags().length} 个反推标签 ✨`);
+};
+
+/* ---------- 顶栏 & 画廊双重实时百分比进度条 (ComfyUI WebSocket) ---------- */
+const progState = { hideTimer: null, stage: '' };
+function showProgress(pct, text, indet=false){
+  const p = Math.max(0, Math.min(100, Math.round(pct)));
+  clearTimeout(progState.hideTimer);
+  // 1. 顶栏进度条
+  const wrap = $('#genProgWrap'), bar = $('#genProgBar'), txt = $('#genProgText');
+  if(wrap && bar && txt){
+    wrap.classList.add('active');
+    bar.classList.toggle('indet', !!indet);
+    if(!indet) bar.style.width = p + '%';
+    txt.textContent = text;
+  }
+  // 2. 右栏成图画廊宽屏百分比进度条
+  const gw = $('#galleryProgWrap'), gb = $('#gpBar'), gl = $('#gpLabel'), gp = $('#gpPct');
+  if(gw && gb && gl && gp){
+    gw.classList.add('active');
+    gb.classList.toggle('indet', !!indet);
+    if(!indet) gb.style.width = p + '%';
+    gl.textContent = text;
+    gp.textContent = indet ? '…' : (p + '%');
+  }
+}
+function hideProgress(delay=1800){
+  clearTimeout(progState.hideTimer);
+  progState.hideTimer = setTimeout(()=>{
+    $('#genProgWrap')?.classList.remove('active');
+    $('#galleryProgWrap')?.classList.remove('active');
+  }, delay);
+}
+function connectComfyWS(){
+  try{
+    const ws = new WebSocket('ws://127.0.0.1:8188/ws?clientId=comfy-frontend');
+    ws.onmessage = ev=>{
+      if(typeof ev.data !== 'string') return;
+      try{
+        const msg = JSON.parse(ev.data);
+        const t = msg.type, d = msg.data || {};
+        if(t === 'execution_start'){
+          progState.stage = '准备中';
+          showProgress(0, '加载模型中…', true);
+        } else if(t === 'executing'){
+          const nid = d.node;
+          if(nid === null || nid === undefined){
+            showProgress(100, '生成完成', false);
+            hideProgress(1800);
+          } else {
+            const s = String(nid);
+            if(s === '30') progState.stage = '初绘采样';
+            else if(s === '36') progState.stage = '二段精绘';
+            else if(s === '40'){ progState.stage = '解码'; showProgress(96, 'VAE 解码中…', true); }
+            else if(s === '50'){ showProgress(99, '保存图像中…', false); }
+            else if(['1','2','3'].includes(s) || (+s >= 10 && +s < 20)){
+              showProgress(0, '加载模型 / LoRA…', true);
+            }
+          }
+        } else if(t === 'progress'){
+          const v = +d.value || 0, m = +d.max || 1;
+          const pct = Math.round((v / m) * 100);
+          const prefix = progState.stage ? (progState.stage + ' · ') : '采样中 · ';
+          showProgress(pct, `${prefix}${v}/${m} 步`, false);
+        } else if(t === 'progress_state' && d.nodes){
+          for(const nd of Object.values(d.nodes)){
+            if(nd && nd.state === 'running' && nd.max > 0){
+              const pct = Math.round((nd.value / nd.max) * 100);
+              const prefix = progState.stage ? (progState.stage + ' · ') : '采样中 · ';
+              showProgress(pct, `${prefix}${nd.value}/${nd.max} 步`, false);
+              break;
+            }
+          }
+        } else if(t === 'execution_error'){
+          showProgress(0, '生成出错', false);
+          hideProgress(2500);
+        }
+      }catch(e){}
+    };
+    ws.onclose = ()=>setTimeout(connectComfyWS, 3000);
+    ws.onerror = ()=>{};
+  }catch(e){
+    setTimeout(connectComfyWS, 5000);
+  }
+}
+
+/* ---------- 停止当前 / 清显存 / 队列明细弹窗 ---------- */
+async function stopCurrentTask(){
+  const r = await api('/api/interrupt', {method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'}).catch(e=>({ok:false,error:e.message}));
+  if(r.ok){ toast('已发送停止当前任务指令 ⏹'); hideProgress(800); refreshQueueModal(); }
+  else toast('停止失败: ' + (r.error||''));
+}
+async function freeMemoryNow(){
+  const btn = $('#btnFreeMem');
+  if(btn) btn.disabled = true;
+  const r = await api('/api/free', {method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'}).catch(e=>({ok:false,error:e.message}));
+  if(btn) btn.disabled = false;
+  if(r.ok) toast('已卸载闲置模型，显存与内存已释放 🧹');
+  else toast('释放失败: ' + (r.error||''));
+}
+$('#btnStop').onclick = stopCurrentTask;
+$('#btnFreeMem').onclick = freeMemoryNow;
+$('#qmStopCur').onclick = stopCurrentTask;
+$('#qmClearPend').onclick = async()=>{
+  const r = await api('/api/queue/clear', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({clear:true})}).catch(e=>({ok:false,error:e.message}));
+  if(r.ok){ toast('已清空等待队列 🗑'); refreshQueueModal(); }
+  else toast('清空失败: ' + (r.error||''));
+};
+
+function parseQueueCard(it, isRunning){
+  const num = it[0], pid = it[1], prompt = it[2] || {};
+  let model = '', size = '', steps = '', hires = '', pos = '';
+  const loras = [];
+  for(const [nid, nd] of Object.entries(prompt)){
+    const ct = nd?.class_type || '', inp = nd?.inputs || {};
+    if(ct === 'UNETLoader') model = (inp.unet_name||'').split('\\').pop();
+    else if(ct === 'EmptyLatentImage') size = `${inp.width}×${inp.height}`;
+    else if(ct === 'KSampler'){
+      if(nid === '36' || (+inp.denoise < 0.99)) hires = `二段精绘 ${inp.steps}步`;
+      else steps = `${inp.steps}步`;
+    }
+    else if(ct === 'LoraLoader' && inp.lora_name) loras.push(inp.lora_name.split('\\').pop());
+    else if(ct === 'CLIPTextEncode' && (nid === '20' || nid === '11')){
+      const t = String(inp.text||'');
+      if(t && !t.toLowerCase().includes('worst quality')) pos = t;
+    }
+  }
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const delBtn = isRunning
+    ? `<button type="button" class="btn-sm btn-stop" onclick="stopCurrentTask()">⏹ 停止</button>`
+    : `<button type="button" class="btn-sm btn-ghost" data-del="${esc(pid)}">× 取消</button>`;
+  return `<div class="qm-card ${isRunning?'running':''}">
+    <div class="qm-meta">
+      <div class="qm-top">
+        <span class="badge ${isRunning?'hi':''}">#${num} ${isRunning?'运行中':'等待中'}</span>
+        <span>${esc(model||'未知底模')}</span>
+        ${size?`<span class="wf-pill">${size}</span>`:''}
+        ${steps?`<span class="wf-pill">${steps}</span>`:''}
+        ${hires?`<span class="wf-pill hi">${hires}</span>`:''}
+        <span class="wf-pill">LoRA ×${loras.length}</span>
+      </div>
+      <div class="qm-prompt">${esc(pos||'(无正面提示词)')}</div>
+    </div>
+    ${delBtn}
+  </div>`;
+}
+
+async function refreshQueueModal(){
+  if(!$('#queueModal').classList.contains('open')) return;
+  const el = $('#qmList');
+  try{
+    const q = await api('/api/queue');
+    const run = q.queue_running || [], pen = q.queue_pending || [];
+    $('#queueinfo').textContent = (run.length||pen.length) ? `📋 队列 ${run.length} 运行 / ${pen.length} 等待` : '';
+    let html = '';
+    if(run.length){
+      html += `<div class="qm-group-t">正在运行 (${run.length})</div>` + run.map(it=>parseQueueCard(it, true)).join('');
+    }
+    if(pen.length){
+      html += `<div class="qm-group-t">排队等待 (${pen.length})</div>` + pen.map(it=>parseQueueCard(it, false)).join('');
+    }
+    el.innerHTML = html || '<div class="ghost">当前队列为空，没有任何运行或等待中的任务 ✨</div>';
+    el.querySelectorAll('[data-del]').forEach(b=>{
+      b.onclick = async()=>{
+        const pid = b.dataset.del;
+        const r = await api('/api/queue/clear', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({delete:[pid]})});
+        if(r.ok){ toast('已取消该排队任务'); refreshQueueModal(); }
+      };
+    });
+  }catch(e){
+    el.innerHTML = '<div class="ghost">获取队列失败: ' + e.message + '</div>';
+  }
+}
+
+$('#queueinfo').onclick = ()=>{ $('#queueModal').classList.add('open'); refreshQueueModal(); };
+$('#qmClose').onclick = ()=>$('#queueModal').classList.remove('open');
+$('#qmRefresh').onclick = refreshQueueModal;
+$('#queueModal').onclick = e=>{ if(e.target === $('#queueModal')) $('#queueModal').classList.remove('open'); };
+document.addEventListener('keydown', e=>{
+  if(e.key === 'Escape') $('#queueModal').classList.remove('open');
+});
+
+let _wasRunning = false;
+async function pollQueueAndProgress(){
+  try{
+    const q = await api('/api/queue');
+    const run = (q.queue_running||[]).length, pen = (q.queue_pending||[]).length;
+    $('#queueinfo').textContent = (run||pen) ? `📋 队列 ${run} 运行 / ${pen} 等待` : '';
+    const p = q.progress || {};
+    if(run > 0){
+      _wasRunning = true;
+      if(p.max > 0){
+        const st = p.stage ? (p.stage + ' · ') : '采样中 · ';
+        showProgress(p.pct || Math.round(p.value*100/p.max), `${st}${p.value}/${p.max} 步`, false);
+      } else {
+        showProgress(p.pct || 0, (p.stage || '正在生成') + '…', !p.pct);
+      }
+    } else if(_wasRunning){
+      _wasRunning = false;
+      showProgress(100, '生成完成', false);
+      hideProgress(1800);
+    }
+    if($('#queueModal').classList.contains('open')) refreshQueueModal();
+  }catch(e){}
+}
+setInterval(pollQueueAndProgress, 1500);
+
+boot();
+pollQueueAndProgress();
+</script>
+</body>
+</html>

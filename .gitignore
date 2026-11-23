@@ -1,0 +1,30 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 本地日志、备份与临时文件
+*.bak
+*.log
+*.log2
+*.progress
+data/srv.err
+data/srv.out
+data/_check.js
+
+# 超大离线资源包与解压目录（GitHub 单文件上限 100MB）
+data/pose-gallery.zip
+data/pg_extract/
+data/staging/
+
+# 本机私人 LoRA 索引与隐私抓取脚本
+data/lora-index.json
+tools/get_cookies.py
+
+# 私人示例大图
+workflows/Anima 工作流/*.png
+workflows/Anima 工作流/*.bat
+
+# 系统文件
+.DS_Store
+Thumbs.db

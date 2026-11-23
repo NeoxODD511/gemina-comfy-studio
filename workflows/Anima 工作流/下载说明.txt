@@ -1,0 +1,31 @@
+Civitai 模型下载任务 — 待登录
+=====================================
+
+目标（F:\Civitai模型下载\）：
+
+模型1 One obsession_Anima (id 2695493)
+  最新版本 v5.0, base=Anima
+  主文件: One obsession_animaV5turbo.safetensors  约 3.9 GB
+  下载端点: https://civitai.com/api/download/models/3443487?fileId=3342055
+  SHA256: FA070A7893839CD7E110A9BFF6D9E3B856C4F7AE01D8D2D77F8B91C61A957261
+
+模型2 One obsession Branch (Mature) (id 1368727)
+  最新版本 Msture anima_2.9B木珠, base=Anima
+  主文件: One obsession_Matureanima29B.safetensors  约 5.4 GB
+  下载端点: https://civitai.com/api/download/models/3379041?fileId=3267578
+
+现状
+----
+- API 元数据已拿到（模型/版本/文件/哈希均确认）。
+- Civitai 官方与 civitai.red 镜像现在下载都强制登录：
+  下载端点 307 跳转到 /login?reason=download-auth。
+- 本机所有浏览器 profile 均无 Civitai 登录态，匿名无法下载。
+- 系统代理 127.0.0.1:7897 可用，civitai.com API 经代理正常。
+
+下一步
+------
+在已打开的调试浏览器（端口 9333）里登录 Civitai（Discord/Google/GitHub/Email
+任一方式，需过人机验证）。登录完成后告诉我，即可自动下载两个主文件到本目录，
+并用上面 SHA256 校验。
+
+可用 API key 的话，直接设环境变量 CIVITAI_API_KEY，我走官方 key 下载，无需登录页面。

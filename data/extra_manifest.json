@@ -1,0 +1,133 @@
+[
+  {
+    "id": 1882546,
+    "name": "The Look",
+    "group": "style",
+    "note": "The Look - 自然表情",
+    "versions": {
+      "moss": {
+        "ver": "v1.0 Moss",
+        "url": "https://civitai.com/api/download/models/3464483?fileId=3367418",
+        "filename": "The Look Moss_000002750.safetensors",
+        "size_mb": 138.4,
+        "trigger": "LookDaal"
+      },
+      "krea2": {
+        "ver": "v1.0 Krea2 Turbo",
+        "url": "https://civitai.com/api/download/models/3140016?fileId=3020161",
+        "filename": "TheLook-Krea2Turbo.safetensors",
+        "size_mb": 218.0,
+        "trigger": "LookDaal"
+      },
+      "anima": {
+        "ver": "v1.0 Anima Preview",
+        "url": "https://civitai.com/api/download/models/2997490?fileId=2876944",
+        "filename": "The-Look-Anima3-800.safetensors",
+        "size_mb": 66.2,
+        "trigger": "LookDaal"
+      }
+    }
+  },
+  {
+    "id": 2629905,
+    "name": "[MOSS & Krea2 & Anima] Yoneyama Mai/米山舞 - Artist Style",
+    "group": "style",
+    "note": "米山舞 Yoneyama Mai",
+    "versions": {
+      "moss": {
+        "ver": "MOSS_v1.0",
+        "url": "https://civitai.com/api/download/models/3425633?fileId=3320510",
+        "filename": "Yoneyama Mai_MOSS.safetensors",
+        "size_mb": 30.8,
+        "trigger": "Yoneyama Mai Style"
+      },
+      "krea2": {
+        "ver": "Krea2_v1.0",
+        "url": "https://civitai.com/api/download/models/3160574?fileId=3040943",
+        "filename": "Yoneyama_Mai_Krea2.safetensors",
+        "size_mb": 109.0,
+        "trigger": "Yoneyama Mai Style"
+      },
+      "anima": {
+        "ver": "Anima_v1.0",
+        "url": "https://civitai.com/api/download/models/2952731?fileId=2832011",
+        "filename": "Yoneyama Mai_Anima.safetensors",
+        "size_mb": 33.2,
+        "trigger": "Yoneyama Mai Style"
+      }
+    }
+  },
+  {
+    "id": 2638358,
+    "name": "少把盐 Anima//Moss Base/Moss Heal",
+    "group": "style",
+    "note": "少把盐",
+    "versions": {
+      "moss": {
+        "ver": "v1.0 Moss heal",
+        "url": "https://civitai.com/api/download/models/3451943?fileId=3352283",
+        "filename": "sby1_v1_step1100.safetensors",
+        "size_mb": 141.8,
+        "trigger": ""
+      },
+      "anima": {
+        "ver": "v2.5",
+        "url": "https://civitai.com/api/download/models/3194982?fileId=3075874",
+        "filename": "sby1_epoch14.safetensors",
+        "size_mb": 87.6,
+        "trigger": ""
+      }
+    }
+  },
+  {
+    "id": 2526312,
+    "name": "Darkness Slider",
+    "group": "slider",
+    "note": "Darkness Slider",
+    "versions": {
+      "moss": {
+        "ver": "Moss-image",
+        "url": "https://civitai.com/api/download/models/3478315?fileId=3384076",
+        "filename": "DarknessMoss-D2-x2.safetensors",
+        "size_mb": 39.4,
+        "trigger": ""
+      },
+      "anima": {
+        "ver": "Anima",
+        "url": "https://civitai.com/api/download/models/3076192?fileId=2955299",
+        "filename": "Darkness-sliderFin3.safetensors",
+        "size_mb": 43.8,
+        "trigger": ""
+      }
+    }
+  },
+  {
+    "id": 2644401,
+    "name": "bakalight",
+    "group": "style",
+    "note": "bakalight 光影",
+    "versions": {
+      "anima_v30": {
+        "ver": "v3.0",
+        "url": "https://civitai.com/api/download/models/2979460?fileId=2858990",
+        "filename": "bakav3-000012.safetensors",
+        "size_mb": 87.6,
+        "trigger": ""
+      },
+      "anima_v20": {
+        "ver": "v2.0",
+        "url": "https://civitai.com/api/download/models/2973212?fileId=2852821",
+        "filename": "bakaskin.safetensors",
+        "size_mb": 87.6,
+        "trigger": ""
+      },
+      "anima_v10": {
+        "ver": "v1.0",
+        "url": "https://civitai.com/api/download/models/2969278?fileId=2848789",
+        "filename": "bakalight-000008.safetensors",
+        "size_mb": 87.6,
+        "trigger": ""
+      }
+    }
+  }
+]

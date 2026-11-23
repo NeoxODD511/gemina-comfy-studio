@@ -1,0 +1,796 @@
+{
+  "style": [
+    {
+      "id": 599757,
+      "name": "Velvet's Mythic Fantasy Styles | Flux + Pony + illustrious + ZiT + Anima + Krea2",
+      "versions": {
+        "moss": {
+          "ver": "MOSS Dark Lines",
+          "version_id": 3452384,
+          "url": "https://civitai.com/api/download/models/3452384?fileId=3352619",
+          "filename": "MossMythD4rkL1nes.safetensors",
+          "size_kb": 125993.3671875,
+          "trigger": "D4rkL1nes"
+        },
+        "anima": {
+          "ver": "Anima Smooth Lines",
+          "version_id": 3226360,
+          "url": "https://civitai.com/api/download/models/3226360?fileId=3108500",
+          "filename": "AnimaMythSmo0thL1nes.safetensors",
+          "size_kb": 135413.8232421875,
+          "trigger": "Smo0thL1nes"
+        },
+        "krea2": {
+          "ver": "Krea 2",
+          "version_id": 3135757,
+          "url": "https://civitai.com/api/download/models/3135757?fileId=3016472",
+          "filename": "Krea2MythP0rtr4itStyle.safetensors",
+          "size_kb": 223231.337890625,
+          "trigger": "mythp0rt"
+        }
+      }
+    },
+    {
+      "id": 929497,
+      "name": "Aesthetic Quality Modifiers - Masterpiece",
+      "versions": {
+        "moss": {
+          "ver": "v6.0 [moss]",
+          "version_id": 3462001,
+          "url": "https://civitai.com/api/download/models/3462001?fileId=3364329",
+          "filename": "moss-masterpieces-moss-timestep.safetensors",
+          "size_kb": 271147.6015625,
+          "trigger": "masterpiece, very aesthetic"
+        },
+        "krea2": {
+          "ver": "v5.1 [krea2]",
+          "version_id": 3077110,
+          "url": "https://civitai.com/api/download/models/3077110?fileId=2956283",
+          "filename": "krea2-masterpieces-v51.safetensors",
+          "size_kb": 209717.046875,
+          "trigger": "masterpiece, very aesthetic"
+        },
+        "anima": {
+          "ver": "v5.1 [anima-base-1]",
+          "version_id": 2961717,
+          "url": "https://civitai.com/api/download/models/2961717?fileId=2841058",
+          "filename": "anima-base-1-masterpiece-v51.safetensors",
+          "size_kb": 135412.28125,
+          "trigger": "masterpiece, very aesthetic"
+        }
+      }
+    },
+    {
+      "id": 1132089,
+      "name": "Flat Color - Style",
+      "versions": {
+        "moss": {
+          "ver": "v4.0 [moss]",
+          "version_id": 3482404,
+          "url": "https://civitai.com/api/download/models/3482404?fileId=3389415",
+          "filename": "moss_flat_color_v5.safetensors",
+          "size_kb": 135595.3203125,
+          "trigger": "flat color, no lineart"
+        },
+        "anima": {
+          "ver": "v3.0 [anima-preview-3]",
+          "version_id": 2947255,
+          "url": "https://civitai.com/api/download/models/2947255?fileId=2826524",
+          "filename": "anima-base-1-flat-color-v3.safetensors",
+          "size_kb": 135412.28125,
+          "trigger": "flat color, no lineart"
+        }
+      }
+    },
+    {
+      "id": 1155749,
+      "name": "Hyperdetailed Colored Pencil",
+      "versions": {
+        "moss": {
+          "ver": "MOSS",
+          "version_id": 3417747,
+          "url": "https://civitai.com/api/download/models/3417747?fileId=3311103",
+          "filename": "HyperDetailedColoredPencilMossSft.safetensors",
+          "size_kb": 141755.1484375,
+          "trigger": "ArsMJStyle, Colored pencil hyperdetailed realism,"
+        },
+        "krea2": {
+          "ver": "Krea2",
+          "version_id": 3113897,
+          "url": "https://civitai.com/api/download/models/3113897?fileId=2994111",
+          "filename": "HyperDetailedColoredPencilKrea2.safetensors",
+          "size_kb": 223230.234375,
+          "trigger": "ArsMJStyle, Colored pencil hyperdetailed realism,"
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 3033029,
+          "url": "https://civitai.com/api/download/models/3033029?fileId=2911907",
+          "filename": "AnimaHyperdetailedColoredPencil-step00006000.safetensors",
+          "size_kb": 89858.1640625,
+          "trigger": "ArsMJStyle, Colored pencil hyperdetailed realism,"
+        }
+      }
+    },
+    {
+      "id": 789313,
+      "name": "80s Fantasy Movie",
+      "versions": {
+        "krea2": {
+          "ver": "Krea2",
+          "version_id": 3091396,
+          "url": "https://civitai.com/api/download/models/3091396?fileId=2970876",
+          "filename": "80sFantasyKrea2Raw_000004500.safetensors",
+          "size_kb": 223230.203125,
+          "trigger": "ArsMovieStill, 80s Fantasy Movie Still,"
+        },
+        "moss": {
+          "ver": "MOSS",
+          "version_id": 3413429,
+          "url": "https://civitai.com/api/download/models/3413429?fileId=3305934",
+          "filename": "80sFantasyMovieMossSft.safetensors",
+          "size_kb": 141755.125,
+          "trigger": "ArsMovieStill, 80s Fantasy Movie Still"
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 3002110,
+          "url": "https://civitai.com/api/download/models/3002110?fileId=2883580",
+          "filename": "ArsMovieStill__80sFantasyMovieStill-step00006000.safetensors",
+          "size_kb": 90248.3046875,
+          "trigger": "ArsMovieStill, 80s Fantasy Movie Still,"
+        }
+      }
+    },
+    {
+      "id": 1349631,
+      "name": "Dark Ghibli Fairytales",
+      "versions": {
+        "krea2": {
+          "ver": "Krea2",
+          "version_id": 3128819,
+          "url": "https://civitai.com/api/download/models/3128819?fileId=3009341",
+          "filename": "DarkGhibliKrea2Raw.safetensors",
+          "size_kb": 223230.2109375,
+          "trigger": "Studio Ghibli Dark Fairytale,"
+        },
+        "moss": {
+          "ver": "MOSS",
+          "version_id": 3424650,
+          "url": "https://civitai.com/api/download/models/3424650?fileId=3319341",
+          "filename": "StudioGhibliDarkFairytaleMossSft.safetensors",
+          "size_kb": 141755.1484375,
+          "trigger": "Studio Ghibli Dark Fairytale"
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 3011834,
+          "url": "https://civitai.com/api/download/models/3011834?fileId=2890826",
+          "filename": "Studio_Ghibli_Dark_FairytaleV2-step00006000.safetensors",
+          "size_kb": 89841.7109375,
+          "trigger": "Studio Ghibli Dark Fairytale"
+        }
+      }
+    },
+    {
+      "id": 22800,
+      "name": "Granblue fantasy style",
+      "versions": {
+        "moss": {
+          "ver": "Granblue for moss image",
+          "version_id": 3428623,
+          "url": "https://civitai.com/api/download/models/3428623?fileId=3324028",
+          "filename": "granblue_moss_base_d32.safetensors",
+          "size_kb": 145236.5,
+          "trigger": ""
+        },
+        "krea2": {
+          "ver": "granblue for Krea2",
+          "version_id": 3090945,
+          "url": "https://civitai.com/api/download/models/3090945?fileId=2970459",
+          "filename": "granblue_1138_detail_l_black_bg_krea2_lora-000008.safetensors",
+          "size_kb": 458315.90625,
+          "trigger": "granblue fantasy"
+        },
+        "anima": {
+          "ver": "Granblue for Anima-base",
+          "version_id": 2958139,
+          "url": "https://civitai.com/api/download/models/2958139?fileId=2837528",
+          "filename": "granblue-anima.safetensors",
+          "size_kb": 136115.7578125,
+          "trigger": "granblue fantasy"
+        }
+      }
+    },
+    {
+      "id": 2564225,
+      "name": "Style > gpt-image-2",
+      "versions": {
+        "anima": {
+          "ver": "Anima-base1 v1.1",
+          "version_id": 2998634,
+          "url": "https://civitai.com/api/download/models/2998634?fileId=2878107",
+          "filename": "gpt-image-2_anima-base1_v1-1.safetensors",
+          "size_kb": 22497.3203125,
+          "trigger": "@gpt-image-2,"
+        },
+        "moss": {
+          "ver": "MOSS-base v0.2",
+          "version_id": 3460644,
+          "url": "https://civitai.com/api/download/models/3460644?fileId=3362662",
+          "filename": "gpt-image2_MOSS-base_v1.safetensors",
+          "size_kb": 36371.609375,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 1380736,
+      "name": "Dark Art Style Moss/Krea2/Anima/illustriousXL/ZImageTurbo/Flux/Chroma",
+      "versions": {
+        "moss": {
+          "ver": "Moss",
+          "version_id": 3473851,
+          "url": "https://civitai.com/api/download/models/3473851?fileId=3378634",
+          "filename": "dark-art-style-moss-image-sft-epoch-06.safetensors",
+          "size_kb": 141756.3984375,
+          "trigger": "dark_art_style"
+        },
+        "krea2": {
+          "ver": "Krea2",
+          "version_id": 3349869,
+          "url": "https://civitai.com/api/download/models/3349869?fileId=3236989",
+          "filename": "Dark_Art_Style_krea2_3346904_epoch_10.safetensors",
+          "size_kb": 223231.4296875,
+          "trigger": "dark_art_style"
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 2817661,
+          "url": "https://civitai.com/api/download/models/2817661?fileId=2703669",
+          "filename": "dark_art_style_Anima-step00002750.safetensors",
+          "size_kb": 135468.9921875,
+          "trigger": "dark_art_style"
+        }
+      }
+    },
+    {
+      "id": 311073,
+      "name": "Krekkov Style",
+      "versions": {
+        "moss": {
+          "ver": "MOSS",
+          "version_id": 3425661,
+          "url": "https://civitai.com/api/download/models/3425661?fileId=3320540",
+          "filename": "Krekkov MOSS Base.safetensors",
+          "size_kb": 141755.1171875,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 3067868,
+          "url": "https://civitai.com/api/download/models/3067868?fileId=2954988",
+          "filename": "Krekkov_epoch_20.safetensors",
+          "size_kb": 67765.203125,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 863136,
+      "name": "70s Horror Movie",
+      "versions": {
+        "krea2": {
+          "ver": "Krea2",
+          "version_id": 3187148,
+          "url": "https://civitai.com/api/download/models/3187148?fileId=3067742",
+          "filename": "70sHorrorKrea2Raw.safetensors",
+          "size_kb": 223230.203125,
+          "trigger": "ArsMovieStill, movie still from a 1970s horror movie,"
+        },
+        "moss": {
+          "ver": "MOSS",
+          "version_id": 3437199,
+          "url": "https://civitai.com/api/download/models/3437199?fileId=3334389",
+          "filename": "70sHorrorMovieMossBase.safetensors",
+          "size_kb": 141755.125,
+          "trigger": "ArsMovieStill, movie still from a 1970s horror movie"
+        }
+      }
+    },
+    {
+      "id": 2533943,
+      "name": "铭音 meion style 【krea2&MOSS&anima&il】",
+      "versions": {
+        "krea2": {
+          "ver": "krea2 v1.0",
+          "version_id": 3150830,
+          "url": "https://civitai.com/api/download/models/3150830?fileId=3031491",
+          "filename": "meion_krea2_style_v7.0_c1-st4000.safetensors",
+          "size_kb": 458293.3515625,
+          "trigger": ""
+        },
+        "moss": {
+          "ver": "MOSS-heal v1.0",
+          "version_id": 3454294,
+          "url": "https://civitai.com/api/download/models/3454294?fileId=3354941",
+          "filename": "meion_moss_style_heal_lora_rd64_15MP-step_00006000.safetensors",
+          "size_kb": 202781.390625,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "anima base v2.0",
+          "version_id": 3011314,
+          "url": "https://civitai.com/api/download/models/3011314?fileId=2890331",
+          "filename": "Meion_anima_style_lokr_2-000034.safetensors",
+          "size_kb": 245468.47265625,
+          "trigger": "@meionANIMAstyle"
+        }
+      }
+    },
+    {
+      "id": 1738546,
+      "name": "90's anime melancholy Moss/Krea2/Anima/illustriousXL/ZImageTurbo/Flux/Chroma",
+      "versions": {
+        "moss": {
+          "ver": "Moss",
+          "version_id": 3473876,
+          "url": "https://civitai.com/api/download/models/3473876?fileId=3378658",
+          "filename": "90s-anime-melancholy-moss-image-sft-epoch-01.safetensors",
+          "size_kb": 141756.390625,
+          "trigger": "90s_melancholy, retro"
+        },
+        "krea2": {
+          "ver": "Krea2",
+          "version_id": 3352741,
+          "url": "https://civitai.com/api/download/models/3352741?fileId=3240016",
+          "filename": "90_s_anime_melancholy_krea2_3349850_epoch_9.safetensors",
+          "size_kb": 223231.4296875,
+          "trigger": "90s_melancholy, retro,"
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 2820017,
+          "url": "https://civitai.com/api/download/models/2820017?fileId=2705980",
+          "filename": "90s_anime_melancholy_Anima-step00003300.safetensors",
+          "size_kb": 135467.796875,
+          "trigger": "90s_melancholy, retro,"
+        }
+      }
+    },
+    {
+      "id": 1357076,
+      "name": "90s anime aesthetic Moss/Krea2/Anima/illustriousXL/ZImageTurbo/Flux/Chroma",
+      "versions": {
+        "moss": {
+          "ver": "Moss",
+          "version_id": 3473903,
+          "url": "https://civitai.com/api/download/models/3473903?fileId=3378699",
+          "filename": "90s-anime-aesthetic-moss-image-sft-epoch-06.safetensors",
+          "size_kb": 141756.390625,
+          "trigger": "90s_anime_aesthetic, 1990s (style), retro, retro artstyle"
+        },
+        "krea2": {
+          "ver": "Krea2",
+          "version_id": 3349950,
+          "url": "https://civitai.com/api/download/models/3349950?fileId=3237055",
+          "filename": "90s_anime_aesthetic_krea2_3348255_epoch_10.safetensors",
+          "size_kb": 223231.4140625,
+          "trigger": "90s_anime_aesthetic, 1990s (style), retro, retro artstyle"
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 2795022,
+          "url": "https://civitai.com/api/download/models/2795022?fileId=2680992",
+          "filename": "90s anime aesthetic Anima-step00001600.safetensors",
+          "size_kb": 135494.46875,
+          "trigger": "90s_anime_aesthetic, 1990s (style), retro, retro artstyle,"
+        }
+      }
+    },
+    {
+      "id": 878199,
+      "name": "60s Psychedelic Movie",
+      "versions": {
+        "moss": {
+          "ver": "Moss",
+          "version_id": 3476705,
+          "url": "https://civitai.com/api/download/models/3476705?fileId=3382050",
+          "filename": "60sPsyMossBase.safetensors",
+          "size_kb": 141755.109375,
+          "trigger": "ArsMovieStill, movie still from a 60s psychedelic movie,"
+        },
+        "krea2": {
+          "ver": "Krea2",
+          "version_id": 3129133,
+          "url": "https://civitai.com/api/download/models/3129133?fileId=3009642",
+          "filename": "60sPsyKrea2Raw.safetensors",
+          "size_kb": 223230.203125,
+          "trigger": "ArsMovieStill, movie still from a 60s psychedelic movie,"
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 3049980,
+          "url": "https://civitai.com/api/download/models/3049980?fileId=2928772",
+          "filename": "60sPsyAnima-step00006000.safetensors",
+          "size_kb": 90149.984375,
+          "trigger": "ArsMovieStill, movie still from a 60s psychedelic movie,"
+        }
+      }
+    },
+    {
+      "id": 2762978,
+      "name": "[BSS] - Styles for Krea2",
+      "versions": {
+        "krea2": {
+          "ver": "Amber",
+          "version_id": 3463606,
+          "url": "https://civitai.com/api/download/models/3463606?fileId=3366315",
+          "filename": "amber-style-krea-2-base-epoch-08.safetensors",
+          "size_kb": 223231.4140625,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 2284180,
+      "name": "蔚蓝档案风格（blue archive style) style 【anima/ill/krea2】",
+      "versions": {
+        "moss": {
+          "ver": "moss heal",
+          "version_id": 3477973,
+          "url": "https://civitai.com/api/download/models/3477973?fileId=3383603",
+          "filename": "ba_nai_style_moss_uma_v2.safetensors",
+          "size_kb": 290388.421875,
+          "trigger": ""
+        },
+        "krea2": {
+          "ver": "krea2 nai5",
+          "version_id": 3307233,
+          "url": "https://civitai.com/api/download/models/3307233?fileId=3192373",
+          "filename": "nai_ba_style_krea2-st6000.safetensors",
+          "size_kb": 229180.25,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "anima nai5",
+          "version_id": 3255179,
+          "url": "https://civitai.com/api/download/models/3255179?fileId=3138238",
+          "filename": "ba_nai_style_v1.safetensors",
+          "size_kb": 106533.515625,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 878386,
+      "name": "Takorin Style | ILXL & Anima & Moss",
+      "versions": {
+        "moss": {
+          "ver": "Moss v0.1",
+          "version_id": 3461868,
+          "url": "https://civitai.com/api/download/models/3461868?fileId=3364169",
+          "filename": "takorin_moss_t1.safetensors",
+          "size_kb": 72713.2578125,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "Anima v1.0",
+          "version_id": 3283311,
+          "url": "https://civitai.com/api/download/models/3283311?fileId=3168713",
+          "filename": "takorin_anima_v1.0.safetensors",
+          "size_kb": 98139.0234375,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 681120,
+      "name": "DisneyLike style",
+      "versions": {
+        "krea2": {
+          "ver": "Krea2 v1.0",
+          "version_id": 3456751,
+          "url": "https://civitai.com/api/download/models/3456751?fileId=3357793",
+          "filename": "Disneylike-krea-2.safetensors",
+          "size_kb": 55854.1796875,
+          "trigger": "Digital illustration of"
+        },
+        "moss": {
+          "ver": "v1.0 MOSS",
+          "version_id": 3454468,
+          "url": "https://civitai.com/api/download/models/3454468?fileId=3355145",
+          "filename": "Disneylike-moss.safetensors",
+          "size_kb": 35483.390625,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "Anima Alter",
+          "version_id": 3150576,
+          "url": "https://civitai.com/api/download/models/3150576?fileId=3031210",
+          "filename": "Disney Anima Alt.safetensors",
+          "size_kb": 44897.0859375,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 3005005,
+      "name": "[Anima/MOSS] sekali_p style",
+      "versions": {
+        "anima": {
+          "ver": "anima v2-dar",
+          "version_id": 3457807,
+          "url": "https://civitai.com/api/download/models/3457807?fileId=3359044",
+          "filename": "SKP_D_v2.safetensors",
+          "size_kb": 112773.21875,
+          "trigger": "@skp_d"
+        },
+        "moss": {
+          "ver": "moss v1-dar",
+          "version_id": 3459744,
+          "url": "https://civitai.com/api/download/models/3459744?fileId=3361499",
+          "filename": "SKP_MOS_Dv1.safetensors",
+          "size_kb": 145233.5234375,
+          "trigger": ""
+        }
+      }
+    }
+  ],
+  "slider": [
+    {
+      "id": 2513759,
+      "name": "Body weight slider. (Skinny ===> Fat slider)",
+      "versions": {
+        "moss": {
+          "ver": "Moss-Image",
+          "version_id": 3466225,
+          "url": "https://civitai.com/api/download/models/3466225?fileId=3369445",
+          "filename": "WeightMoss-W3-ema.safetensors",
+          "size_kb": 80707.59375,
+          "trigger": ""
+        },
+        "krea2": {
+          "ver": "Krea2",
+          "version_id": 3129180,
+          "url": "https://civitai.com/api/download/models/3129180?fileId=3009693",
+          "filename": "Krea2Weight_v3.safetensors",
+          "size_kb": 104917.6796875,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 3014212,
+          "url": "https://civitai.com/api/download/models/3014212?fileId=2893226",
+          "filename": "Body-WeightSliderAnimaCaut.safetensors",
+          "size_kb": 12583.421875,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 2732158,
+      "name": "[KREA 2] Breast Slider",
+      "versions": {
+        "krea2": {
+          "ver": "v2.0",
+          "version_id": 3473968,
+          "url": "https://civitai.com/api/download/models/3473968?fileId=3378774",
+          "filename": "BreastSlider-KREA2-v2.safetensors",
+          "size_kb": 15571.390625,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 2535632,
+      "name": "Thighs slider",
+      "versions": {
+        "moss": {
+          "ver": "Moss Image",
+          "version_id": 3431911,
+          "url": "https://civitai.com/api/download/models/3431911?fileId=3328003",
+          "filename": "Thighs_SldierMoss2-held-remap15.safetensors",
+          "size_kb": 80707.59375,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "AnimaV2",
+          "version_id": 3264980,
+          "url": "https://civitai.com/api/download/models/3264980?fileId=3148583",
+          "filename": "Thigh-Anima-protect-x1.5.safetensors",
+          "size_kb": 12583.421875,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 2546450,
+      "name": "Hips slider",
+      "versions": {
+        "moss": {
+          "ver": "Moss-image",
+          "version_id": 3449997,
+          "url": "https://civitai.com/api/download/models/3449997?fileId=3349808",
+          "filename": "Hips_SliderMoss-held.safetensors",
+          "size_kb": 80707.59375,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "AnimaV2",
+          "version_id": 3246403,
+          "url": "https://civitai.com/api/download/models/3246403?fileId=3129172",
+          "filename": "Hips-slider-AnimaV2_5cap1000-x2.safetensors",
+          "size_kb": 12583.421875,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 738727,
+      "name": "super hip-waist",
+      "versions": {
+        "krea2": {
+          "ver": "Krea2 Slider ver.",
+          "version_id": 3438193,
+          "url": "https://civitai.com/api/download/models/3438193?fileId=3335532",
+          "filename": "superhipwaist-slider_krea2.safetensors",
+          "size_kb": 28760.015625,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "anima 1.0 base",
+          "version_id": 2963627,
+          "url": "https://civitai.com/api/download/models/2963627?fileId=2843007",
+          "filename": "superhipwaist-Anima_b1.safetensors",
+          "size_kb": 84768.9140625,
+          "trigger": "superhipwaist"
+        }
+      }
+    },
+    {
+      "id": 2521578,
+      "name": "Waist Slider",
+      "versions": {
+        "moss": {
+          "ver": "Moss Image",
+          "version_id": 3433747,
+          "url": "https://civitai.com/api/download/models/3433747?fileId=3330225",
+          "filename": "Waist_SldierMoss-held-dark-clean-x2.safetensors",
+          "size_kb": 80707.59375,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 3036087,
+          "url": "https://civitai.com/api/download/models/3036087?fileId=2914966",
+          "filename": "Waist-slider-Anima4.safetensors",
+          "size_kb": 12583.421875,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 2533131,
+      "name": "Lips size slider",
+      "versions": {
+        "krea2": {
+          "ver": "Krea2",
+          "version_id": 3467403,
+          "url": "https://civitai.com/api/download/models/3467403?fileId=3370869",
+          "filename": "Lips-Krea2-LB-bare05.safetensors",
+          "size_kb": 209748.140625,
+          "trigger": ""
+        },
+        "moss": {
+          "ver": "MOSS-image",
+          "version_id": 3418227,
+          "url": "https://civitai.com/api/download/models/3418227?fileId=3311657",
+          "filename": "Lips-MOSS2-keyed.safetensors",
+          "size_kb": 10769.0703125,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 3044145,
+          "url": "https://civitai.com/api/download/models/3044145?fileId=2922838",
+          "filename": "Lip-thickness-slider-Anima3.safetensors",
+          "size_kb": 12583.421875,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 2568691,
+      "name": "Long legs slider",
+      "versions": {
+        "moss": {
+          "ver": "Moss-image",
+          "version_id": 3468156,
+          "url": "https://civitai.com/api/download/models/3468156?fileId=3371778",
+          "filename": "LongLegsMoss-L4.safetensors",
+          "size_kb": 80707.59375,
+          "trigger": ""
+        },
+        "anima": {
+          "ver": "Anima",
+          "version_id": 3231154,
+          "url": "https://civitai.com/api/download/models/3231154?fileId=3113501",
+          "filename": "Long-legs-slider-Anima2.safetensors",
+          "size_kb": 12583.421875,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 3008688,
+      "name": "Moss Quality Enhance Textslider",
+      "versions": {
+        "moss": {
+          "ver": "base",
+          "version_id": 3414043,
+          "url": "https://civitai.com/api/download/models/3414043?fileId=3306621",
+          "filename": "moss_anima_pure_text_slider_rank16.safetensors",
+          "size_kb": 72657.3984375,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 2827092,
+      "name": "BottomHeavySlider",
+      "versions": {
+        "anima": {
+          "ver": "AnimaV2",
+          "version_id": 3455941,
+          "url": "https://civitai.com/api/download/models/3455941?fileId=3356834",
+          "filename": "Bottom-Heavy-flat-g5_600steps.safetensors",
+          "size_kb": 8538.703125,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 3042936,
+      "name": "[Moss] Breast Slider",
+      "versions": {
+        "moss": {
+          "ver": "v2.0",
+          "version_id": 3463103,
+          "url": "https://civitai.com/api/download/models/3463103?fileId=3365671",
+          "filename": "Moss-BreastSlider-v2.safetensors",
+          "size_kb": 3471.46875,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 2972655,
+      "name": "Line Weight Slider - Bridge Tools (NoobAI/Illustrious/Pony + Anima)",
+      "versions": {
+        "anima": {
+          "ver": "Anima v2.0",
+          "version_id": 3453242,
+          "url": "https://civitai.com/api/download/models/3453242?fileId=3353671",
+          "filename": "Line weight Anima v2.safetensors",
+          "size_kb": 67883.267578125,
+          "trigger": ""
+        }
+      }
+    },
+    {
+      "id": 3053108,
+      "name": "MOSS_age_slider",
+      "versions": {
+        "moss": {
+          "ver": "v1.0",
+          "version_id": 3472395,
+          "url": "https://civitai.com/api/download/models/3472395?fileId=3376897",
+          "filename": "MOSS_age_slider.safetensors",
+          "size_kb": 6102.234375,
+          "trigger": ""
+        }
+      }
+    }
+  ]
+}
