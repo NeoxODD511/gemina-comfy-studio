@@ -89,6 +89,7 @@ def list_combo_options(max_level=4):
         for s in raw_scenes
         if int(s.get("level") or 0) <= max_level
     ]
+    VALID_STYLE_GROUPS = {"风格", "镜头", "色彩", "效果", "视角"}
     styles = [
         {
             "id": st.get("id") or st.get("name"),
@@ -97,7 +98,7 @@ def list_combo_options(max_level=4):
             "group": st.get("group") or "",
         }
         for st in (A.get("styles") or [])
-        if st.get("group") != "图反推" and st.get("tags")
+        if st.get("group") in VALID_STYLE_GROUPS and st.get("tags")
     ]
     return {"scenes": scenes, "styles": styles}
 
@@ -229,9 +230,10 @@ def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, l
             cand = [p for p in poses if p.get("thumb")]
             pose = pick(cand) or pick(poses)
 
-    # 5. 画风（支持用户锁定/自选或禁用；过滤掉「图反推」杂项，只抽真正的画风/构图/镜头/光影）
+    # 5. 画风（白名单仅保留纯美学分组：风格/镜头/色彩/效果/视角，彻底杜绝鱿鱼男孩/舰娘/人数破坏词）
+    VALID_STYLE_GROUPS = {"风格", "镜头", "色彩", "效果", "视角"}
     style_hint = None
-    styles = [st for st in (A["styles"] or []) if st.get("group") != "图反推" and st.get("tags")]
+    styles = [st for st in (A["styles"] or []) if st.get("group") in VALID_STYLE_GROUPS and st.get("tags")]
     if "style_hint" not in disabled:
         if "style_hint" in locked and locked["style_hint"]:
             ls = locked["style_hint"]
