@@ -103,7 +103,7 @@ def list_combo_options(max_level=4):
     return {"scenes": scenes, "styles": styles}
 
 
-def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, locked=None, disabled=None):
+def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, locked=None, disabled=None, cross_outfit=False):
     if seed is not None:
         random.seed(seed)
     locked = locked if isinstance(locked, dict) else {}
@@ -183,6 +183,47 @@ def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, l
             else:
                 oid = str(lo)
                 outfit = next((o for o in A["outfits"] if str(o.get("id")) == oid), None)
+        elif cross_outfit:
+            # 单独重抽服装时开启跨角色盲盒换穿：60% 抽其他热门角色专属服（带原角色名），40% 抽通用服装
+            ck_self = (char or {}).get("id") or ""
+            char_name_map = {c.get("id"): (c.get("name") or c.get("zh") or c.get("id")) for c in A["characters"]}
+            other_wardrobe = [
+                o for o in A["outfits"]
+                if o.get("src") == "wardrobe"
+                and o.get("tags")
+                and int(o.get("level") or 0) <= max_level
+                and not str(o.get("id", "")).startswith(f"{ck_self}::")
+            ]
+            gen = [
+                o for o in A["outfits"]
+                if "::" not in str(o.get("id", ""))
+                and o.get("tags")
+                and is_safe(str(o.get("name", "")) + " " + str(o.get("tags", "")), max_level)
+            ]
+            if other_wardrobe and (not gen or random.random() < 0.65):
+                o = pick(other_wardrobe)
+                if o:
+                    owner_id = str(o.get("id", "")).split("::")[0]
+                    owner_cn = o.get("char_name") or char_name_map.get(owner_id) or owner_id.replace("_", " ")
+                    outfit = {
+                        "id": o.get("id"),
+                        "name": o.get("name") or o.get("id"),
+                        "tags": o.get("tags"),
+                        "level": o.get("level", 0),
+                        "src": "cross_character",
+                        "char_name": owner_cn,
+                    }
+            elif gen:
+                o = pick(gen)
+                if o:
+                    outfit = {
+                        "id": o.get("id"),
+                        "name": o.get("name") or o.get("id"),
+                        "tags": o.get("tags"),
+                        "level": o.get("level", 0),
+                        "src": "generic",
+                        "char_name": "",
+                    }
         else:
             if char:
                 ck = char.get("id") or ""
@@ -295,8 +336,13 @@ def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, l
     if char2:
         _append_char_traits(char2)
 
-    # 服装
+    # 服装（若跨角色换穿或穿通用服装，自动补 alternate costume 防止模型固守原皮）
     if outfit and outfit.get("tags"):
+        own_name = (char or {}).get("name") or (char or {}).get("zh") or ""
+        o_owner = outfit.get("char_name") or ""
+        is_alt_outfit = (outfit.get("src") in ("cross_character", "generic")) or (o_owner and own_name and o_owner != own_name)
+        if is_alt_outfit:
+            parts.append("alternate costume")
         parts.append(outfit["tags"])
 
     # 场景结构化标签

@@ -911,6 +911,7 @@ class Handler(__import__("http.server", fromlist=["BaseHTTPRequestHandler"]).Bas
                     seed=body.get("seed"),
                     locked=body.get("locked") or {},
                     disabled=body.get("disabled") or [],
+                    cross_outfit=bool(body.get("cross_outfit", False)),
                 )
                 return json_resp(self, r)
             except Exception as e:

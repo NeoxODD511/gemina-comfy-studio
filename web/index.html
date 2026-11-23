@@ -2370,7 +2370,7 @@ $('#comboLevel').onchange = e => {
   comboState.optionsCache = null;
 };
 
-async function runComboRequest(overrideLocked=null, overrideDisabled=null, toastMsg=''){
+async function runComboRequest(overrideLocked=null, overrideDisabled=null, toastMsg='', extraOpts={}){
   const lv = +$('#comboLevel').value || 0;
   const work = $('#charWork')?.value || '';
   const use_pose = $('#comboUsePose').checked;
@@ -2392,7 +2392,7 @@ async function runComboRequest(overrideLocked=null, overrideDisabled=null, toast
     const r = await api('/api/combo', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({level: lv, work, use_pose, use_scene, locked, disabled})
+      body: JSON.stringify({level: lv, work, use_pose, use_scene, locked, disabled, ...extraOpts})
     });
     if(r.error){ toast('搭配失败: '+r.error); return; }
     comboState.cur = r;
@@ -2467,7 +2467,12 @@ function renderComboCards(){
   if(!r) return;
   const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
   const outfitChar = r.outfit?.char_name || (r.outfit?.src==='character' ? (r.character?.name || '') : '');
-  const outfitExtra = r.outfit ? ((r.outfit.src==='character' || r.outfit.src==='wardrobe' || outfitChar) ? (outfitChar ? `${outfitChar} · 专属` : '角色专属') : '通用') : '';
+  const isCrossOutfit = !!(outfitChar && r.character?.name && outfitChar !== r.character.name) || r.outfit?.src === 'cross_character';
+  const outfitExtra = r.outfit
+    ? (isCrossOutfit
+        ? `换穿 · ${outfitChar || '其他角色'}`
+        : ((r.outfit.src==='character' || r.outfit.src==='wardrobe' || outfitChar) ? (outfitChar ? `${outfitChar} · 专属` : '角色专属') : '通用'))
+    : '';
   const slots = [
     {key:'scene', label:'场景', obj:r.scene, extra:r.scene?.theme||''},
     {key:'character', label:'角色', obj:r.character, extra:r.character?.work||''},
@@ -2507,13 +2512,15 @@ function renderComboCards(){
           else if(comboState.cur?.[k]) comboState.locks.add(k);
           renderComboCards();
         } else if(act === 'roll'){
-          // 保留其他所有当前项，仅重抽 k
+          // 保留其他所有当前项，仅重抽 k；若重抽服装，开启跨角色盲盒换穿
           comboState.disabled.delete(k);
           const keep = {};
           ['scene','character','character2','outfit','pose','style_hint'].forEach(x=>{
             if(x !== k && comboState.cur?.[x]) keep[x] = comboState.cur[x];
           });
-          runComboRequest(keep, Array.from(comboState.disabled), `已单独重抽「${rowEl.querySelector('b').textContent}」🎲`);
+          const extra = k === 'outfit' ? {cross_outfit: true} : {};
+          const msg = k === 'outfit' ? '已盲盒换穿新服装（自动加 alternate costume）🎲' : `已单独重抽「${rowEl.querySelector('b').textContent}」🎲`;
+          runComboRequest(keep, Array.from(comboState.disabled), msg, extra);
         } else if(act === 'del'){
           comboState.locks.delete(k);
           comboState.disabled.add(k);
