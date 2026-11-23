@@ -1388,6 +1388,16 @@ details.sec-details .details-body{margin-top:10px}
       </div>
       <div class="hires-box">
         <div class="check-row" style="justify-content:space-between">
+          <label style="color:var(--tx);font-weight:600"><input type="checkbox" id="handDetailOn"> 🖐️ 自动修手 (防6指/4指)</label>
+          <span class="hint">YOLO 框手局部精修</span>
+        </div>
+        <div class="pc-grid" id="handDetailFields" style="display:none;margin-top:8px">
+          <div class="field"><label>修手步数 (10–24)</label><input id="hdSteps" type="number" min="4" max="40" value="14"></div>
+          <div class="field"><label>重绘幅度 (0.25–0.45)</label><input id="hdDenoise" type="number" step="0.05" min="0.1" max="0.7" value="0.35"></div>
+        </div>
+      </div>
+      <div class="hires-box">
+        <div class="check-row" style="justify-content:space-between">
           <label style="color:var(--tx);font-weight:600"><input type="checkbox" id="hiresOn"> 二段高清精绘 (HiRes Fix)</label>
           <span class="hint">Latent 放大 + 二次采样</span>
         </div>
@@ -2766,6 +2776,11 @@ if($('#faceDetailOn')){
     $('#faceDetailFields').style.display = e.target.checked ? 'grid' : 'none';
   };
 }
+if($('#handDetailOn')){
+  $('#handDetailOn').onchange = e=>{
+    $('#handDetailFields').style.display = e.target.checked ? 'grid' : 'none';
+  };
+}
 
 /* ---------- 生成 ---------- */
 $('#btnGen').onclick=async()=>{
@@ -2815,6 +2830,12 @@ $('#btnGen').onclick=async()=>{
         steps: +$('#fdSteps').value || 14,
         denoise: +$('#fdDenoise').value || 0.4,
         model_name: 'bbox/face_yolov8m.pt'
+      } : {enabled: false},
+      hand_detailer: $('#handDetailOn')?.checked ? {
+        enabled: true,
+        steps: +$('#hdSteps').value || 14,
+        denoise: +$('#hdDenoise').value || 0.35,
+        model_name: 'bbox/hand_yolov8s.pt'
       } : {enabled: false}
     };
     const r=await api('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});

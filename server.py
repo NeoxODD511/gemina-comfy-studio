@@ -611,6 +611,55 @@ def build_prompt_payload(req):
         }
         img_out = ["81", 0]
 
+    # 自动修手（复用 Impact-Pack FaceDetailer + hand_yolov8s.pt，专治 6 指 / 4 指 / 崩手）
+    hd = req.get("hand_detailer") or {}
+    if isinstance(hd, dict) and hd.get("enabled"):
+        hand_pos = _append_tags(positive, "detailed hands, five fingers, natural hands")
+        hand_neg = _append_tags(negative, "extra fingers, fewer fingers, missing fingers, fused fingers, mutated hands, bad hands, malformed hands")
+        g["84"] = {"class_type": "CLIPTextEncode", "inputs": {"text": hand_pos, "clip": clip_ref}}
+        g["85"] = {"class_type": "CLIPTextEncode", "inputs": {"text": hand_neg, "clip": clip_ref}}
+        g["82"] = {
+            "class_type": "UltralyticsDetectorProvider",
+            "inputs": {"model_name": hd.get("model_name", "bbox/hand_yolov8s.pt")},
+        }
+        g["83"] = {
+            "class_type": "FaceDetailer",
+            "inputs": {
+                "image": img_out,
+                "model": base_model_ref,
+                "clip": clip_ref,
+                "vae": ["3", 0],
+                "guide_size": 512,
+                "guide_size_for": True,
+                "max_size": 1024,
+                "seed": seed_val,
+                "steps": int(hd.get("steps", 14)),
+                "cfg": float(req.get("cfg", 4.0)),
+                "sampler_name": req.get("sampler", "euler"),
+                "scheduler": req.get("scheduler", "simple"),
+                "positive": ["84", 0],
+                "negative": ["85", 0],
+                "denoise": float(hd.get("denoise", 0.35)),
+                "feather": 5,
+                "noise_mask": True,
+                "force_inpaint": True,
+                "bbox_threshold": 0.4,
+                "bbox_dilation": 16,
+                "bbox_crop_factor": 2.5,
+                "sam_detection_hint": "center-1",
+                "sam_dilation": 0,
+                "sam_threshold": 0.93,
+                "sam_bbox_expansion": 0,
+                "sam_mask_hint_threshold": 0.7,
+                "sam_mask_hint_use_negative": "False",
+                "drop_size": 10,
+                "bbox_detector": ["82", 0],
+                "wildcard": "",
+                "cycle": 1,
+            },
+        }
+        img_out = ["83", 0]
+
     g["50"] = {"class_type": "SaveImage", "inputs": {
         "filename_prefix": req.get("prefix", "frontend"), "images": img_out}}
     return g
