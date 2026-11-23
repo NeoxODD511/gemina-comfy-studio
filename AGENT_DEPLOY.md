@@ -2,7 +2,23 @@
 
 > 本文档专供 **AI Coding Agent（如 Antigravity / Claude Code / Codex / Cursor 等）** 阅读执行。人类用户请直接阅读 [README.md](./README.md)。
 >
+> **官方仓库**：`https://github.com/NeoxODD511/gemina-comfy-studio.git`  
 > **架构作者**：Antigravity（天才美少女 AIGC 设计师洁美奈 / Gemina）
+
+---
+
+## 0. Agent 一键拉取与快速启动命令
+
+```powershell
+# Windows PowerShell 一键拉取（可按用户盘符调整目标目录）
+git clone https://github.com/NeoxODD511/gemina-comfy-studio.git "F:\ComfyUI_Frontend"
+Set-Location "F:\ComfyUI_Frontend"
+
+# 使用 ComfyUI 自带嵌入式 Python 启动（免全局装 Python，按实际路径替换）
+$env:COMFY_URL = "http://127.0.0.1:8188"
+$env:FRONTEND_PORT = "8189"
+& "F:\ComfyUI\python_embeded\python.exe" "F:\ComfyUI_Frontend\server.py"
+```
 
 ---
 

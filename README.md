@@ -1,8 +1,27 @@
 # ODD 出图 · Studio（ComfyUI 独立轻量化出图工作台）
 
-> ✨ **项目说明**：本项目的赛博极光磨砂玻璃前端重塑、交互架构（UX）、一条龙工作流引擎、Anima LLLite 姿势图控图联动、WD14 拖图反推集成、实时进度条与队列控制等核心功能，均由 **Antigravity（天才美少女 AIGC 设计师洁美奈 / Gemina）** 完整设计与编写实现。
->
-> 🤖 **给电脑小白的偷懒通道**：如果你不想自己配置环境，只需要把本仓库地址交给你的 AI 编程助手（Antigravity / Claude Code / Cursor 等），让它按 **[AGENT_DEPLOY.md](./AGENT_DEPLOY.md)** 全自动帮你部署验收即可！
+> ✨ **项目说明**：本项目的赛博极光磨砂玻璃前端重塑、交互架构（UX）、一条龙工作流引擎、双人分区域独立提示词（防光环串台）、Anima LLLite 姿势图控图联动、WD14 拖图反推集成、实时进度条与队列控制等核心功能，均由 **Antigravity（天才美少女 AIGC 设计师洁美奈 / Gemina）** 完整设计与编写实现。
+
+---
+
+## 🤖 AI Agent 一键全自动部署（推荐小白直接复制！）
+
+把下面这段话直接复制发给你的 AI 编程助手（**Antigravity / Claude Code / Codex / Cursor** 均可），它会自动帮你克隆代码、探测本机 ComfyUI 路径、配置环境变量、启动服务并验收：
+
+```text
+请帮我部署这个 ComfyUI 前端项目：https://github.com/NeoxODD511/gemina-comfy-studio.git
+1. 先克隆仓库到本地合适目录（如 F:\ComfyUI_Frontend 或我本机 ComfyUI 同级目录）；
+2. 严格按照仓库里的 AGENT_DEPLOY.md 全自动探测我电脑上的 ComfyUI 路径、内置 Python 和 LoRA 目录；
+3. 配好环境变量、检查/适配可选依赖（WD14 拖图反推、姿势图库等）并在桌面生成一键启动脚本；
+4. 启动 8189 前端服务并验证 http://127.0.0.1:8189/api/status 显示 ComfyUI 在线，完成后告诉我打开链接。
+```
+
+如果你习惯在终端直接一条命令拉取运行（PowerShell）：
+```powershell
+git clone https://github.com/NeoxODD511/gemina-comfy-studio.git; Set-Location gemina-comfy-studio; python server.py
+```
+
+*(Agent 详细操作手册见 **[AGENT_DEPLOY.md](./AGENT_DEPLOY.md)**)*
 
 ---
 
@@ -64,7 +83,8 @@
     - `×` 直接移除此项
 - **提示词编排**：
   - 顶部实时展示彩色 **「已选素材」条**，点 `×` 随时取消；
-  - 下方自带快捷美学芯片（`+ 全身`、`+ 强制换装`、`+ 双女主`、`+ 丁达尔神光`、`+ 大仰拍张力`）、**`📋 复制`** 与 **`🖼️ 拖图反推`**（把参考图拖进去或直接 `Ctrl + V` 粘贴截图，默认勾选「排除原图角色名」只抄衣服/构图不夺舍）。
+  - 下方自带快捷美学芯片（`+ 全身`、`+ 强制换装`、`+ 双女主`、`+ 丁达尔神光`、`+ 大仰拍张力`）、**`📋 复制`** 与 **`🖼️ 拖图反推`**（把参考图拖进去或直接 `Ctrl + V` 粘贴截图，默认勾选「排除原图角色名」只抄衣服/构图不夺舍）；
+  - **👯 双人独立提示词（防光环/发色串台）**：基于 Anima 5D Latent 原生 `ConditioningSetAreaPercentageVideo` + `ConditioningCombine` 做物理左右/上下分区；一方含 `halo`（如蔚蓝档案角色）时另一方自动补 `no halo` 护盾，同时自动压制第 3 人影分身。
 - **LoRA 工作室**：
   - 支持按底模和分类筛选；已挂 LoRA 支持滑块调权重，**滑杆 LoRA（Slider LoRA）自动解锁 `-3 ~ +3` 负值反向调节**。
 
