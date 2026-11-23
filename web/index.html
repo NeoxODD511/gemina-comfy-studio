@@ -2397,7 +2397,9 @@ async function runComboRequest(overrideLocked=null, overrideDisabled=null, toast
 
 function applyComboResultToUI(r, customMsg=''){
   if($('#comboWrite').checked){
-    let finalPrompt = (r.prompt || '').trim();
+    // 双人搭配时主正面框只写全局场景与互动（r.global_prompt），两位角色的特征写入下方独立分区框，避免重复叠加出第3人
+    const basePrompt = (r.character && r.character2 && r.global_prompt) ? r.global_prompt : (r.prompt || '');
+    let finalPrompt = basePrompt.trim();
     if($('#comboUseNL')?.checked && r.scene_nl){
       const nl = String(r.scene_nl).trim();
       if(nl && !finalPrompt.includes(nl)){
@@ -2766,7 +2768,7 @@ $('#btnGen').onclick=async()=>{
         layout: $('#dualLayout')?.value || 'lr',
         char1: ($('#char1Pos')?.value || '').trim(),
         char2: ($('#char2Pos')?.value || '').trim(),
-        strength: 1.0
+        strength: 0.85
       } : {enabled: false},
       pose_ctrl: poseCtrlOn ? {
         enabled: true,

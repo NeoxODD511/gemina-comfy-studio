@@ -308,16 +308,42 @@ def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, l
     scene_nl = (scene or {}).get("scene_nl", "") if scene else ""
 
     # 去重（保序）
-    seen = set()
-    clean = []
-    for p in parts:
-        for seg in [s.strip() for s in str(p).split(",") if s.strip()]:
-            k = seg.casefold()
-            if k not in seen:
-                seen.add(k)
-                clean.append(seg)
+    def _dedup_join(seq):
+        seen_s = set()
+        out = []
+        for p in seq:
+            for seg in [s.strip() for s in str(p).split(",") if s.strip()]:
+                k = seg.casefold()
+                if k not in seen_s:
+                    seen_s.add(k)
+                    out.append(seg)
+        return ", ".join(out)
 
-    prompt = ", ".join(clean)
+    prompt = _dedup_join(parts)
+
+    # 双人分区域模式专用：全局提示词不含两位角色的个人特征（个人特征由左右独立框承载，防止主框+分区叠加出第3人）
+    global_prompt = prompt
+    if char and char2:
+        g_parts = []
+        if is_multi and cl:
+            g_parts.append(cl)
+        else:
+            g_parts.append("2girls")
+        g_parts.append(QUALITY)
+        if outfit and outfit.get("tags"):
+            g_parts.append(outfit["tags"])
+        if scene:
+            t = scene.get("tags") or {}
+            for k in ("shot_size", "viewpoint", "pose_base", "action", "place",
+                      "weather", "light_fx", "texture_fx", "eye_gaze", "emotion",
+                      "n_state", "n_exposure"):
+                if t.get(k):
+                    g_parts.append(t[k])
+            if scene.get("extra"):
+                g_parts.append(scene["extra"])
+        if pose and not pose_conflict and pose.get("tags"):
+            g_parts.append(pose["tags"])
+        global_prompt = _dedup_join(g_parts)
 
     return {
         "scene": scene,
@@ -328,6 +354,7 @@ def make_combo(max_level=0, work="", use_pose=True, use_scene=True, seed=None, l
         "pose_conflict": pose_conflict,
         "style_hint": style_hint,
         "prompt": prompt,
+        "global_prompt": global_prompt,
         "negative": NEGATIVE,
         "level": int(scene.get("level") or 0) if scene else 0,
         "scene_nl": scene_nl,
