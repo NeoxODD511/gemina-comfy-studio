@@ -499,20 +499,21 @@ def build_prompt_payload(req):
                 c1 = _append_tags(c1, "no halo")
             layout = dual.get("layout", "lr")
             d_str = float(dual.get("strength", 1.0))
+            # Anima 内部采用 5D Cosmos Latent (B, C, T=1, H, W)，必须用 ConditioningSetAreaPercentageVideo (带 temporal/z)
             if layout == "tb":
-                a1 = {"x": 0.0, "y": 0.0, "width": 1.0, "height": 0.55, "strength": d_str}
-                a2 = {"x": 0.0, "y": 0.45, "width": 1.0, "height": 0.55, "strength": d_str}
+                a1 = {"x": 0.0, "y": 0.0, "z": 0.0, "width": 1.0, "height": 0.55, "temporal": 1.0, "strength": d_str}
+                a2 = {"x": 0.0, "y": 0.45, "z": 0.0, "width": 1.0, "height": 0.55, "temporal": 1.0, "strength": d_str}
             else:
-                a1 = {"x": 0.0, "y": 0.0, "width": 0.55, "height": 1.0, "strength": d_str}
-                a2 = {"x": 0.45, "y": 0.0, "width": 0.55, "height": 1.0, "strength": d_str}
+                a1 = {"x": 0.0, "y": 0.0, "z": 0.0, "width": 0.55, "height": 1.0, "temporal": 1.0, "strength": d_str}
+                a2 = {"x": 0.45, "y": 0.0, "z": 0.0, "width": 0.55, "height": 1.0, "temporal": 1.0, "strength": d_str}
             if c1:
                 g["70"] = {"class_type": "CLIPTextEncode", "inputs": {"text": _append_tags(c1, DEFAULT_POSITIVE), "clip": clip_ref}}
-                g["71"] = {"class_type": "ConditioningSetAreaPercentage", "inputs": {"conditioning": ["70", 0], **a1}}
+                g["71"] = {"class_type": "ConditioningSetAreaPercentageVideo", "inputs": {"conditioning": ["70", 0], **a1}}
                 g["74"] = {"class_type": "ConditioningCombine", "inputs": {"conditioning_1": pos_ref, "conditioning_2": ["71", 0]}}
                 pos_ref = ["74", 0]
             if c2:
                 g["72"] = {"class_type": "CLIPTextEncode", "inputs": {"text": _append_tags(c2, DEFAULT_POSITIVE), "clip": clip_ref}}
-                g["73"] = {"class_type": "ConditioningSetAreaPercentage", "inputs": {"conditioning": ["72", 0], **a2}}
+                g["73"] = {"class_type": "ConditioningSetAreaPercentageVideo", "inputs": {"conditioning": ["72", 0], **a2}}
                 g["75"] = {"class_type": "ConditioningCombine", "inputs": {"conditioning_1": pos_ref, "conditioning_2": ["73", 0]}}
                 pos_ref = ["75", 0]
 
