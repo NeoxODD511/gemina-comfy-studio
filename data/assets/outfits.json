@@ -11,6 +11,17 @@
     "char_work": "星塔旅人"
   },
   {
+    "id": "female_tyrant_(stella_sora)::swimsuit",
+    "name": "夏日泳装（海边）",
+    "zh": "夏日泳装（海边）",
+    "tags": "white swimsuit, two-piece swimsuit, halterneck, frilled bikini top, blue trim, yellow ribbon, star ornaments, midriff, navel, white swim skirt, frilled skirt, blue bikini bottom, thigh strap, bracelet, bare shoulders, blue hairband",
+    "level": 1,
+    "src": "wardrobe",
+    "group": "female_tyrant_(stella_sora)",
+    "char_name": "女魔王（星塔旅人）",
+    "char_work": "星塔旅人"
+  },
+  {
     "id": "t-shirt",
     "name": "T恤",
     "zh": "T恤",
