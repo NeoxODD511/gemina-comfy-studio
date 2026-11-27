@@ -27,8 +27,8 @@ CATEGORIES = {
     "x":     {"label": "功能 Utility",   "prefix": "x_",     "weight": [0.2, 0.6], "default_weight": 0.40},
 }
 
-# 目录名 -> 分类（新结构靠目录定分类，最可靠）
-DIR_CATEGORY = {"char": "char", "style": "style", "ctrl": "ctrl", "q": "q", "x": "x"}
+# 目录名 -> 分类（新结构靠目录定分类，最可靠；兼容 char 与 character 两种命名）
+DIR_CATEGORY = {"char": "char", "character": "char", "style": "style", "ctrl": "ctrl", "q": "q", "x": "x"}
 
 # 文件名关键词回退（目录不在标准结构时）
 INFER_RULES = [
@@ -168,15 +168,84 @@ CN_NOTES = [
     # ---- 实验 ----
     (["gpt-image-2_anima-base1"], "像素风实验",
      "GPT-Image-2 蒸馏到 Anima 的像素风实验品", "0.4-0.6", "实验性，效果不稳定"),
+
+    # ---- 五大名家画风 & 蓝色星原画风 ----
+    (["蓝色星原_官方美术画风"], "蓝色星原·官方美术风",
+     "蛮啾《蓝色星原：旅谣》角色立绘与命座卡面风格", "0.7-0.9", "适配 Anima 底模；搭蓝原角色显著增效", ""),
+    (["米奇王_michiking_魅魔学生会part4"], "米奇王·魅魔学生会4画风",
+     "みちきんぐ同人志细腻油润肉感与丝袜光泽", "0.8-1.0", "适配 Anima-Base1.0 或 Malebolgia_Fraud 底模", "Malebolgia, Anmitsuyomogitei"),
+    (["雷火剑_raikaken直属画风"], "雷火剑·直属画风 v1",
+     "雷火剣经典眼型、油亮高光与动态张力", "0.8-1.0", "适配 Anima 通用底模；免触发词", ""),
+    (["t-rexstudio动画风_冠军版"], "雷火剑·T-Rex厂牌冠军版",
+     "T-Rex 里番动画截图质感与高光肌肤", "0.85-0.95", "适配 Anima 通用底模", "T-RexAnimaStyle, anime coloring, anime screencap, shiny skin"),
+    (["t-rex动画多架构版", "t-rex动画风_【适配krea2"], "雷火剑·T-Rex动画风",
+     "Studio T-Rex 番剧动画上色质感", "0.8-1.0", "对应目录底模使用", "TRexStudio"),
+    (["kegareboshi污星"], "雷火剑×佐藤空气·污星风",
+     "名作《ケガレボシ》专属动画画风", "0.6-0.9", "适配 Anima 通用底模", "trexx_kage"),
+    (["佐藤空气_satoukuuki冠军综合版", "佐藤空气_satoukuuki精炼版", "佐藤空气_satoukuuki_【适配"], "佐藤空气·综合画风",
+     "左藤空気标志性丰满肉感与实用向笔触", "0.8-1.0", "对应目录底模使用；免触发词", ""),
+    (["佐藤空气_vr5魅魔本画风v2"], "佐藤空气·VR5魅魔本V2",
+     "Vanishing Reality 5 同人志浓厚油润画风", "0.9-1.0", "最配 Malebolgia_Fraud 特调 Anima 底模", "malebolgia"),
+    (["朝凪_asanagi冠军版_v2"], "朝凪·Asanagi冠军版 v2",
+     "Fatalpulse 凌厉粗线条与极具张力的神态", "0.8-1.0", "适配 Anima 通用底模", "4s4n4g1sknsfw"),
+    (["朝凪_asanagi免触发词版"], "朝凪·Asanagi免触发词版",
+     "朝凪画风直出，无需额外触发词", "0.8-1.0", "适配 Anima 通用底模", ""),
+    (["朝凪_asanagi_p版"], "朝凪·Asanagi P版",
+     "朝凪画师串微调版", "0.8-1.0", "适配 Anima 通用底模", "@asanagi"),
+    (["山药锅锅"], "山药锅锅(药锅锅)画风",
+     "少前/云图御用画师，通透丝袜与细腻肌肤质感", "0.8-1.0", "推荐 er_sde + beta, CFG 4-5", "@syjt"),
+
+    # ---- 蓝色星原 / 原神 / 少前2 角色 ----
+    (["蓝色星原_星临者_starborn"], "蓝色星原·女星临者 v2",
+     "女主角星临者（支持默认礼装、自定义换色与内置女仆装）", "0.75-0.95", "适配 Anima 底模", "xiaoxingchen"),
+    (["源千代_minamotochiyo_v2"], "蓝色星原·源千代(公测原皮)",
+     "黑长直红瞳太刀少女，藏青水手服轻甲黑丝", "0.8-0.95", "适配 Anima 底模", "k_minamoto_chiyo, black_hair, very_long_hair, blunt_bangs, red_eyes, red_inner_hair"),
+    (["源千代_绯色潜行"], "蓝色星原·源千代(绯色潜行)",
+     "高马尾露肩黑金紧身衣与腿甲高跟靴皮肤", "0.8-0.95", "适配 Anima 底模", "k_chiyo_skin, black_hair, very_long_hair, high_ponytail, blunt_bangs, sidelocks, red_eyes"),
+    (["蓝色星原_枫糖"], "蓝色星原·枫糖(Maple)",
+     "金发蓝瞳双丸子头猫娘接待员，白丝短裤", "0.8-0.95", "适配 Anima 底模", "fengtang, blonde hair, blue eyes, cat ears, cat tail, double bun"),
+    (["蓝色星原_涂山小玉"], "蓝色星原·涂山小玉",
+     "青华乡狐仙少女，低双马尾国风白丝礼装", "0.8-0.95", "适配 Anima 底模", "tushanxiaoyu, low twintails, very long hair"),
+    (["蓝色星原_米砂"], "蓝色星原·米砂(Misha)",
+     "绿瞳尖耳木精灵（支持白裙原皮与黑丝宿舍皮）", "0.8-0.95", "适配 Anima 底模", "misha, green eyes, pointy ears"),
+    (["蓝色星原_夏尔"], "蓝色星原·夏尔(Shalle)",
+     "蓝发尖耳角饰精灵，露肩蓝裙配黑丝高跟", "0.8-0.95", "适配 Anima 底模", "xiaer, blue hair, blue eyes, pointy ears, horns"),
+    (["蓝色星原_红宝石"], "蓝色星原·红宝石(Ruby)",
+     "灰发紫瞳魔女帽，红衣百褶裙吊带黑丝", "0.8-0.95", "适配 Anima 底模", "hongbaoshi, grey hair, purple eyes, witch hat"),
+    (["蓝色星原_法兰塔"], "蓝色星原·法兰塔(Falanta)",
+     "翼人族御姐首领，白翼面纹露肩礼裙", "0.8-0.95", "适配 Anima 底模", "falanta, facial mark, white wings, large breasts"),
+    (["蓝色星原_艾妮丝"], "蓝色星原·艾妮丝(Anais)",
+     "浅棕发紫花瞳羊角魔导御姐", "0.8-0.95", "适配 Anima 底模", "ainisi, light brown hair, purple eyes, sheep horns, flower-shaped pupils, large breasts"),
+    (["蓝色星原_莉莉"], "蓝色星原·莉莉(Lily)",
+     "金发绿瞳持盾枪骑士，黑丝长靴绝对领域", "0.8-0.95", "适配 Anima 底模", "liliq, blonde hair, green eyes, braid"),
+    (["蓝色星原_露米"], "蓝色星原·露米(Lumi)",
+     "金发薄荷绿渐变半透明紫蝶翼同行妖精", "0.8-1.0", "适配 Anima 底模", "lumi, fairy, blonde hair, gradient hair, mint green hair, pointed ears, butterfly wings, translucent wings"),
+    (["蓝色星原_永远"], "蓝色星原·永远(YongYuan)",
+     "无垢海浅蓝超长发紫瞳神秘少女", "0.8-0.95", "适配 Anima 底模", "k_yongyuan, light_blue_hair, very_long_hair, purple_eyes"),
+    (["若娜瓦_ronova_v2_【适配anima标准"], "原神·死之执政若娜瓦 v2",
+     "铂金长发金花瞳、红角头纱与红黑眼死神羽翼", "0.85-1.0", "适配标准 2B Anima；负面建议加 3d, cel shading", "ronovagenshin, wings, red wings, veil, black dress"),
+    (["若娜瓦_ronova_【适配anima-29b"], "原神·若娜瓦(29B原生版)",
+     "专为 40 层 Anima-2.9B 重映射版本", "0.5-0.7", "专配 NovaAnimeAMV70_29B / mature29B 底模", "ronovagenshin, wings, red wings, veil, black dress"),
+    (["若娜瓦_ronova_【适配krea2"], "原神·若娜瓦(Krea2版)",
+     "死之执政若娜瓦 Krea2 专版，支持英文自然语言", "0.9-1.0", "专配 Krea2 底模", "ronovagenshin"),
+    (["若娜瓦_ronova_【适配moss"], "原神·若娜瓦(MOSS版)",
+     "死之执政若娜瓦 MOSS 专版", "0.8-1.0", "专配 MOSS 底模", "Ronova, very long hair, white hair, yellow eyes, black dress"),
+    (["少前2_破坏者_destroyer"], "少前2·破坏者(双造型)",
+     "内置机械腿战衣(battle suit)与垂绒黑巧黑丝兔女郎(bunny suit)", "0.8-1.0", "通过 battle suit / bunny suit 切换原皮与兔女郎皮", "destroyer, grey hair, black hair, streaked hair, twintails, yellow eyes"),
 ]
 
 
 def match_cn(fname):
     low = fname.lower()
-    for kws, cn, desc, w, warn in CN_NOTES:
+    for item in CN_NOTES:
+        kws, cn, desc, w, warn = item[:5]
         for kw in kws:
             if kw in low:
-                return {"cn": cn, "desc": desc, "weight_hint": w, "warn": warn}
+                res = {"cn": cn, "desc": desc, "weight_hint": w, "warn": warn}
+                if len(item) >= 6:
+                    res["trigger"] = item[5]
+                    res["explicit_trigger"] = True
+                return res
     return {}
 
 

@@ -437,29 +437,65 @@ def build_prompt_payload(req):
         "4": {"class_type": "EmptyLatentImage", "inputs": {
             "width": int(req.get("width", 832)), "height": int(req.get("height", 1216)), "batch_size": 1}},
     }
-    # LoRA 链
+    # LoRA 链（当底模为 Anima 2.9B / 40L 时，自动路由至 Anima29LegacyLoRALoaderSharp 桥接器）
+    is_anima_29b = bool(model and ("anima" in model.lower()) and re.search(r"2\.?9b", model, re.I))
     loras = req.get("loras") or []
     model_ref = ["1", 0]
     clip_ref = ["2", 0]
     nid = 10
+    extra_lora_triggers = []
+    # 读取索引以自动补充显式触发词（如画风 @syjt / 4s4n4g1sknsfw 或角色词）
+    _idx_by_file = {}
+    try:
+        _ip = os.path.join(DATA, "lora-index.json")
+        if os.path.isfile(_ip):
+            with open(_ip, encoding="utf-8") as _f:
+                for _it in (json.load(_f).get("items") or []):
+                    _idx_by_file[_it["file"].replace("/", "\\").lower()] = _it
+    except Exception:
+        pass
+
     for i, l in enumerate(loras):
         f = l.get("file")
         w = float(l.get("weight", 0.7))
         if not f:
             continue
         node = str(nid)
-        g[node] = {
-            "class_type": "LoraLoader",
-            "inputs": {
-                "lora_name": f, "strength_model": w, "strength_clip": w,
-                "model": model_ref, "clip": clip_ref,
-            },
-        }
-        model_ref = [node, 0]
-        clip_ref = [node, 1]
+        f_norm = f.replace("/", "\\")
+        meta = _idx_by_file.get(f_norm.lower()) or {}
+        if meta.get("explicit_trigger") and meta.get("trigger"):
+            extra_lora_triggers.append(meta["trigger"])
+
+        if is_anima_29b:
+            is_style = ("\\style\\" in f_norm.lower())
+            g[node] = {
+                "class_type": "Anima29LegacyLoRALoaderSharp",
+                "inputs": {
+                    "model": model_ref,
+                    "lora_name": f,
+                    "strength_model": w,
+                    "inserted_strength": 0.20 if is_style else 0.18,
+                    "inserted_mode": "sharp_blend" if is_style else "copy_prev",
+                    "inserted_scope": "attn_and_mlp" if is_style else "attn_only",
+                },
+            }
+            model_ref = [node, 0]
+        else:
+            g[node] = {
+                "class_type": "LoraLoader",
+                "inputs": {
+                    "lora_name": f, "strength_model": w, "strength_clip": w,
+                    "model": model_ref, "clip": clip_ref,
+                },
+            }
+            model_ref = [node, 0]
+            clip_ref = [node, 1]
         nid += 1
 
-    positive = _append_tags(req.get("positive", ""), DEFAULT_POSITIVE)
+    user_pos = req.get("positive", "")
+    for trig in extra_lora_triggers:
+        user_pos = _append_tags(user_pos, trig)
+    positive = _append_tags(user_pos, DEFAULT_POSITIVE)
     negative = _append_tags(req.get("negative", ""), DEFAULT_NEGATIVE)
     # 纯女性场景自动防串台护盾（当正面未出现男性或 futa 相关词时，在负面自动压制）
     _pos_low = positive.lower()
@@ -666,14 +702,17 @@ def build_prompt_payload(req):
 
 
 def load_workflow_presets():
-    p = os.path.join(ROOT, "workflows", "presets.json")
-    if not os.path.isfile(p):
-        return {"items": []}
-    try:
-        with open(p, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception as e:
-        return {"items": [], "error": str(e)}
+    items = []
+    for fn in ("presets.local.json", "presets.json"):
+        p = os.path.join(ROOT, "workflows", fn)
+        if os.path.isfile(p):
+            try:
+                with open(p, encoding="utf-8") as f:
+                    d = json.load(f)
+                    items.extend(d.get("items") or [])
+            except Exception:
+                pass
+    return {"items": items}
 
 
 def _mirror_history_images(history_dict):

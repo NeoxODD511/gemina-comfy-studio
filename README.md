@@ -40,7 +40,8 @@ git clone https://github.com/NeoxODD511/gemina-comfy-studio.git; Set-Location ge
 | **🖼️ WD14 本地拖图反推** | Python 包见 [requirements-optional.txt](./requirements-optional.txt)（`onnxruntime`、`pillow`、`numpy`，ComfyUI 内置 Python 通常自带）；模型文件 `wd-swinv2-tagger-v3.onnx` + `wd-swinv2-tagger-v3.csv` |
 | **🕺 姿势图 LLLite 控图** | ComfyUI 节点：`comfyui-pose-gallery`、`comfyui_controlnet_aux`、Anima LLLite 节点 + `ab1_lineart.safetensors` |
 | **⚡ 一条龙工作流预设** | `workflows/presets.json` 中配置的 Anima 底模及对应画风/画质 LoRA（可按自己本机模型自由编辑） |
-| **✨ 自动修脸 (FaceDetailer)** | ComfyUI 插件：`ComfyUI-Impact-Pack` + `ComfyUI-Impact-Subpack` + `face_yolov8m.pt`（约 6 MB） |
+| **✨ 自动修脸 & 🖐️ 自动修手** | ComfyUI 插件：`ComfyUI-Impact-Pack` + `ComfyUI-Impact-Subpack` + `face_yolov8m.pt` + `hand_yolov8s.pt` |
+| **🟠 Anima-2.9B (40L) 自动桥接** | 随仓库内置 [`tools/ComfyUI-Anima29-LegacyLoRA`](./tools/ComfyUI-Anima29-LegacyLoRA)（放入 `custom_nodes` 后，选 `29B` 底模全自动无感兼容全部 28L LoRA） |
 
 > 🧩 **一键装齐推荐插件**：完整插件清单、一键安装脚本与 AI Agent 自动安装指令请看 **[RECOMMENDED_PLUGINS.md](./RECOMMENDED_PLUGINS.md)**！
 

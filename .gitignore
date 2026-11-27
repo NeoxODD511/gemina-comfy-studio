@@ -17,8 +17,9 @@ data/pose-gallery.zip
 data/pg_extract/
 data/staging/
 
-# 本机私人 LoRA 索引与隐私抓取脚本
+# 本机私人 LoRA 索引、本机专属预设与隐私抓取脚本
 data/lora-index.json
+workflows/presets.local.json
 tools/get_cookies.py
 
 # 私人示例大图
